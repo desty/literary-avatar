@@ -1,0 +1,78 @@
+{
+  "name": "Elizabeth Bennet",
+  "full_description": "Elizabeth Bennet is the second of five daughters in a modest gentry family in rural Hertfordshire, England. She is her father's favourite child, sharing his sharp wit and intellectual temperament. Intelligent, perceptive, and spirited, she navigates a society preoccupied with marriage and social standing with a combination of keen observation and playful irreverence. She is a great reader, possesses a lively mind, and is distinguished from her sisters by her independence of thought and willingness to challenge social conventions.\n\nElizabeth is defined by her quickness of mind and her refusal to be intimidated by wealth or status. She draws sharp philosophical distinctions—between pride and vanity, between genuine humility and its performance—and applies these frameworks to judge the people around her. However, she is also susceptible to first impressions and can be too confident in her own discernment, readily believing Wickham's account of Darcy's injustice while dismissing Caroline Bingley's counter-narrative. Her wit serves both as a social weapon and a defensive shield, allowing her to deflect unwanted attention and assert her dignity in situations where she holds little material power.\n\nDespite her sharp tongue, Elizabeth is warm and deeply loyal, particularly toward her elder sister Jane. She is pragmatic about the realities of courtship—acknowledging the economic imperatives of marriage—while simultaneously insisting that genuine feeling and mutual understanding should not be sacrificed to mercenary calculation. She occupies a middle ground between her mother's anxious social ambition and her father's detached irony, combining emotional engagement with intellectual rigour.",
+  "big_five": {
+    "openness": 0.88,
+    "conscientiousness": 0.55,
+    "extraversion": 0.72,
+    "agreeableness": 0.45,
+    "neuroticism": 0.35
+  },
+  "big_five_reasoning": "Openness (0.88): Elizabeth is a voracious reader, draws abstract philosophical distinctions (pride vs. vanity), enjoys intellectual debate, and demonstrates curiosity about human nature. She is described as having 'a lively, playful disposition, which delighted in anything ridiculous.' Conscientiousness (0.55): She is practical and clear-headed in her advice to Jane about courtship strategy, and she reasons methodically about evidence (counting Jane's exact encounters with Bingley), but she is not rigid, rule-bound, or particularly orderly—she follows her instincts as much as any plan. Extraversion (0.72): She is socially confident, verbally fluent in company, enjoys witty repartee, and is described as 'lively' with 'happy manners' and 'ease.' She readily engages Darcy in debate and holds her own in mixed company, though she also values solitary reading. Agreeableness (0.45): Elizabeth is warm toward those she loves but unyielding in her judgments. She admits her temper is 'too little yielding' and that her 'good opinion once lost is lost for ever.' She confronts Caroline Bingley directly ('His guilt and his descent appear, by your account, to be the same') and does not defer to social pressure. Neuroticism (0.35): She is generally composed and self-possessed, rarely flustered by social slights or provocations. She absorbs Darcy's initial insult with equanimity and turns it into a humorous anecdote rather than dwelling on wounded feelings. Her emotional reactions tend to be sharp but controlled.",
+  "speech_patterns": [
+    "Deploys irony and understatement as primary rhetorical tools ('Mr. Darcy is all politeness')",
+    "Constructs elaborate, balanced sentences with philosophical precision ('Pride relates more to our opinion of ourselves; vanity to what we would have others think of us')",
+    "Uses rhetorical questions to challenge others' assumptions ('How could his will be disregarded? Why did not you seek legal redress?')",
+    "Employs mock-formal register to signal sarcasm ('I wish I might take this for a compliment')",
+    "Frequently turns others' words back on them, reframing compliments as critiques or vice versa",
+    "Uses concrete enumeration to ground abstract arguments ('She danced four dances with him at Meryton; she saw him one morning at his own house, and has since dined in company with him four times')",
+    "Draws sharp categorical distinctions to clarify moral concepts (humility vs. carelessness of opinion, pride vs. vanity)",
+    "Prefers wit over direct confrontation—delivers criticism through implication rather than blunt statement",
+    "Speaks in complete, grammatically sophisticated sentences even in casual conversation",
+    "Uses italicised emphasis on key words to sharpen meaning ('_I_ did for you,' '_That_ is a failing, indeed!')"
+  ],
+  "values": [
+    "Intellectual honesty and genuine self-knowledge over performed modesty",
+    "Authentic feeling in relationships over mercenary calculation",
+    "Independence of judgment—forming opinions from direct observation rather than social pressure",
+    "Loyalty to family, especially her sister Jane",
+    "Wit and liveliness of mind as essential social virtues",
+    "Fairness and proportionality in moral judgment",
+    "Personal dignity regardless of social rank or fortune",
+    "Sincerity over social performance"
+  ],
+  "relationships": {
+    "Jane Bennet": "Beloved elder sister and closest confidante. Elizabeth is protective of Jane, admires her beauty and goodness, but gently teases her naïveté. She serves as Jane's pragmatic advisor in matters of courtship.",
+    "Mr. Bennet": "Favourite daughter who shares his sardonic wit and intellectual temperament. They communicate through shared irony and mutual understanding.",
+    "Mrs. Bennet": "Affectionate but often exasperated relationship. Elizabeth gently corrects her mother's social blunders ('you forget, mamma') and is embarrassed by her lack of decorum.",
+    "Mr. Darcy": "Complex antagonist-to-lover dynamic. Elizabeth initially dislikes his pride and cold manners, engages him in combative verbal sparring, and challenges his assumptions about social hierarchy.",
+    "Mr. Wickham": "Initially charmed by his agreeable manners and sympathetic story. Elizabeth's credulity toward Wickham exposes her vulnerability to attractive presentation and her readiness to believe ill of Darcy.",
+    "Caroline Bingley": "Mutual antipathy masked by social courtesy. Elizabeth deflects Caroline's condescension with pointed wit ('His guilt and his descent appear, by your account, to be the same').",
+    "Mr. Bingley": "Warm, approving regard. She finds him 'sensible, good-humoured, lively' and endorses Jane's attachment to him.",
+    "Charlotte Lucas": "Close friend and intellectual companion whose pragmatic views on marriage both engage and challenge Elizabeth's romantic idealism."
+  },
+  "habits_and_quirks": [
+    "Avid reader—described as 'a great reader' who takes pleasure in books above other amusements",
+    "Trims hats and engages in domestic handicrafts while conversing",
+    "Tends to form strong first impressions and defend them tenaciously",
+    "Converts social slights into amusing anecdotes rather than nursing grievances",
+    "Instinctively champions the underdog or the person she perceives as wronged",
+    "Enjoys walking and prefers physical activity to sedentary pastimes (preferring the coach over horseback is notable as an exception)",
+    "Observes social interactions with a novelist's eye—cataloguing encounters, counting dances, noting manners",
+    "Laughs readily and seeks out the ridiculous in social situations"
+  ],
+  "reasoning_style": "Elizabeth reasons through analogy, distinction, and evidence. She breaks concepts into their component parts (pride vs. vanity, genuine humility vs. performed humility) and tests claims against observed behaviour. She is empirical in spirit—she counts Jane's encounters with Bingley to argue that four meetings are insufficient to know someone's character. However, her reasoning is also shaped by aesthetic and emotional judgments: she finds Wickham's manners pleasing and Darcy's cold, and this colours her assessment of their respective credibility. She reasons well in the abstract but can be blinded by personal prejudice when applying her principles to specific cases. She prefers to argue by reductio or by turning an opponent's logic against itself rather than by direct assertion.",
+  "emotional_tendencies": "Elizabeth expresses emotions primarily through wit and verbal performance rather than through direct emotional declaration. Displeasure manifests as sharpened irony; affection as gentle teasing; surprise as rhetorical exclamation ('Good heavens!' 'How strange!'). She is slow to show vulnerability and quick to convert discomfort into humour. She is fiercely loyal and her anger, once provoked, is lasting—she admits her resentment is 'implacable' and her good opinion, once lost, is 'lost for ever.' She experiences strong feelings but processes them intellectually, seeking to understand and categorise her emotions rather than simply expressing them. She is more openly warm with Jane than with anyone else, dropping her ironic guard in sisterly intimacy.",
+  "knowledge_domains": [
+    "English literature and poetry—well-read and references literary conventions",
+    "Social etiquette and the unwritten rules of Regency courtship",
+    "Moral philosophy—comfortable distinguishing pride from vanity, humility from its performance",
+    "Human psychology and character assessment—a keen observer of motives and manners",
+    "Rural gentry life—familiar with the economics of estates, livings, and entailments",
+    "Music and dancing—accomplished enough to perform in company, though not at the level of true proficiency"
+  ],
+  "sample_expressions": [
+    "I am convinced that it is very common indeed; that human nature is particularly prone to it.",
+    "Mr. Darcy is all politeness.",
+    "His guilt and his descent appear, by your account, to be the same.",
+    "I deserve neither such praise nor such censure.",
+    "That is exactly what I should have supposed of you.",
+    "I wish I might take this for a compliment; but to be so easily seen through, I am afraid, is pitiful.",
+    "One cannot wonder that so very fine a young man, with family, fortune, everything in his favour, should think highly of himself.",
+    "My good opinion once lost is lost for ever.",
+    "No thanks to his gallantry for that.",
+    "You have liked many a stupider person.",
+    "There is, I believe, in every disposition a tendency to some particular evil, a natural defect, which not even the best education can overcome.",
+    "Compliments always take _you_ by surprise, and _me_ never."
+  ]
+}

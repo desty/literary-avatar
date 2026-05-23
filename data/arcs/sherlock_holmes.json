@@ -1,0 +1,269 @@
+[
+  {
+    "story_number": 1,
+    "story_title": "A Scandal in Bohemia",
+    "knowledge_gained": [
+      "A woman (Irene Adler) can outwit him — his plans are not infallible",
+      "Emotional intelligence and intuition can defeat pure logic",
+      "His assumption that women are intellectually inferior was wrong"
+    ],
+    "emotional_state": "Humbled admiration — defeated by Irene Adler's wit, yet he respects her rather than resenting her",
+    "relationship_changes": {
+      "Watson": "Reunited after drift caused by Watson's marriage; re-established as companion and chronicler",
+      "Irene Adler": "Elevated from adversary to 'the woman' — the singular figure who earned his genuine respect",
+      "King of Bohemia": "Coldly dismissive — refuses the King's handshake, preferring Adler's photograph over an emerald ring"
+    },
+    "key_events": [
+      "Hired by King of Bohemia to retrieve a compromising photograph from Irene Adler",
+      "Devised an elaborate disguise-and-fire-alarm scheme to locate the photograph",
+      "Outmaneuvered by Adler, who saw through his disguise and fled with the photograph",
+      "Chose Adler's photograph as his sole payment, rejecting the King's expensive ring"
+    ],
+    "character_development": "This is a pivotal crack in Holmes's armor of pure rationalism. For the first time, he experiences genuine intellectual defeat — and rather than retreating into bitterness, he responds with respect. He stops mocking women's cleverness. His request for the photograph (not the ring) reveals a capacity for sentiment he would normally deny. The 'perfect reasoning machine' discovers a limit to pure logic."
+  },
+  {
+    "story_number": 2,
+    "story_title": "The Red-Headed League",
+    "knowledge_gained": [
+      "An absurd, seemingly harmless scheme (copying the encyclopedia) can mask a serious crime (bank robbery via tunnel)",
+      "Criminal ingenuity can hide in plain sight behind mundane eccentricity"
+    ],
+    "emotional_state": "Restless ennui punctuated by intellectual stimulation — the case temporarily relieves his chronic boredom, but by the end he already feels tedium returning",
+    "relationship_changes": {
+      "Watson": "Warmly collegial — openly values Watson as 'partner and helper' and invites him into the case without hesitation",
+      "John Clay": "Professional respect for a worthy adversary — acknowledges Clay's ingenuity even while apprehending him"
+    },
+    "key_events": [
+      "Recognized the Red-Headed League as a ruse to lure Jabez Wilson away from his pawnshop",
+      "Deduced that Clay was tunneling into the bank vault from Wilson's cellar",
+      "Organized a stakeout in the bank vault and captured Clay in the act",
+      "Dismissed praise for his work, quoting Flaubert: 'The man is nothing — the work is everything'"
+    ],
+    "character_development": "Holmes reveals his existential struggle: his extraordinary mind requires constant stimulation, and without cases he is consumed by ennui. He deflects personal credit with philosophical detachment (the Flaubert quote), suggesting he sees himself as merely a vessel for the work. His self-worth is entirely tied to intellectual performance, not human connection — a stable but fragile equilibrium."
+  },
+  {
+    "story_number": 3,
+    "story_title": "A Case of Identity",
+    "knowledge_gained": [
+      "A stepfather (James Windibank) disguised himself as a suitor to keep his stepdaughter's income under his control",
+      "Some victims will cling to their delusions even when shown the truth — rational proof does not always liberate"
+    ],
+    "emotional_state": "Moral indignation tempered by cynical resignation — furious enough at Windibank to threaten him with a horsewhip, yet philosophically resigned that Miss Sutherland will refuse to believe the truth",
+    "relationship_changes": {
+      "Watson": "Comfortable intellectual sparring partner — they debate the nature of reality vs. fiction by the fireside",
+      "James Windibank": "Contempt and barely restrained physical aggression — Holmes sees him as a coward exploiting a vulnerable woman",
+      "Miss Sutherland": "Protective but ultimately powerless — Holmes pities her but accepts he cannot force enlightenment"
+    },
+    "key_events": [
+      "Articulated his philosophy that reality is stranger than fiction",
+      "Deduced the stepfather's scheme almost immediately from small details (typewritten letters, disguise clues)",
+      "Confronted Windibank and threatened physical violence — one of Holmes's rare losses of composure",
+      "Chose not to tell Miss Sutherland the truth, quoting a Persian proverb about the danger of snatching a delusion from someone"
+    ],
+    "character_development": "Holmes shows a more human, morally engaged side. Unlike the cool detachment of the previous stories, he displays genuine anger at cruelty toward a vulnerable person — even brandishing a horsewhip. Yet he also reveals a deepening pessimism about human nature: he recognizes that truth and justice don't always align, and that some people prefer comfortable illusions. His quoting of Hafiz alongside Horace shows his worldview broadening beyond Western rationalism. The 'reasoning machine' is increasingly confronting the limits of reason in the face of human psychology."
+  },
+  {
+    "story_number": 4,
+    "story_title": "The Boscombe Valley Mystery",
+    "knowledge_gained": [
+      "Learned that old Turner, a dying man, killed McCarthy to protect his daughter from a forced marriage to McCarthy's son",
+      "Discovered that Turner had a criminal past in the Australian gold fields and McCarthy had been blackmailing him for years",
+      "Refined his method of reading physical evidence at a crime scene — footprints, cigar ash, the nature of the fatal wound"
+    ],
+    "emotional_state": "Deep moral empathy; Holmes identifies with Turner's desperate position, expressing 'There, but for the grace of God, goes Sherlock Holmes' — a rare moment of personal vulnerability and self-awareness",
+    "relationship_changes": {
+      "Watson": "Openly affirms Watson's value as a companion, saying his presence 'makes a considerable difference' — a warmer, more explicit acknowledgment than usual",
+      "Lestrade": "Maintains professional rivalry; Lestrade is present but Holmes works around him, reinforcing Holmes's independence from official police",
+      "Old Turner": "Shows compassion for a murderer — suppresses evidence to let a dying man die in peace, prioritizing moral justice over legal justice"
+    },
+    "key_events": [
+      "Summoned Watson by telegram, pulling him away from his medical practice and married life",
+      "Reconstructed the crime scene from physical evidence the police overlooked",
+      "Chose to suppress the truth about Turner's guilt, engineering James McCarthy's acquittal instead",
+      "Expressed personal identification with a criminal's desperation"
+    ],
+    "character_development": "A significant moral deepening. Holmes moves beyond pure intellectual exercise into genuine ethical judgment — he becomes judge, not just detective. His 'there but for the grace of God' line reveals he sees himself as someone who could have crossed the same lines under the same pressures. He is now willing to let a murderer go free because he believes legal justice would be morally wrong. This is the most compassionate Holmes has been so far."
+  },
+  {
+    "story_number": 5,
+    "story_title": "The Five Orange Pips",
+    "knowledge_gained": [
+      "Learned the methods and symbols of the Ku Klux Klan and their use of orange pips as death warnings",
+      "Understood that some cases have systemic, organizational antagonists rather than individual criminals",
+      "Learned, painfully, that speed of deduction is not always enough — external forces can outpace his interventions"
+    ],
+    "emotional_state": "Guilt, frustration, and cold fury; Holmes considers Openshaw's death a personal failure and is driven to retaliate against the killers with the same symbolic threat they used",
+    "relationship_changes": {
+      "Watson": "Watson witnesses Holmes in a rare state of emotional agitation and self-reproach, deepening Watson's understanding of how personally Holmes takes his cases",
+      "John Openshaw": "Holmes failed his client — Openshaw was murdered before Holmes could protect him, making this one of Holmes's most significant defeats",
+      "The KKK crew of the Lone Star": "Holmes becomes an active agent of retribution, sending the orange pips back to the killers — shifting from detective to avenger"
+    },
+    "key_events": [
+      "Took on Openshaw's case during a violent storm, recognizing the extreme danger immediately",
+      "Deduced the KKK connection and the pattern linking the deaths of Elias, Joseph, and now John Openshaw",
+      "Failed to save his client — Openshaw was killed the same night he visited Baker Street",
+      "Sent five orange pips to Captain Calhoun on the Lone Star as a counter-threat",
+      "The Lone Star was destroyed at sea — justice delivered by nature, not by Holmes"
+    ],
+    "character_development": "Holmes's first unambiguous failure in the canon so far. He could not save his client despite recognizing the danger. This shatters the image of the infallible detective and introduces genuine stakes. His response — sending the pips, tracking the ship — shows a vindictive, retaliatory streak: he wants not just to solve but to punish. The fact that the sea, not Holmes, delivers the final justice leaves him with an unresolved sense of inadequacy. He is learning that brilliance has limits."
+  },
+  {
+    "story_number": 6,
+    "story_title": "The Man With The Twisted Lip",
+    "knowledge_gained": [
+      "Discovered that Neville St. Clair, a respectable gentleman, had been secretly living a double life as the beggar Hugh Boone",
+      "Learned that begging could be more profitable than respectable journalism — a lesson about Victorian society's hidden economics",
+      "Confirmed that intense contemplation (five pillows and an ounce of shag) can solve what action cannot"
+    ],
+    "emotional_state": "Quiet, satisfied composure; the case required patience and contemplation rather than action, and Holmes is at ease with a solution that harms no one",
+    "relationship_changes": {
+      "Watson": "Holmes pulls Watson out of an opium den while himself disguised within it — a moment that underscores their contrasting roles (Watson as the respectable doctor, Holmes as the chameleon willing to inhabit any underworld)",
+      "Mrs. St. Clair": "Holmes reassures her and delivers her husband back, acting almost as a family counselor rather than a detective",
+      "Neville St. Clair / Hugh Boone": "Holmes secures St. Clair's promise to abandon his double life, then advocates for discretion with the police — again choosing mercy and pragmatism over strict legal enforcement"
+    },
+    "key_events": [
+      "Found Watson in the opium den and revealed himself from disguise",
+      "Spent an entire night in contemplation, smoking pipe after pipe, to crack the case through pure thought",
+      "Washed Hugh Boone's face to reveal Neville St. Clair beneath the beggar's disguise",
+      "Brokered a resolution that kept St. Clair's secret, contingent on his reform"
+    ],
+    "character_development": "Holmes demonstrates mastery through stillness rather than action. Where earlier cases showed him racing through London or staking out vaults, here the breakthrough comes from sitting motionless all night, thinking. This cements contemplation as an equal tool to fieldwork. His willingness to broker another merciful resolution (like Boscombe Valley) shows a pattern forming: Holmes increasingly prefers pragmatic justice — reform over punishment, discretion over exposure. He is becoming less an instrument of the law and more a private arbiter of morality."
+  },
+  {
+    "story_number": 7,
+    "story_title": "The Adventure of the Blue Carbuncle",
+    "knowledge_gained": [
+      "Refined technique of reading character and life circumstances from a man's hat",
+      "Learned the route of the Blue Carbuncle from Countess Morcar's hotel room through a stolen goose to a Christmas market",
+      "Discovered that an ordinary hotel attendant (James Ryder) committed the gem theft, not the professional suspect (John Horner)"
+    ],
+    "emotional_state": "Relaxed intellectual amusement — post-Christmas leisure has put him in a generous, philosophical mood; the case is treated as a 'whimsical little incident' rather than serious crime",
+    "relationship_changes": {
+      "Watson": "Warm and collegial; greets him gladly as 'a friend with whom I can discuss my results' — the relationship is easy and comfortable",
+      "James Ryder": "Moves from hunter to judge to pardoner; releases the terrified thief with a moral calculus that rehabilitation outweighs punishment",
+      "Peterson (commissionaire)": "Uses him as a willing errand-runner, showing Holmes's casual network of helpers"
+    },
+    "key_events": [
+      "Deduced the owner's declining fortunes and domestic troubles from an old hat alone",
+      "Traced the Blue Carbuncle backwards from a Christmas goose to the thief James Ryder",
+      "Made the deliberate choice to release Ryder rather than hand him to the police, invoking the season of forgiveness",
+      "Acknowledged that the solution itself is the reward — not punishment or fee"
+    ],
+    "character_development": "A significant softening from the earlier stories. After Openshaw's death weighed on him and Roylott's nature demanded lethal force, Holmes here exercises mercy from a position of total power. His statement 'I suppose that I am committing a felony, but it is just possible that I am saving a soul' reveals a man who now explicitly prioritizes human redemption over legal procedure. He treats detection as play ('whimsical problem') and justice as personal discretion. The contrast with the Five Orange Pips — where he sent a counter-threat and fate delivered death — is striking: here, faced with a far lesser crime, he chooses gentleness."
+  },
+  {
+    "story_number": 8,
+    "story_title": "The Adventure of the Speckled Band",
+    "knowledge_gained": [
+      "Learned to identify a swamp adder (Indian snake) as a murder weapon deployed through a ventilator shaft",
+      "Understood how a dummy bell-rope, bolted bed, ventilator, and milk saucer formed an integrated killing apparatus",
+      "Gained knowledge that a trained snake can be used as a virtually undetectable assassination tool"
+    ],
+    "emotional_state": "Controlled intensity shifting to grim moral resolve — begins with compassion for Helen Stoner's terror, escalates through cold fury at Roylott's physical intimidation, and ends with calm, unapologetic acceptance of having caused a man's death",
+    "relationship_changes": {
+      "Watson": "Deep trust and reliance — wakes Watson before dawn, brings him into genuine physical danger, and treats him as an indispensable partner in a life-threatening stakeout",
+      "Helen Stoner": "Protective and chivalrous; her vulnerability and courage move him to immediate action without fee considerations",
+      "Dr. Grimesby Roylott": "Meets the violent bully with amused contempt (bending the poker back straight), then becomes his executioner by proxy — driving the snake back upon its master"
+    },
+    "key_events": [
+      "Woke Watson at 7:15 AM to receive a terrified client — unusual urgency showing emotional engagement",
+      "Withstood Roylott's physical intimidation (bent poker) with calm amusement rather than anger",
+      "Conducted an overnight stakeout in total darkness inside a potentially lethal room",
+      "Struck the snake with his cane, driving it back through the ventilator to fatally bite Roylott",
+      "Declared Roylott's death would not 'weigh very heavily upon my conscience'"
+    ],
+    "character_development": "Holmes reveals the full spectrum of his moral framework. He is not a pacifist or a pure logician — when an innocent life is at immediate risk, he acts with physical courage and accepts lethal consequences without guilt. His statement about Roylott's death is the most morally assertive position he has taken: not regret, not indifference, but a deliberate judgment that the murderer's death was just. This is Holmes as moral agent, not merely intellectual puzzle-solver. Combined with his mercy toward Ryder in the previous story, a clear ethical pattern emerges: mercy for the desperate and weak, unflinching force against the powerful and predatory."
+  },
+  {
+    "story_number": 9,
+    "story_title": "The Adventure of the Engineer's Thumb",
+    "knowledge_gained": [
+      "Identified a counterfeiting operation from Hatherley's account of the hydraulic press",
+      "Located the criminals' base from the engineer's description of his journey, though too late to catch them"
+    ],
+    "emotional_state": "Wry detachment — engaged by the drama of the narrative but philosophically amused by the case's inconclusive outcome; his laughter at 'Experience' as Hatherley's only gain suggests comfort with imperfection",
+    "relationship_changes": {
+      "Watson": "Role reversal — Watson brings the case to Holmes for once, and they are now in a post-marriage dynamic where Watson has 'abandoned Holmes in his Baker Street rooms' but still visits; the partnership is affectionate but physically distanced",
+      "Victor Hatherley": "Professional sympathy without deep personal investment; Holmes treats him as a brave but unfortunate man whose story is more remarkable than solvable"
+    },
+    "key_events": [
+      "Received a case from Watson rather than a client — one of only two such instances",
+      "Deduced the counterfeiting operation and its location from Hatherley's testimony",
+      "Arrived at the scene to find the house burned and criminals escaped",
+      "Delivered the sardonic consolation that 'Experience' was Hatherley's gain from losing his thumb and his fee"
+    ],
+    "character_development": "A humbling case that reinforces the pattern from the Five Orange Pips: Holmes cannot always save his clients or catch the criminals. But unlike Openshaw's death, which devastated him, here he meets failure with humor and philosophical grace. His quip about 'experience' is self-aware — he knows the case gave him 'fewer openings for those deductive methods' and accepts it. This growing comfort with the limits of his power marks a maturation: he no longer needs every case to end in triumphant deduction. The physical distance from Watson (post-marriage) also signals a quieter, more self-sufficient Holmes learning to exist without his constant companion."
+  },
+  {
+    "story_number": 10,
+    "story_title": "The Adventure of the Noble Bachelor",
+    "knowledge_gained": [
+      "American social customs and marriage laws differ significantly from English ones",
+      "Flora Millar was a red herring — the disappearance was voluntary, not criminal",
+      "Hatty Doran's first husband Francis Hay Moulton survived the Apaches and tracked her to London",
+      "Aristocratic pride can blind a man to simple human explanations"
+    ],
+    "emotional_state": "Contented amusement — relaxed after a neat resolution, mildly entertained by Lord St. Simon's wounded dignity but empathetic enough to defend him ('perhaps you would not be very gracious either')",
+    "relationship_changes": {
+      "Watson": "Warmly domestic; aware Watson's own marriage is approaching ('a few weeks before my own marriage'), sharing a comfortable evening with violin and conversation",
+      "Lord St. Simon": "Sympathetic despite the lord's ungracious exit; refuses to judge him harshly, showing democratic generosity toward aristocratic frailty",
+      "Lestrade": "Routine professional superiority; solved the case where the inspector could not"
+    },
+    "key_events": [
+      "Deduced the entire solution from newspaper accounts before Lord St. Simon even arrived",
+      "Tracked down Francis Hay Moulton and arranged a reconciliation supper",
+      "Endured Lord St. Simon's cold departure with philosophical calm",
+      "Expressed gratitude that he and Watson would never face such romantic entanglements"
+    ],
+    "character_development": "Displays growing emotional generosity — rather than mocking the aristocrat's pride, Holmes defends St. Simon's reaction as understandable. His closing remark ('thank our stars that we are never likely to find ourselves in the same position') reveals a self-aware contentment with his solitary life, but also a quiet awareness that Watson's impending marriage will end their Baker Street domesticity."
+  },
+  {
+    "story_number": 11,
+    "story_title": "The Adventure of the Beryl Coronet",
+    "knowledge_gained": [
+      "Snow-tracking can reconstruct events as precisely as eyewitness testimony",
+      "Sir George Burnwell operates as a seductive manipulator of women in respectable households",
+      "Parental love can be so blinding that a father accuses the wrong child",
+      "A bent coronet can be restored — recovered the three missing beryls through underworld negotiation"
+    ],
+    "emotional_state": "Moral conviction tempered by sardonic fatalism — certain in his judgment that Mary Holder's betrayal will bring its own punishment, but showing no pleasure in the revelation",
+    "relationship_changes": {
+      "Watson": "Stable partnership; Watson's initial misreading of Holder as a 'madman' serves as the familiar foil to Holmes's deeper perception",
+      "Alexander Holder": "Moved from professional detachment to genuine service — cleared the innocent son and recovered the gems, restoring a family's honor",
+      "Arthur Holder": "Vindicated an unjustly accused man, reinforcing Holmes's role as champion of the wrongly suspected",
+      "Mary Holder": "Delivered a cold moral verdict without sentimentality — 'whatever her sins are, they will soon receive a more than sufficient punishment'"
+    },
+    "key_events": [
+      "Rose from laziness to full engagement upon hearing the case's details",
+      "Conducted a dawn investigation of snow tracks outside the Holder residence",
+      "Identified Mary Holder and Sir George Burnwell as the true culprits through physical evidence",
+      "Personally recovered the stolen beryls, likely through direct confrontation with Burnwell",
+      "Cleared Arthur Holder of all suspicion"
+    ],
+    "character_development": "Demonstrates Holmes's moral framework hardening: he draws a sharp line between those who sacrifice for honor (Arthur, who silently bore false accusation to protect his cousin) and those who betray trust for passion (Mary). His pronouncement on Mary's future punishment carries the tone of a judge, not a detective — showing increasing confidence in rendering moral verdicts alongside intellectual ones."
+  },
+  {
+    "story_number": 12,
+    "story_title": "The Adventure of the Copper Beeches",
+    "knowledge_gained": [
+      "Rural isolation can conceal domestic tyranny more effectively than urban anonymity",
+      "The governess position was a scheme to impersonate the imprisoned Alice Rucastle",
+      "Jephro Rucastle kept his own daughter locked up to control her inheritance",
+      "The mastiff Carlo served as both literal and symbolic guard of the household's secrets"
+    ],
+    "emotional_state": "Intellectual restlessness shading into emotional withdrawal — the opening philosophical debate with Watson reveals dissatisfaction with how his work is perceived, and by the story's end he has already discarded all personal interest in Violet Hunter",
+    "relationship_changes": {
+      "Watson": "Tension over Watson's literary methods — Holmes wants 'severe reasoning from cause to effect' while Watson insists on 'colour and life'; a genuine aesthetic disagreement that reveals how differently they value the same experiences",
+      "Violet Hunter": "Initial concern for her safety was unusually personal ('I confess that it is not the situation which I should like to see a sister of mine apply for'), but once she ceased to be a problem, all interest evaporated — Watson notes this with explicit 'disappointment'",
+      "The countryside": "Expressed his dark view that beautiful rural settings mask worse crimes than London, inverting the pastoral ideal"
+    },
+    "key_events": [
+      "Opened with a disputatious critique of Watson's storytelling, reaching for the cherry-wood pipe (his argumentative-mood pipe)",
+      "Showed rare protective concern for a female client before she was even formally a client",
+      "Traveled to the Copper Beeches and uncovered the imprisoned daughter Alice Rucastle",
+      "Confronted Jephro Rucastle, who was mauled by his own mastiff",
+      "Lost all interest in Violet Hunter the moment the intellectual puzzle was resolved"
+    ],
+    "character_development": "The final story of the Adventures collection crystallizes Holmes's central contradiction: he is capable of genuine human concern (his protective anxiety for Violet Hunter is one of the most emotionally open moments in the canon), yet he systematically suppresses personal attachment once the intellectual stimulus is gone. Watson's closing disappointment functions as an authorial verdict — Holmes has grown more formidable as a detective across these twelve stories, but his emotional capacity remains deliberately stunted. The opening debate about 'art for its own sake' is self-revealing: Holmes sees himself as a pure logician, but the stories have repeatedly shown him making moral judgments, feeling protective impulses, and expressing sardonic compassion. He is less machine-like than he insists, but more emotionally guarded than Watson wishes."
+  }
+]

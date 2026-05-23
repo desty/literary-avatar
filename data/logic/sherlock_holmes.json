@@ -1,0 +1,409 @@
+{
+  "character": "Sherlock Holmes",
+  "total_rules": 49,
+  "rules": [
+    {
+      "trigger": "when between cases or after a case is resolved",
+      "action": "experiences acute ennui and boredom; explicitly complains about the commonplaces of existence",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "'It saved me from ennui,' he answered, yawning. 'Alas! I already feel it closing in upon me. My life is spent in one long effort to escape from the commonplaces of existence.'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "when romantic or sentimental emotions arise",
+      "action": "suppresses and dismisses them as distracting contaminants to reasoning; treats them with derision",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "All emotions, and that one particularly, were abhorrent to his cold, precise but admirably balanced mind... He never spoke of the softer passions, save with a gibe and a sneer.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "when entering analytical or judicial deliberation",
+      "action": "relapses into armchair and puts fingertips together",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Holmes, relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods.",
+      "category": "habitual"
+    },
+    {
+      "trigger": "when Watson arrives during an active case",
+      "action": "immediately pulls Watson in and includes him, presenting him to the client as indispensable",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Holmes pulled me abruptly into the room... 'This gentleman, Mr. Wilson, has been my partner and helper in many of my most successful cases, and I have no doubt that he will be of the utmost use to me in yours also.'",
+      "category": "social"
+    },
+    {
+      "trigger": "when complimented or praised for his work",
+      "action": "deflects the compliment, often by quoting literature, shrugging, or minimizing the achievement",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "He shrugged his shoulders. 'Well, perhaps, after all, it is of some little use,' he remarked. ''L'homme c'est rien—l'œuvre c'est tout,' as Gustave Flaubert wrote to George Sand.'",
+      "category": "social"
+    },
+    {
+      "trigger": "when encountering a new client or person",
+      "action": "immediately observes and deduces biographical details from physical appearance before any conversation begins",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Repeated across all stories — deduces occupation, habits, and history from clothing, hands, posture, and accessories before the client speaks.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "when someone demonstrates superior intellect or outwits him",
+      "action": "revises his worldview and grants lasting respect to the person rather than denying defeat",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "He used to make merry over the cleverness of women, but I have not heard him do it of late. And when he speaks of Irene Adler... it is always under the honourable title of the woman.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "when offered material reward or social favour by authority",
+      "action": "requests a symbolic or intellectually meaningful token instead, or refuses entirely",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "When the King offers any reward, Holmes asks only for Irene Adler's photograph, turning away without observing the hand which the King had stretched out to him.",
+      "category": "social"
+    },
+    {
+      "trigger": "when royalty or high-status individuals behave dishonourably",
+      "action": "snubs them openly and withdraws social courtesy",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Turning away without observing the hand which the King had stretched out to him, he set off in my company for his chambers.",
+      "category": "social"
+    },
+    {
+      "trigger": "when a victim is attached to a delusion and the truth would not be believed",
+      "action": "withholds the truth rather than forcing an unwelcome revelation",
+      "type": "conditional",
+      "probability": 0.7,
+      "evidence": "'If I tell her she will not believe me.' ... 'There is danger for him who taketh the tiger cub, and danger also for whoso snatches a delusion from a woman.'",
+      "category": "social"
+    },
+    {
+      "trigger": "when inviting Watson on a case requiring travel",
+      "action": "frames the invitation in terms of Watson's benefit (health, scenery, interest) rather than his own need",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "'Have you a couple of days to spare?... Air and scenery perfect.'",
+      "category": "social"
+    },
+    {
+      "trigger": "when a criminal was driven by desperate circumstance rather than malice",
+      "action": "shows empathy and identifies with the criminal's position rather than condemning",
+      "type": "conditional",
+      "probability": 0.75,
+      "evidence": "'There, but for the grace of God, goes Sherlock Holmes.'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "when a case presents a long chain of deductive reasoning",
+      "action": "becomes energised and animated; the intellectual challenge is its own reward",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "'These little problems help me to [escape from the commonplaces of existence].' The chase sustains him; resolution brings ennui.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "when communicating about case logistics (telegrams, instructions)",
+      "action": "uses terse, efficient, imperative language with minimal pleasantries",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "'Have you a couple of days to spare? Have just been wired for from the west of England... Shall be glad if you will come with me... Leave Paddington by the 11:15.'",
+      "category": "habitual"
+    },
+    {
+      "trigger": "when philosophising outside of a case",
+      "action": "makes sweeping aphoristic statements about life, reality, and human nature, often citing literature across cultures",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "'Life is infinitely stranger than anything which the mind of man could invent.' Also quotes Flaubert, Hafiz, and Horace across separate conversations.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "when a case ends in failure or the perpetrators escape justice",
+      "action": "does not dwell in self-pity but channels frustration into resolute counter-action",
+      "type": "conditional",
+      "probability": 0.8,
+      "evidence": "After the Five Orange Pips tragedy, Holmes sends the pips back to the killers to signal pursuit — 'another, as cunning and as resolute as themselves, was upon their track.'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "when the work itself is acknowledged over his person",
+      "action": "accepts the framing approvingly, subordinating ego to craft",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "'L'homme c'est rien—l'œuvre c'est tout' — the man is nothing, the work is everything.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "a case lacks unusual, fantastic, or intellectually stimulating features",
+      "action": "refuses to associate himself with the investigation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "working as he did rather for the love of his art than for the acquirement of wealth, he refused to associate himself with any investigation which did not tend towards the unusual, and even the fantastic",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "presented with a seemingly trivial or mundane object connected to a case",
+      "action": "examines it meticulously with scientific instruments (lens, forceps) and extracts non-obvious deductions",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "confronting a complex problem that resists immediate solution",
+      "action": "retreats into prolonged solitary contemplation, aided by tobacco, adopting unusual physical postures",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "I reached this one by sitting upon five pillows and consuming an ounce of shag",
+      "category": "habitual"
+    },
+    {
+      "trigger": "a first-time offender is genuinely terrified and unlikely to reoffend",
+      "action": "lets them go free rather than handing them to the police, exercising personal moral judgment over legal procedure",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "This fellow will not go wrong again; he is too terribly frightened. Send him to gaol now, and you make him a gaol-bird for life",
+      "category": "emotional"
+    },
+    {
+      "trigger": "a criminal offender has taken solemn oaths and shown genuine repentance",
+      "action": "grants clemency conditional on future behavior, with an explicit warning of consequences if repeated",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "if you are found again, then all must come out",
+      "category": "emotional"
+    },
+    {
+      "trigger": "a villain is killed or harmed by the consequences of their own scheme",
+      "action": "expresses no remorse and frames the outcome as poetic justice",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "I am no doubt indirectly responsible for Dr. Grimesby Roylott's death, and I cannot say that it is likely to weigh very heavily upon my conscience",
+      "category": "emotional"
+    },
+    {
+      "trigger": "describing his own work or its significance",
+      "action": "downplays the difficulty or importance with dismissive language",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "The matter is a perfectly trivial one — but there are points in connection with it which are not entirely devoid of interest",
+      "category": "social"
+    },
+    {
+      "trigger": "Watson is present during or after an investigation",
+      "action": "uses Watson as a sounding board to discuss results and validate reasoning",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "I am glad to have a friend with whom I can discuss my results",
+      "category": "social"
+    },
+    {
+      "trigger": "someone suffers a tangible loss (injury, money) as a result of a case",
+      "action": "offers wry philosophical or humorous consolation rather than conventional sympathy",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "'Experience,' said Holmes, laughing. 'Indirectly it may be of value, you know; you have only to put it into words to gain the reputation of being excellent company'",
+      "category": "social"
+    },
+    {
+      "trigger": "someone behaves ungraciously or rudely after suffering a legitimate grievance",
+      "action": "advocates understanding their perspective and asks others to judge them mercifully",
+      "type": "conditional",
+      "probability": 0.75,
+      "evidence": "perhaps you would not be very gracious either, if, after all the trouble of wooing and wedding, you found yourself deprived in an instant of wife and of fortune. I think that we may judge Lord St. Simon very mercifully",
+      "category": "emotional"
+    },
+    {
+      "trigger": "a case is fully resolved",
+      "action": "immediately pivots attention to the next stimulus — breakfast, violin, a new case — with no lingering sentiment",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "if we drive to Baker Street we shall just be in time for breakfast / Draw your chair up and hand me my violin / we will begin another investigation",
+      "category": "habitual"
+    },
+    {
+      "trigger": "idle between cases, no active investigation",
+      "action": "lounges in dressing-gown, smokes, reads newspapers, and examines curiosities for intellectual stimulation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers",
+      "category": "habitual"
+    },
+    {
+      "trigger": "the intellectual puzzle of a case is solved",
+      "action": "treats the solution itself as the reward, independent of payment or public recognition",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Chance has put in our way a most singular and whimsical problem, and its solution is its own reward",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "imminent physical danger to himself or others during a case",
+      "action": "acts swiftly and decisively with physical force, without hesitation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "I instantly lit the light and attacked it",
+      "category": "emotional"
+    },
+    {
+      "trigger": "asked how he reached his conclusions",
+      "action": "gives a compressed, almost anticlimactic summary that makes the process sound effortless or eccentric",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "I reached this one by sitting upon five pillows and consuming an ounce of shag",
+      "category": "social"
+    },
+    {
+      "trigger": "the police or legal system would produce a worse outcome than personal intervention",
+      "action": "bypasses official channels and applies his own moral framework, explicitly acknowledging the irregularity",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "I suppose that I am committing a felony, but it is just possible that I am saving a soul",
+      "category": "emotional"
+    },
+    {
+      "trigger": "undercover work or information-gathering requires it",
+      "action": "adopts disguise and immerses himself in unfamiliar environments without discomfort",
+      "type": "conditional",
+      "probability": 0.95,
+      "evidence": "Holmes found in the opium den conducting undercover investigation in The Man with the Twisted Lip",
+      "category": "habitual"
+    },
+    {
+      "trigger": "no active case or intellectual stimulation",
+      "action": "lounges lazily in armchair, wears dressing-gown, adopts posture of languid indifference",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "rose lazily from his armchair and stood with his hands in the pockets of his dressing-gown",
+      "category": "habitual"
+    },
+    {
+      "trigger": "observing a stranger approaching or entering",
+      "action": "immediately begins deducing details from physical appearance, clothing, gait, and manner before any conversation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Watson calls the man a 'madman'; Holmes observes and reserves judgment, reading the man's status and distress from visible signs",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "presented with a case that is intellectually trivial or purely sensational",
+      "action": "expresses preference for cases that exercise deduction and logical synthesis, regardless of public importance",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"it is frequently in its least important and lowliest manifestations that the keenest pleasure is to be derived\"",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "Watson's published accounts are discussed",
+      "action": "critiques Watson for sensationalism and embellishment, redirects focus to the deductive method",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "\"you have given prominence not so much to the many causes célèbres... but rather to those incidents which have given room for those faculties of deduction and of logical synthesis\"",
+      "category": "social"
+    },
+    {
+      "trigger": "a case is fully resolved and the mystery solved",
+      "action": "immediately loses all interest in the people involved, regardless of personal charm or connection",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"manifested no further interest in her when once she had ceased to be the centre of one of his problems\"",
+      "category": "emotional"
+    },
+    {
+      "trigger": "complimented on his skill or abilities by a client",
+      "action": "neither deflects nor savors the praise; pivots immediately to remaining facts or next logical point",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "After Holder says 'Your skill has indeed exceeded all that I have heard of it,' Holmes responds not with acknowledgment but with 'I think that we may safely say...' — redirecting to factual conclusions",
+      "category": "social"
+    },
+    {
+      "trigger": "moral consequences for a wrongdoer are being discussed",
+      "action": "states the likely outcome with clinical detachment, neither condemning nor sympathizing",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"whatever her sins are, they will soon receive a more than sufficient punishment\" — delivered as a factual prediction, not a moral judgment",
+      "category": "emotional"
+    },
+    {
+      "trigger": "Watson makes a premature or surface-level judgment about a person",
+      "action": "withholds correction initially, observes alongside Watson, then later reveals the deeper reading",
+      "type": "probabilistic",
+      "probability": 0.75,
+      "evidence": "Watson calls the approaching man a 'madman'; Holmes rises to look but does not immediately correct, instead observing the man himself",
+      "category": "social"
+    },
+    {
+      "trigger": "physical evidence is available at a scene (tracks, marks, disturbances)",
+      "action": "examines minutely and draws deductive chains from physical traces before interviewing witnesses",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Snow on the ground in Beryl Coronet provides tracks that Holmes uses as primary evidence to reconstruct events",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "delivering a concluded deduction to a client",
+      "action": "presents findings with absolute certainty, using declarative language ('it is equally certain') rather than hedging",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"I think that we may safely say that she is wherever Sir George Burnwell is. It is equally certain, too...\"",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "an attractive or admirable woman is involved in a case",
+      "action": "engages professionally during the case but shows zero romantic or personal follow-up afterward",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Violet Hunter — Holmes takes the case but \"manifested no further interest in her\" once solved, \"rather to my disappointment\"",
+      "category": "emotional"
+    },
+    {
+      "trigger": "idle and handling small objects (cinders, pipe, papers)",
+      "action": "manipulates objects casually while making intellectual pronouncements, coupling physical nonchalance with mental sharpness",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "\"tossing aside the advertisement sheet\"; \"taking up a glowing cinder with the tongs\" — while delivering analytical observations",
+      "category": "habitual"
+    },
+    {
+      "trigger": "a client's emotional distress is visible and extreme",
+      "action": "does not offer emotional comfort; instead channels the interaction toward actionable facts and problem-solving",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Holder is described as a 'madman' in distress; Holmes's response focuses on what can be deduced and done, not on consolation",
+      "category": "emotional"
+    },
+    {
+      "trigger": "a family member is wrongly accused while the true culprit is someone trusted",
+      "action": "pursues evidence impartially regardless of the client's assumptions, and reveals the truth even when it implicates a loved one",
+      "type": "conditional",
+      "probability": 0.95,
+      "evidence": "Holmes exonerates the son (Arthur) and reveals Mary's betrayal — Holder: 'I must fly to my dear boy to apologise to him for the wrong which I have done him'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "people are reduced to being interesting problems rather than persons",
+      "action": "treats this instrumentalization as natural and unremarkable, showing no self-awareness or guilt about it",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"she had ceased to be the centre of one of his problems\" — Watson notes this with disappointment, but Holmes sees nothing wrong",
+      "category": "emotional"
+    }
+  ],
+  "by_category": {
+    "emotional": 17,
+    "habitual": 8,
+    "social": 13,
+    "reasoning": 11
+  },
+  "by_type": {
+    "deterministic": 30,
+    "probabilistic": 13,
+    "conditional": 6
+  }
+}

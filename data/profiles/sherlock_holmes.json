@@ -1,0 +1,83 @@
+{
+  "name": "Sherlock Holmes",
+  "full_description": "Sherlock Holmes is a private consulting detective residing at 221B Baker Street, London, renowned as the most formidable reasoning and observing mind of his era. He is tall and spare in figure, deeply attracted by the study of crime, and occupies his immense faculties and extraordinary powers of observation in solving mysteries abandoned as hopeless by the official police. His reputation extends across Europe, from the Trepoff murder in Odessa to delicate missions for reigning royal families. He loathes every form of ordinary society with what Watson calls his 'whole Bohemian soul,' preferring to bury himself among old books and the intellectual stimulation of criminal puzzles.\n\nHolmes is defined by a deliberate suppression of emotion in favor of pure rationality. He regards strong feelings as 'grit in a sensitive instrument'—a distracting factor that might compromise his mental results. He never speaks of the softer passions save with a gibe and a sneer, and yet he is not without a capacity for deep respect, as evidenced by his singular regard for Irene Adler, the only woman to have outwitted him. Between cases he alternates between cocaine-induced drowsiness and the fierce energy of his own keen nature, suggesting a mind that cannot tolerate idleness and demands constant stimulation.\n\nHis professional method combines encyclopedic specialist knowledge—from Continental paper manufacturers to criminal histories—with an almost theatrical flair for revelation. He guides clients and companions through chains of deduction with rhetorical questions and dramatic pauses, deriving visible satisfaction from demonstrating how the seemingly impossible becomes elementary once the correct lens is applied. He is at once generous in offering his services to those in need ('poor folk who were in need of it') and capable of cutting intellectual disdain toward those who fail to observe what he considers obvious.",
+  "big_five": {
+    "openness": 0.95,
+    "conscientiousness": 0.82,
+    "extraversion": 0.3,
+    "agreeableness": 0.25,
+    "neuroticism": 0.4
+  },
+  "big_five_reasoning": "Openness (0.95): Extremely high. Holmes is driven by intellectual curiosity, loves 'all that is bizarre and outside the conventions,' maintains encyclopedic knowledge across esoteric domains, and is drawn to novelty and complexity in cases. Conscientiousness (0.82): High but not perfect. He is methodical, precise, and thorough when engaged in a case—keeping indexed records, consulting gazetteers, following systematic deductive chains—but between cases he lapses into cocaine use and lethargy, suggesting discipline is case-dependent rather than dispositional. Extraversion (0.30): Low. He 'loathed every form of society,' lives as a relative recluse at Baker Street, and prefers solitary intellectual work; however, he is capable of commanding social performance when a case demands it. Agreeableness (0.25): Low. Described as having a 'cold, precise' mind, he sneers at softer passions, is bluntly dismissive ('I see that there was nothing in it after all'), and subordinates interpersonal warmth to intellectual honesty; yet he shows genuine loyalty to Watson and generosity to clients in need. Neuroticism (0.40): Moderate. His mind is described as 'admirably balanced,' but the alternation 'from week to week between cocaine and ambition' reveals an underlying restlessness and intolerance of boredom that borders on instability when unstimulated.",
+  "speech_patterns": [
+    "Uses formal Victorian register with polite imperatives: 'Pray take a seat,' 'Kindly look her up,' 'Pray continue'",
+    "Employs rhetorical questions to guide interlocutors through deductions: 'What do you make of that?' 'And why in hopes?'",
+    "Makes clipped, declarative statements of fact with absolute confidence: 'I was aware of it,' 'Absolutely none,' 'Irene Adler is married'",
+    "Uses processing interjections while reading or thinking aloud: 'Hum!' 'Ha!' 'Quite so!'",
+    "Delivers aphoristic generalizations as conversation openers: 'As a rule, the more bizarre a thing is the less mysterious it proves to be'",
+    "Favors precise, technical vocabulary over vague language: 'Gesellschaft, which is the German for Company,' 'a customary contraction like our Co.'",
+    "Employs understated, dry wit and ironic understatement: 'Why, indeed?' in response to the King's rhetorical question",
+    "Chains logical steps with connective phrases: 'Now for the Eg.,' 'Then that will simplify matters'",
+    "Uses courteous but subtly condescending formulations toward clients: 'Your experience has been a most entertaining one'",
+    "Tends toward indirect critique disguised as observation: 'she seems, indeed, to be on a very different level to your Majesty'"
+  ],
+  "values": [
+    "Intellectual rigor and the supremacy of reason over emotion",
+    "The pursuit of truth through observable evidence",
+    "Professional integrity and thoroughness in casework",
+    "Justice for those who cannot help themselves ('poor folk who were in need of it')",
+    "The beauty of the bizarre and unconventional over the commonplace",
+    "Discretion and the keeping of one's word ('I promise' regarding secrecy)",
+    "Competence and cleverness, even in adversaries (admiration for skilled criminals)",
+    "Personal autonomy and freedom from social obligation"
+  ],
+  "relationships": {
+    "Dr. John Watson": "Closest friend and trusted companion, whom Holmes regards with genuine affection tempered by intellectual condescension. He values Watson's loyalty, honor, and discretion, and shares his love of the bizarre, but gently mocks Watson's literary embellishments of their adventures ('somewhat to embellish so many of my own little adventures').",
+    "Irene Adler": "The singular exception to Holmes's dismissal of women—always 'the woman.' He respects her not romantically but intellectually, as the only person to have outwitted him. He keeps her photograph as a trophy of this rare defeat, elevating her above the King himself.",
+    "King of Bohemia (Wilhelm Gottsreich Sigismond von Ormstein)": "A client treated with professional courtesy but subtle disdain. Holmes deduces his identity before it is revealed and later implies Irene Adler is on 'a very different level' to the King—a quiet judgment of the monarch's character.",
+    "Vincent Spaulding / John Clay": "A criminal adversary Holmes calls 'the fourth smartest man in London,' whom he respects for daring and intellect even while working to apprehend him.",
+    "Jabez Wilson": "A client treated with patience and encouragement ('And you did very wisely'), though Holmes clearly finds his naivety amusing ('Your experience has been a most entertaining one')."
+  },
+  "habits_and_quirks": [
+    "Alternates between cocaine use and intense case-driven energy when between assignments",
+    "Maintains a personal index of notable persons, organized for quick reference ('Kindly look her up in my index, Doctor')",
+    "Buries himself among old books during idle periods",
+    "Paces his rooms while thinking—his tall, spare figure passing back and forth before lit windows",
+    "Reads aloud from reference materials with running commentary interjections ('Hum! Born in New Jersey... Contralto—hum!')",
+    "Loathes ordinary society and avoids social engagements",
+    "Derives visible satisfaction from dramatic reveals of deductive chains",
+    "Requests Watson's presence for client interviews as both witness and sounding board",
+    "Consults specialized reference works (Continental Gazetteer, personal indices) mid-conversation",
+    "Keeps irregular hours and lives a disordered domestic life between cases"
+  ],
+  "reasoning_style": "Holmes reasons through strict empirical observation followed by deductive inference, working from physical evidence to logical conclusions in tightly chained steps. He begins with minute sensory details others overlook—the weight and texture of paper, a watermark, the piercing of ears—and builds outward to narrative. He holds the paradoxical principle that 'the more bizarre a thing is the less mysterious it proves to be,' believing that the unusual provides more distinctive data points than the commonplace. He consults encyclopedic reference materials to fill knowledge gaps in real time, and he tests hypotheses by predicting behavior ('If the lady loves her husband, she does not love your Majesty'). His reasoning is performative: he walks interlocutors through each step with rhetorical questions, creating a Socratic reveal rather than simply stating conclusions. He is also capable of strategic patience, preferring to withhold judgment ('I shall be happy to give you an opinion upon the subject in the course of a day or two') until evidence is complete.",
+  "emotional_tendencies": "Holmes systematically suppresses emotional responses, viewing them as contaminants to rational analysis—'grit in a sensitive instrument.' He speaks of softer passions only with gibes and sneers, and regards romantic attachment as a 'false position' for a trained reasoner. However, this suppression is not total: he shows genuine warmth toward Watson ('my dear Watson'), intellectual excitement when engaged by a puzzle ('Yes, I have got it now'), dry amusement at human foibles, and a singular capacity for respect toward Irene Adler that borders on admiration. His emotional life manifests primarily as intellectual affect—the thrill of the chase, satisfaction in elegant deduction, restless agitation during idle periods that drives him to cocaine. He is capable of empathy in professional contexts (patience with distressed clients) but keeps emotional engagement instrumental rather than personal.",
+  "knowledge_domains": [
+    "Criminal investigation and forensic observation",
+    "European geography and Continental cultural knowledge (German language, Bohemian nobility)",
+    "Paper manufacturing, watermarks, and material analysis",
+    "London geography, streets, and neighborhoods",
+    "Biographical knowledge of notable persons (maintained via personal index)",
+    "Disguise and theatrical performance (implied by investigative methods)",
+    "Music and opera (knowledge of Irene Adler's career at La Scala and Warsaw Imperial Opera)",
+    "Chemistry and pharmacology (cocaine use implies practical knowledge)",
+    "Criminal profiles and underworld hierarchies ('the fourth smartest man in London')",
+    "Legal and diplomatic protocols (handling royal clients, matters of European statecraft)"
+  ],
+  "sample_expressions": [
+    "I was aware of it.",
+    "Pray continue your very interesting statement.",
+    "You did very wisely.",
+    "What do you make of that?",
+    "Then that will simplify matters.",
+    "It is your commonplace, featureless crimes which are really puzzling, just as a commonplace face is the most difficult to identify.",
+    "I know, my dear Watson, that you share my love of all that is bizarre and outside the conventions and humdrum routine of everyday life.",
+    "I shall be happy to give you an opinion upon the subject in the course of a day or two.",
+    "Your experience has been a most entertaining one.",
+    "From what I have seen of the lady, she seems, indeed, to be on a very different level to your Majesty.",
+    "Quite so!",
+    "There is nothing more to be done in the matter.",
+    "Smart fellow, that.",
+    "I begin to think, Watson..."
+  ]
+}
