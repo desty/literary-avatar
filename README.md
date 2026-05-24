@@ -2,6 +2,8 @@
 
 A cognitive architecture that transforms public domain novels into interactive character agents. Characters maintain personality, knowledge boundaries, and emotional states grounded in the full narrative text.
 
+> **Paper**: [Avatar: A Cognitive Architecture for Novel-Grounded Literary Character Agents](docs/paper-draft.md)
+
 ## Novel Contributions
 
 Three research-grade contributions not found in existing literature:
@@ -14,11 +16,22 @@ Three research-grade contributions not found in existing literature:
 
 ## Quick Start
 
-```bash
-# Install dependencies
-pip install chromadb sentence-transformers rich
+### Prerequisites
 
-# First run: download & process novels (one-time)
+- Python 3.9+
+- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
+
+### Installation
+
+```bash
+git clone https://github.com/YOUR_USERNAME/avatar.git
+cd avatar
+pip install -r requirements.txt
+```
+
+### First Run: Download & Process Novels
+
+```bash
 python3 -c "
 import sys; sys.path.insert(0, '.')
 from src.ingestion.downloader import download_text
@@ -40,20 +53,32 @@ save_parsed_novel(novel)
 build_index('pride_and_prejudice')
 extract_and_save('elizabeth_bennet')
 "
+```
 
-# Start conversation
+### Start Conversation
+
+```bash
 python3 -m src.main
+```
 
-# Or run the full demo showcase
+### Run Demo Showcase
+
+```bash
 python3 demo.py
+```
+
+### Run Web UI (Streamlit)
+
+```bash
+streamlit run app.py
 ```
 
 ## Characters
 
-| Character | Novel | Author | Data |
-|-----------|-------|--------|------|
-| **Sherlock Holmes** | The Adventures of Sherlock Holmes (1892) | Arthur Conan Doyle | 12 stories, 2,187 dialogues |
-| **Elizabeth Bennet** | Pride and Prejudice (1813) | Jane Austen | 61 chapters, 1,731 dialogues |
+| Character | Novel | Author | Year | Data |
+|-----------|-------|--------|------|------|
+| **Sherlock Holmes** | The Adventures of Sherlock Holmes | Arthur Conan Doyle | 1892 | 12 stories, 2,187 dialogues |
+| **Elizabeth Bennet** | Pride and Prejudice | Jane Austen | 1813 | 61 chapters, 1,731 dialogues |
 
 ## CLI Commands
 
@@ -90,10 +115,11 @@ Novel Text → Ingestion Pipeline → Structured Data
 - **Language**: Python 3.9+
 - **Vector DB**: ChromaDB (all-MiniLM-L6-v2)
 - **Terminal UI**: Rich
+- **Web UI**: Streamlit
 
 ## Evaluation
 
-5-axis character fidelity framework:
+5-axis character fidelity framework (avg 4.0/5.0):
 
 | Axis | Score |
 |------|-------|
@@ -102,14 +128,15 @@ Novel Text → Ingestion Pipeline → Structured Data
 | Speech Fidelity | 4.0/5.0 |
 | Behavioral Consistency | 3.3/5.0 |
 | Overall Character Fidelity | 4.3/5.0 |
-| **Average** | **4.0/5.0** |
 
 ## Project Structure
 
 ```
 avatar/
-├── demo.py                        # Full feature demo
+├── app.py                         # Streamlit web UI
+├── demo.py                        # CLI feature demo
 ├── requirements.txt
+├── LICENSE
 ├── docs/
 │   ├── 01-research.md             # 18 papers surveyed
 │   ├── 02-novel-candidates.md     # 14 novel candidates
@@ -157,3 +184,7 @@ Key papers referenced (18 total — see [docs/01-research.md](docs/01-research.m
 - Codified Character Logic (2025) — Executable character rules
 - CharacterBench (2024) — Character evaluation
 - RoleRAG (2025) — Knowledge boundary RAG
+
+## License
+
+[MIT](LICENSE)
