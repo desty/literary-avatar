@@ -38,7 +38,7 @@ Prior work addresses this through reasoning decomposition at inference time.
 We propose a complementary approach: \textbf{retrieval-time temporal filtering} combined with \textbf{prompt-time negative knowledge boundaries}, where we explicitly enumerate characters, events, and facts from future chapters that the character must not reference.
 We show that this concrete enumeration is critical: abstract instructions (``you don't know this yet'') fail to override LLM pre-training knowledge.
 
-We further introduce \textbf{dual timeline control}, separating the character's narrative position from the reader's progress, enabling asymmetric spoiler prevention from both perspectives.
+The system also supports separating the character's narrative position from the reader's progress for asymmetric spoiler prevention.
 
 We evaluate on two characters---Sherlock Holmes (\textit{The Adventures of Sherlock Holmes}, 1892) and Elizabeth Bennet (\textit{Pride and Prejudice}, 1813)---using \textsc{LitTimeQA}, a temporal faithfulness benchmark covering 7 question types across multiple story positions.
 The full system, \textsc{Avatar}, is released as open source.\footnote{Repository URL withheld for review.}
@@ -59,14 +59,14 @@ We address this problem from a different angle: rather than decomposing reasonin
 For each story position $N$, we generate an explicit list of characters, events, and facts from chapters $> N$ that the character must not reference.
 We find that this concrete enumeration of ``what you don't know'' is critical---abstract instructions (``you don't know this yet'') fail to override pre-training knowledge (\S\ref{sec:knowledge-boundary}).
 
-Furthermore, we introduce \textbf{dual timeline control}: separating the \textit{character timeline} (what the character has experienced) from the \textit{reader timeline} (how far the user has read), enabling asymmetric knowledge management where the system avoids spoiling the reader even when the character's knowledge extends further.
+The system also supports a preliminary \textit{dual timeline} mode that separates the character's narrative position from the reader's progress, though this feature is not yet fully evaluated.
 
 Our contributions are:
 \begin{enumerate}
 \setlength\itemsep{0pt}
 \item An \textbf{explicit future-unknown constraint mechanism} for point-in-time character hallucination that combines retrieval-time temporal filtering with prompt-time negative knowledge boundaries, offering a complementary approach to TimeChara's Narrative-Experts;
-\item \textbf{Dual timeline control} separating character and reader knowledge states, enabling spoiler-free interaction from both perspectives;
-\item \textbf{LitTimeQA}, a temporal faithfulness evaluation covering 7 question types and 6 metrics across multiple story positions for two literary characters.
+\item A \textbf{baseline and ablation study} demonstrating that temporal RAG filtering alone is insufficient and that the unknown-items list is the decisive component;
+\item \textbf{LitTimeQA}, a diagnostic suite covering 7 question types for evaluating temporal faithfulness across multiple story positions.
 \end{enumerate}
 
 Our system requires no fine-tuning, operates through prompt engineering and retrieval-augmented generation, and runs on a consumer machine.
@@ -80,24 +80,24 @@ Character-LLM \citep{shao2023character} introduced experience reconstruction for
 CoSER \citep{chen2025coser} scaled to 17,966 characters from 771 books.
 OpenCharacter \citep{opencharacter2025} achieved character generalization at 8B parameters.
 RoleLLM \citep{wang2024rolellm} benchmarked role-playing quality.
-All treat characters as static profiles.
+While CoSER includes experiences and internal thoughts, and RoleLLM provides instruction-tuned role-playing, none of these systems address chapter-level point-in-time knowledge constraints.
 
 \paragraph{RAG for Narrative Texts.}
-RoleRAG \citep{rolerag2025} introduced character knowledge boundaries via graph-guided retrieval.
+RoleRAG \citep{rolerag2025} introduced cognitive boundary-aware retrieval for character knowledge.
 ComoRAG \citep{comorag2026} addressed conflicts between chunked retrieval and sequential narrative structure.
-Neither tracks how character knowledge evolves across chapters.
+Our work differs from RoleRAG's general cognitive boundaries by focusing specifically on \textit{narrative-time} boundaries---constraining what a character knows based on their position in the story timeline.
 
 \paragraph{Memory Architectures.}
 MemGPT \citep{packer2023memgpt} treats context as RAM with external persistent storage.
 A-Mem \citep{amem2025} introduced associative recall.
 Memory~OS \citep{memoryos2025} proposed unified memory management.
-None model narrative-temporal memory for literary characters.
+These inform our persistent memory design but do not address narrative-temporal constraints.
 
 \paragraph{Temporal Faithfulness.}
 TimeChara \citep{ahn2024timechara} is the closest prior work to ours.
 They define \textit{point-in-time character hallucination}---where LLMs playing a character reference future events---and construct a 10,895-instance benchmark.
 Their solution, Narrative-Experts, decomposes reasoning into temporal steps.
-Our approach differs in mechanism: we use \textbf{retrieval-time filtering} (RAG chunks filtered by chapter $\leq N$) combined with \textbf{prompt-time negative knowledge boundaries} (explicit enumeration of unknown items), and additionally introduce dual timeline control separating character and reader knowledge.
+Our approach differs in mechanism: we use \textbf{retrieval-time filtering} (RAG chunks filtered by chapter $\leq N$) combined with \textbf{prompt-time negative knowledge boundaries} (explicit enumeration of unknown items).
 E2RAG \citep{e2rag2025} evaluates narrative RAG for temporal and causal consistency but focuses on QA rather than character role-playing.
 
 \paragraph{Cognitive Architectures.}
@@ -108,7 +108,7 @@ These architectures inform our system design but do not address temporal knowled
 \paragraph{Character Evaluation.}
 CharacterBench \citep{characterbench2025} benchmarked character customization with 22,859 human-annotated samples.
 LIFECHOICE \citep{lifechoice2024} evaluated character-consistent decision-making across 388 novels.
-Neither evaluates temporal consistency---whether a character correctly does not know future events.
+TimeChara \citep{ahn2024timechara} introduced temporal evaluation; our \textsc{LitTimeQA} diagnostic suite complements it with adversarial and reader-spoiler query types.
 
 \paragraph{Behavioral Logic.}
 Codified Character Logic \citep{codifiedlogic2025} formalized character behavior as executable functions with condition checks and stochastic branching.
@@ -275,7 +275,7 @@ Recall is keyword-based, injected into context at session start.
 \subsection{LitTimeQA Benchmark}
 \label{sec:littimeqa}
 
-We introduce \textsc{LitTimeQA}, a temporal faithfulness benchmark with 7 question types designed to probe different failure modes:
+We introduce \textsc{LitTimeQA}, a diagnostic suite for temporal faithfulness with 7 question types designed to probe different failure modes:
 
 \begin{enumerate}
 \setlength\itemsep{0pt}
@@ -363,7 +363,7 @@ A3: $-$Logic & .091 & .909 & 1.0 & 4.95 \\
 A4: $-$ToM & .182 & .818 & 1.0 & 4.95 \\
 \bottomrule
 \end{tabular}
-\caption{\textsc{LitTimeQA} results for \textbf{Sherlock Holmes} (21 queries, 12 story positions). Leak.=Future Leakage Rate, Ign.=Correct Ignorance Rate, Rec.=Recall Accuracy, Nat.=Naturalness (1--5).}
+\caption{\textsc{LitTimeQA} results for \textbf{Sherlock Holmes} (21 total queries). Leak.\ and Ign.\ are computed over the 11 future-unknown queries only; Rec.\ over 4 past-recall queries. Nat.=Naturalness (1--5) over all queries.}
 \label{tab:results-holmes}
 \end{table}
 
@@ -385,7 +385,7 @@ A3: $-$Logic & .000 & 1.00 & 1.0 & 5.00 \\
 A4: $-$ToM & .000 & 1.00 & 1.0 & 5.00 \\
 \bottomrule
 \end{tabular}
-\caption{\textsc{LitTimeQA} results for \textbf{Elizabeth Bennet} (8 queries, key chapter milestones).}
+\caption{\textsc{LitTimeQA} results for \textbf{Elizabeth Bennet} (8 total queries). Leak.\ and Ign.\ computed over 4 future-unknown queries; Rec.\ over 2 past-recall queries.}
 \label{tab:results-elizabeth}
 \end{table}
 
@@ -425,6 +425,12 @@ We tested three approaches:
 \end{enumerate}
 
 This suggests that LLMs require \textit{concrete} knowledge boundaries, not abstract ones, to overcome pre-training interference.
+
+\paragraph{Note on profile leakage.}
+An important caveat: the character profile itself contains references to characters from across the entire novel (e.g., Holmes's profile mentions Irene Adler as a key relationship).
+This profile is injected into every prompt regardless of narrative position.
+Thus, the unknown-items list must suppress not only pre-training knowledge but also future information present in the profile.
+The effectiveness of our mechanism despite this profile leakage suggests it is robust, but a cleaner design would generate position-dependent profiles---an avenue for future work.
 
 \subsection{Behavioral Logic Patterns}
 \label{sec:logic-patterns}
@@ -480,7 +486,7 @@ We acknowledge that LLM-generated character responses may occasionally deviate f
 The system does not collect or store personal user data beyond optional session memories that remain local.
 
 %============================================================
-\bibliographystyle{acl_natbib}
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 \end{document}
