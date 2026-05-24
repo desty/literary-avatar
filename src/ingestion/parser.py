@@ -162,8 +162,14 @@ def guess_speaker(before: str, after: str) -> str:
     return "Unknown"
 
 
-def save_parsed_novel(novel: ParsedNovel) -> Path:
-    """파싱된 소설을 JSON으로 저장."""
+def save_parsed_novel(novel: ParsedNovel, book_id: str = None) -> Path:
+    """파싱된 소설을 JSON으로 저장.
+
+    Args:
+        novel: 파싱된 소설 객체
+        book_id: 저장 파일명에 사용할 ID (예: 'sherlock_holmes').
+                 None이면 제목에서 자동 생성.
+    """
     processed_dir = DATA_DIR / "processed"
     processed_dir.mkdir(parents=True, exist_ok=True)
 
@@ -185,9 +191,11 @@ def save_parsed_novel(novel: ParsedNovel) -> Path:
             "text": story.text,
         })
 
-    # 파일명을 제목에서 생성
-    slug = novel.title.lower().replace(" ", "_").replace("'", "")
-    slug = re.sub(r"[^a-z0-9_]", "", slug)
+    if book_id is None:
+        slug = novel.title.lower().replace(" ", "_").replace("'", "")
+        slug = re.sub(r"[^a-z0-9_]", "", slug)
+    else:
+        slug = book_id
     output_path = processed_dir / f"{slug}.json"
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[saved] {output_path}")

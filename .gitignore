@@ -2,9 +2,30 @@ __pycache__/
 *.pyc
 *.pyo
 .DS_Store
+
+# Data (regenerable via ingestion pipeline)
+data/raw/
+data/processed/
 data/vectordb/
 data/memory/
+
+# Evaluation results (regenerable)
+results/
+
+# Build & packaging
 *.egg-info/
 dist/
 build/
+
+# Secrets
 .env
+
+# Paper build artifacts
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.synctex.gz
