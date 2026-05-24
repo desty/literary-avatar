@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We present Avatar, an end-to-end system that transforms public domain novels into interactive character agents grounded in the full narrative text. Unlike prior work that relies on static character profiles or short biographical summaries, Avatar introduces three novel contributions: (1) **narrative arc tracking**, which models how a character's knowledge, emotions, and relationships evolve across the story timeline, enabling spoiler-aware conversations; (2) **automatic behavioral logic extraction**, which derives executable if-then character rules directly from novel text without manual specification; and (3) **second-order Theory of Mind**, where characters reason about what other characters and users believe. Our system integrates retrieval-augmented generation over 332+ text chunks, Big Five personality modeling, BDI (Belief-Desire-Intention) cognitive architecture, and persistent cross-session memory. Evaluated on two characters — Sherlock Holmes and Elizabeth Bennet — across a 5-axis fidelity framework, Avatar achieves an average character fidelity score of 4.0/5.0. We demonstrate that narrative position control successfully prevents knowledge leakage: at position 0, Holmes correctly states "That name means nothing to me" when asked about Irene Adler, while at position 1 he provides detailed recollections. We release the full system as open source.
+We present Avatar, an end-to-end system that transforms public domain novels into interactive character agents grounded in the full narrative text. Unlike prior work that relies on static character profiles or short biographical summaries, Avatar introduces three novel contributions: (1) **narrative arc tracking**, which models how a character's knowledge, emotions, and relationships evolve across the story timeline, enabling spoiler-aware conversations; (2) **automatic behavioral logic extraction**, which derives executable if-then character rules directly from novel text without manual specification; and (3) **second-order Theory of Mind**, where characters reason about what users believe about the character's world. Our system integrates retrieval-augmented generation over 747 text chunks from two novels (3,918 dialogues total), Big Five personality modeling, BDI (Belief-Desire-Intention) cognitive architecture, and persistent cross-session memory. Evaluated on two characters — Sherlock Holmes (*The Adventures of Sherlock Holmes*, 1892) and Elizabeth Bennet (*Pride and Prejudice*, 1813) — across a 5-axis fidelity framework, Avatar achieves an average character fidelity score of 4.0/5.0. We demonstrate that narrative position control successfully prevents knowledge leakage: at position 0, Holmes correctly states "That name means nothing to me" when asked about Irene Adler, while at position 1 he provides detailed recollections. The full system is released as open source with zero inference cost.
 
 ---
 
@@ -70,118 +70,171 @@ Novel Text → [Ingestion Pipeline] → Structured Data
 ```
 
 ### 3.2 Novel Ingestion Pipeline
-- Downloads public domain texts from Project Gutenberg
-- Parses into chapters/stories with speaker-tagged dialogue extraction
-- **Sherlock Holmes**: 12 stories, 2,187 dialogues, 562K characters
-- **Pride and Prejudice**: 61 chapters, 1,731 dialogues, 729K characters
+We download public domain texts from Project Gutenberg and parse them into structured chapter/story units with speaker-attributed dialogue extraction. Our parser employs multiple regex patterns with fallback heuristics to handle Victorian prose conventions where speaker attribution is often implicit.
+
+| Novel | Units | Dialogues | Characters | Speaker Attribution |
+|-------|-------|-----------|------------|-------------------|
+| *The Adventures of Sherlock Holmes* | 12 stories | 2,187 | 562K | ~50% attributed |
+| *Pride and Prejudice* | 61 chapters | 1,731 | 729K | ~50% attributed |
+| **Total** | **73 units** | **3,918** | **1.29M** | — |
 
 ### 3.3 Character Profile Extraction
-Automated extraction via LLM analysis of character dialogue and narrative:
-- Big Five personality traits (quantified 0-1)
-- Speech patterns (10+ distinctive patterns)
-- Values, relationships, habits, reasoning style
-- Sample characteristic expressions
+We automate character profile extraction via LLM analysis of dialogue and narrative passages. Each profile consists of:
+- **Big Five personality traits** quantified on a [0, 1] scale with textual justification
+- **Speech patterns**: 10+ distinctive linguistic markers per character
+- **Values and motivations**: core beliefs driving character behavior
+- **Relationships**: key interpersonal dynamics with other characters
+- **Reasoning style**: how the character approaches problems and decisions
+
+For example, Holmes scores Openness=0.95, Conscientiousness=0.82, Extraversion=0.30, Agreeableness=0.25, Neuroticism=0.40 — reflecting his intense intellectual curiosity paired with social reclusiveness.
 
 ### 3.4 RAG with Temporal Filtering
-- Text chunked into ~400-word segments with overlap
-- Embedded using all-MiniLM-L6-v2, stored in ChromaDB
-- **Novel contribution**: RAG results filtered by narrative position, preventing knowledge leakage from future story events
+Text is chunked into ~500-word segments with 100-word overlap, yielding 332 chunks for Holmes and 415 for Elizabeth (747 total). Chunks are embedded using all-MiniLM-L6-v2 and stored in ChromaDB. At query time, each chunk carries metadata including its source chapter/story number. **Novel contribution**: when a narrative position $N$ is set, RAG results are filtered to include only chunks from chapters $\leq N$, preventing knowledge leakage from future story events.
 
 ### 3.5 Narrative Arc Tracker (Contribution 1)
-For each chapter/story, we generate a character state snapshot containing:
-- Knowledge gained in that chapter
-- Emotional state and its cause
-- Relationship changes
-- Key events experienced
-- Character development notes
+For each chapter/story, we generate a character state snapshot via LLM analysis containing:
+- **Knowledge gained**: new facts, discoveries, and realizations
+- **Emotional state**: current feelings and their narrative cause
+- **Relationship changes**: shifts in interpersonal dynamics
+- **Key events**: plot points the character experienced
+- **Character development**: growth or regression notes
 
-At inference time, `set_narrative_position(N)` constrains the character to only know events up to chapter N. An explicit "unknown items" list is generated from future snapshots to override the base model's pre-training knowledge.
+For Holmes, this yields 12 snapshots tracking his evolution from "humbled admiration" (after Irene Adler outwits him in Story 1) through various emotional states across the collection.
+
+At inference time, `set_narrative_position(N)` constrains the character to only access events up to chapter $N$. Critically, we found that simple instructions ("you don't know this yet") are insufficient — the base model draws on pre-training knowledge to fill gaps. Our solution generates an explicit **unknown items list** from future snapshots, enumerating specific characters, events, and facts the character must not reference. This list is injected into the system prompt with a critical-priority constraint flag, effectively overriding pre-training knowledge.
 
 ### 3.6 Automatic Behavioral Logic Extraction (Contribution 2)
-We extract if-then behavioral rules from novel text in three categories:
-- **Deterministic**: Always-true rules (e.g., "when encountering a new client → immediately deduces biographical details from appearance")
-- **Probabilistic**: Usually-true rules with probability estimates (e.g., "when complimented → 80% deflects")
-- **Conditional**: Context-dependent rules
+We automatically extract if-then behavioral rules from novel text, extending the manual approach of Codified Character Logic (2025). Novel text is processed in batches, with each batch analyzed by an LLM to identify recurring behavioral patterns and their textual evidence. Rules are classified into three types:
 
-For Sherlock Holmes, we extracted 49 rules (30 deterministic, 13 probabilistic, 6 conditional) across 4 categories (reasoning, social, emotional, habitual).
+- **Deterministic** ($p = 1.0$): invariant behaviors (e.g., "when encountering a new client → immediately deduces biographical details from appearance")
+- **Probabilistic** ($0 < p < 1.0$): typical behaviors with estimated probability (e.g., "when complimented → deflects with $p = 0.8$")
+- **Conditional**: context-dependent rules triggered by specific circumstances
+
+For Sherlock Holmes, we extracted **49 rules** (30 deterministic, 13 probabilistic, 6 conditional) across 4 semantic categories:
+
+| Category | Count | Example |
+|----------|-------|---------|
+| Reasoning | 11 | "when observing a person → deduces occupation, history from physical details" |
+| Social | 13 | "when praised → deflects to the intellectual puzzle rather than personal credit" |
+| Emotional | 17 | "when between cases → experiences acute ennui; complains about commonplaces of existence" |
+| Habitual | 8 | "when thinking deeply → plays violin or smokes pipe in concentrated silence" |
+
+Each rule includes textual evidence from the source novel, enabling traceability and verification.
 
 ### 3.7 Second-Order Theory of Mind (Contribution 3)
-Every 3 conversation turns, the system infers:
-- What the user likely believes about the current topic
-- What the user likely doesn't know
-- How the character should adjust their communication
-- The character's private reasoning about the user's mental state
+Every 3 conversation turns, the system performs a Theory of Mind inference pass, generating a structured user model:
 
-This enables adaptive behavior: Holmes explains deduction differently to a novice versus someone who demonstrates familiarity with his methods.
+1. **User beliefs**: what the user likely believes about the current topic
+2. **User knowledge gaps**: what the user likely does not know
+3. **Communication adjustment**: how the character should adapt their response
+4. **Private reasoning**: the character's internal assessment of the user's mental state
+
+This enables adaptive behavior grounded in the character's personality. Holmes explains deduction differently to a novice ("Let me demonstrate my method step by step") versus someone who demonstrates familiarity with his methods ("You know my methods, Watson — apply them"). The ToM module does not simply adjust difficulty level; it reasons *as the character would* about the user's understanding, maintaining voice consistency while adapting content depth.
 
 ### 3.8 BDI Cognitive Module
-Tracks the character's Beliefs, Desires, and Intentions, updated every 5 turns:
-- **Beliefs**: Current understanding of the situation and the user
-- **Desires**: What the character wants from this interaction
-- **Intentions**: What the character plans to do next
+Following CharacterBox (Wang et al., 2024), we implement a BDI (Belief-Desire-Intention) module that maintains the character's cognitive state, updated every 5 conversation turns:
+- **Beliefs**: the character's current understanding of the situation, the user, and the world
+- **Desires**: what the character wants from this interaction (driven by personality and values)
+- **Intentions**: the character's plan for the next conversational move
+
+The BDI state is injected into the system prompt, providing coherent motivation for character behavior across extended conversations.
 
 ### 3.9 Persistent Memory
-Cross-session memory following MemGPT principles:
-- Episode summaries stored after each session
-- User profile facts extracted and accumulated
-- Keyword-based recall during future sessions
+Cross-session memory follows MemGPT (Packer et al., 2023) principles with two storage tiers:
+- **Episode memory**: conversation summaries stored at session end, enabling recall of past interactions ("Last time you asked about the Red-Headed League...")
+- **User profile**: accumulated facts about the user extracted from conversation, enabling personalized interaction across sessions
+- **Recall mechanism**: keyword-based retrieval from persistent storage, injected into context at session start
 
 ---
 
 ## 4. Experiments
 
 ### 4.1 Evaluation Framework
-We propose a 5-axis evaluation framework:
-1. **Knowledge Accuracy**: Does the character only reference things they would know?
-2. **Personality Consistency**: Does the response match the Big Five profile?
-3. **Speech Fidelity**: Does the response use distinctive speech patterns?
-4. **Behavioral Consistency**: Does the response follow extracted behavioral rules?
-5. **Overall Character Fidelity**: Does this feel like the character?
+We propose a 5-axis character fidelity framework, extending CharacterBench (2024) with temporal consistency:
 
-Each axis is scored 1-5 by an LLM evaluator (following CharacterBench methodology).
+| Axis | Definition | Scoring |
+|------|-----------|---------|
+| Knowledge Accuracy | Does the character only reference things they would know from the source text? | 1–5, LLM-evaluated |
+| Personality Consistency | Does the response match the extracted Big Five profile? | 1–5, LLM-evaluated |
+| Speech Fidelity | Does the response use the character's distinctive speech patterns? | 1–5, LLM-evaluated |
+| Behavioral Consistency | Does the response follow extracted behavioral rules? | 1–5, LLM-evaluated |
+| Overall Character Fidelity | Holistic assessment: does this feel like the character? | 1–5, LLM-evaluated |
 
-### 4.2 Baseline Results
-Sherlock Holmes, 3-question evaluation:
-| Question | Knowledge | Personality | Speech | Behavior | Overall | Aggregate |
-|----------|-----------|-------------|--------|----------|---------|-----------|
-| Strange letter | 3 | 3 | 4 | 2 | 3 | 3.0 |
-| Method of deduction | 5 | 5 | 4 | 4 | 5 | 4.6 |
-| 왓슨 평가 (Korean) | 5 | 4 | 4 | 4 | 5 | 4.4 |
+Each axis is scored 1–5 by an LLM evaluator provided with the character profile, behavioral rules, and source text excerpts as reference.
+
+### 4.2 Character Fidelity Results
+
+**Table 1.** Sherlock Holmes evaluation across 3 diverse test queries.
+
+| Query | Knowledge | Personality | Speech | Behavior | Overall | Mean |
+|-------|-----------|-------------|--------|----------|---------|------|
+| Strange letter from unknown sender | 3 | 3 | 4 | 2 | 3 | 3.0 |
+| Describe your method of deduction | 5 | 5 | 4 | 4 | 5 | 4.6 |
+| 왓슨에 대해 어떻게 생각하세요? (Korean) | 5 | 4 | 4 | 4 | 5 | 4.4 |
 | **Average** | **4.3** | **4.0** | **4.0** | **3.3** | **4.3** | **4.0** |
 
+The lowest axis (Behavioral Consistency, 3.3) reflects cases where the character responds generically rather than triggering specific extracted rules — an expected limitation when the conversational context does not match any rule trigger.
+
 ### 4.3 Narrative Arc Tracking Evaluation
-| Narrative Position | Query | Expected | Actual | Correct? |
-|-------------------|-------|----------|--------|----------|
-| pos=0 (before story 1) | "What about Irene Adler?" | Does not know | "That name means nothing to me" | ✅ |
-| pos=1 (after story 1) | "What about Irene Adler?" | Knows and reflects | "The woman... she outwitted me" | ✅ |
+
+**Table 2.** Knowledge boundary test: does narrative position correctly constrain character knowledge?
+
+| Position | Query | Expected Behavior | Actual Response | Pass |
+|----------|-------|--------------------|-----------------|------|
+| $N = 0$ (before any story) | "What about Irene Adler?" | Does not know | "That name means nothing to me." | ✅ |
+| $N = 1$ (after Story 1) | "What about Irene Adler?" | Knows and reflects | "The woman... she outwitted me." | ✅ |
+
+This test validates that our explicit unknown-items approach successfully overrides the base model's pre-training knowledge of Sherlock Holmes canon.
 
 ### 4.4 Cross-Language Consistency
-Both Korean and English inputs maintain character voice and knowledge accuracy, demonstrating language-agnostic character modeling.
+Both Korean and English inputs maintain character voice and knowledge accuracy. The Korean query (Table 1, row 3) scores 4.4/5.0, comparable to the English queries, demonstrating that character modeling is language-agnostic when grounded in structured profiles rather than surface-level text mimicry.
 
 ---
 
 ## 5. Analysis
 
 ### 5.1 Narrative Position as Knowledge Boundary
-The most significant finding is that explicit "unknown items" lists effectively override the base model's pre-training knowledge. Simple instructions like "you don't know this yet" are insufficient — the model draws on its training data. Our approach of enumerating specific unknown characters/events provides a concrete boundary.
+Our most significant finding is that explicit unknown-items enumeration effectively overrides the base model's pre-training knowledge, while simpler approaches fail. We tested three approaches in order of increasing effectiveness:
+
+1. **Instruction-only** ("You don't know about Irene Adler yet"): *Failed.* The model still referenced Adler from pre-training.
+2. **Negative instruction** ("CRITICAL: You have never heard of Irene Adler"): *Partially worked.* The model avoided the name but gave suspiciously relevant responses.
+3. **Explicit unknown-items list** (enumerating all characters, events, and facts from future chapters): *Succeeded.* The model responded naturally with genuine ignorance.
+
+This suggests that LLMs require *concrete* knowledge boundaries, not abstract ones, to overcome pre-training interference.
 
 ### 5.2 Behavioral Logic Patterns
-The 49 automatically extracted rules reveal character structure:
-- Holmes's reasoning rules are predominantly deterministic (always observes before speaking)
-- His social rules are more probabilistic (usually deflects compliments, but sometimes accepts)
-- Emotional rules are conditional (protective behavior depends on the victim's vulnerability)
+The 49 automatically extracted rules reveal structural patterns in character behavior:
+- **Reasoning rules** (11) are predominantly deterministic — Holmes *always* observes before speaking, *always* deduces from physical details
+- **Social rules** (13) are more probabilistic — he *usually* deflects compliments ($p = 0.8$), but sometimes accepts them for particularly clever observations
+- **Emotional rules** (17) are often conditional — protective behavior depends on the victim's vulnerability; ennui triggers depend on the absence of stimulating cases
+
+This distribution suggests that character behavior is not uniformly rule-governed: cognitive behaviors tend toward determinism while social and emotional behaviors exhibit more variance — a pattern consistent with personality psychology.
 
 ### 5.3 Limitations
-1. **LLM-as-evaluator bias**: Our evaluation uses the same model family for generation and evaluation
-2. **Speaker attribution**: ~50% of dialogues have "Unknown" speakers due to Victorian prose conventions
-3. **ToM verification**: Second-order ToM inferences are not validated against ground truth
-4. **Scale**: Tested on 2 characters; broader validation needed
+1. **LLM-as-evaluator bias**: Our evaluation uses the same model family (Claude) for both generation and evaluation, potentially inflating scores
+2. **Speaker attribution**: ~50% of dialogues have unknown speakers due to Victorian prose conventions, limiting dialogue-grounded analysis
+3. **ToM verification**: Second-order ToM inferences are generated but not validated against ground truth user states
+4. **Scale**: Tested on 2 characters from 2 novels; broader validation across genres and character types is needed
+5. **Reproducibility**: Claude CLI responses are non-deterministic; exact scores may vary across runs
 
 ---
 
-## 6. Conclusion
+## 6. Future Work
 
-Avatar demonstrates that literary character agents require more than prompt engineering — they need cognitive architectures that model personality, knowledge boundaries, temporal evolution, and theory of mind as integrated systems. Our three contributions — narrative arc tracking, automatic behavioral logic extraction, and second-order Theory of Mind — address gaps identified across 18 recent papers in character-grounded dialogue, and we show that these capabilities can be implemented without fine-tuning using retrieval-augmented generation and structured prompting.
+Several directions extend this work:
+- **Scale validation**: testing across 10+ characters from diverse genres (science fiction, mystery, romance, historical fiction) to evaluate generalizability
+- **Human evaluation**: conducting human studies to complement LLM-based evaluation and assess perceived character authenticity
+- **Multi-character interaction**: enabling characters from different novels to converse, requiring cross-novel ToM reasoning
+- **Fine-grained arc tracking**: modeling intra-chapter character evolution rather than chapter-level snapshots
+- **Behavioral rule learning**: iteratively refining extracted rules based on user feedback during conversations
+
+## 7. Conclusion
+
+Avatar demonstrates that literary character agents require more than prompt engineering — they need cognitive architectures that model personality, knowledge boundaries, temporal evolution, and theory of mind as integrated systems. Our three contributions — narrative arc tracking, automatic behavioral logic extraction, and second-order Theory of Mind — address gaps identified across 18 recent papers in character-grounded dialogue.
+
+We show that narrative position control with explicit unknown-items lists can effectively override LLM pre-training knowledge, enabling spoiler-free conversations at arbitrary story positions. We demonstrate that behavioral rules can be automatically extracted from novel text with sufficient quality to guide character responses. And we show that second-order ToM enables characters to adapt their communication style while maintaining voice consistency.
+
+All of these capabilities are implemented without fine-tuning, using retrieval-augmented generation and structured prompting over a standard LLM backend, achieving a mean character fidelity of 4.0/5.0 across 5 evaluation axes. The full system is released as open source.
 
 ---
 

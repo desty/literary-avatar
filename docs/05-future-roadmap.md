@@ -169,7 +169,7 @@ holmes: "왓슨은 그를 단순한 범죄자로 볼 테지만,
 - [x] 독자 진행도 인식 (/timeline으로 스포일러 방지 검증됨)
 - [x] 다축 평가 프레임워크 (5축 평가, 평균 4.0/5.0)
 
-### Phase 4
-- [ ] 논문 초고
-- [ ] 오픈소스 공개
-- [ ] 데모 제작
+### Phase 4 — 2026-05-24 완료
+- [x] 논문 초고 (paper-draft.md 최종 정비 — 수치 검증, 섹션 확장, Future Work 추가)
+- [x] 오픈소스 공개 (MIT LICENSE, README 정비, requirements.txt 업데이트)
+- [x] 데모 제작 (Streamlit 웹 UI — app.py)
