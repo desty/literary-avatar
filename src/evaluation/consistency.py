@@ -33,6 +33,23 @@ def call_claude_eval(prompt: str) -> dict:
         return {}
 
 
+def _get_source_excerpts(character_name: str, user_input: str, book_id: str, n: int = 3) -> str:
+    """RAG에서 관련 원문 발췌를 가져와 평가 참고자료로 제공."""
+    try:
+        from src.memory.retriever import search
+        results = search(user_input, book_id=book_id, n_results=n)
+        if not results:
+            return ""
+        excerpts = []
+        for r in results:
+            title = r["metadata"].get("story_title", "Unknown")
+            text = r["text"][:300]
+            excerpts.append(f'[From "{title}"]:\n{text}')
+        return "\n\n".join(excerpts)
+    except Exception:
+        return ""
+
+
 def evaluate_response(
     character_name: str,
     character_profile: dict,
@@ -40,6 +57,7 @@ def evaluate_response(
     response: str,
     character_logic: dict = None,
     narrative_position: int = None,
+    book_id: str = None,
 ) -> dict:
     """단일 응답에 대한 다축 평가."""
 
@@ -55,6 +73,13 @@ def evaluate_response(
     if narrative_position is not None:
         timeline_text = f"\nTimeline constraint: Character should only know events up to chapter/story {narrative_position}."
 
+    # 원문 발췌를 평가 참고자료로 제공
+    source_text = ""
+    if book_id:
+        excerpts = _get_source_excerpts(character_name, user_input, book_id)
+        if excerpts:
+            source_text = f"\nRelevant source text excerpts from the novel:\n{excerpts}"
+
     prompt = f"""Evaluate this character response for fidelity to {character_name}.
 
 User input: "{user_input}"
@@ -67,14 +92,15 @@ Character profile:
 
 Behavioral rules:
 {rules_text}
+{source_text}
 
-Rate each dimension 1-5 (5=perfect) and explain briefly.
+Rate each dimension 1-5 (5=perfect) and explain briefly. Be strict — only give 5 if the response is indistinguishable from the original character.
 Return JSON only:
 
 {{
   "knowledge_accuracy": {{
     "score": 0,
-    "explanation": "Does the character only reference things they would know?"
+    "explanation": "Does the character only reference things they would know from the source text?"
   }},
   "personality_consistency": {{
     "score": 0,
@@ -130,6 +156,7 @@ def run_evaluation_suite(
             character_name, profile, user_input, response,
             character_logic=logic,
             narrative_position=engine.narrative_position,
+            book_id=engine.book_id,
         )
 
         results.append({
@@ -152,23 +179,71 @@ def run_evaluation_suite(
     return summary
 
 
-# 기본 테스트 셋
+# 테스트 셋 — 지식/성격/말투/행동 각 축을 커버하는 다양한 질의
 HOLMES_TEST_INPUTS = [
+    # Knowledge accuracy
     "Mr. Holmes, I need your help with a strange letter I received.",
+    "Tell me about the case of the Red-Headed League.",
+    "What happened with the King of Bohemia?",
+    "Do you know anything about Professor Moriarty?",
+    # Personality consistency
     "What is your method of deduction?",
     "Do you have any friends, Mr. Holmes?",
+    "How do you feel about emotions and sentiment?",
+    "What do you do when you have no cases to solve?",
+    # Speech fidelity
+    "Could you explain how you solved the Speckled Band case?",
+    "What do you think of Inspector Lestrade?",
+    # Behavioral rules
+    "I must say, your deductions are quite remarkable!",
+    "Here, I've brought you a new puzzle.",
+    # Out-of-scope / boundary
     "What do you think about modern technology like smartphones?",
-    "Tell me about the case of the Red-Headed League.",
+    "Have you ever been to Japan?",
+    # Cross-language
     "홈즈 씨, 왓슨 박사는 어떤 사람인가요?",
+    "범죄를 수사할 때 가장 중요한 것은 무엇인가요?",
 ]
 
 ELIZABETH_TEST_INPUTS = [
+    # Knowledge accuracy
     "Miss Bennet, what do you think of Mr. Darcy?",
+    "Tell me about your sister Jane.",
+    "What happened at the Netherfield ball?",
+    "Have you heard of Mr. Wickham?",
+    # Personality consistency
     "What qualities do you look for in a husband?",
     "Do you enjoy reading?",
+    "How do you feel about Lady Catherine de Bourgh?",
+    "What do you think of Mr. Collins's proposal?",
+    # Speech fidelity
     "Tell me about your family.",
+    "What are your thoughts on pride versus prejudice?",
+    # Behavioral rules
+    "You seem to have a very sharp wit, Miss Bennet.",
+    "Would you ever marry for money alone?",
+    # Out-of-scope / boundary
+    "What do you know about the French Revolution?",
+    # Cross-language
     "엘리자베스 씨, 결혼에 대해 어떻게 생각하세요?",
+    "다시 씨의 첫인상은 어땠나요?",
 ]
+
+# 시간축 평가용 질의 — narrative arc tracking 전용
+TEMPORAL_TEST_QUERIES = {
+    "sherlock_holmes": [
+        {"position": 0, "query": "What do you think of Irene Adler?", "expected": "unknown"},
+        {"position": 1, "query": "What do you think of Irene Adler?", "expected": "knows"},
+        {"position": 0, "query": "Tell me about the Red-Headed League.", "expected": "unknown"},
+        {"position": 2, "query": "Tell me about the Red-Headed League.", "expected": "knows"},
+        {"position": 0, "query": "Have you met a man named Jabez Wilson?", "expected": "unknown"},
+        {"position": 3, "query": "What about the Boscombe Valley case?", "expected": "unknown"},
+        {"position": 4, "query": "What about the Boscombe Valley case?", "expected": "knows"},
+        {"position": 5, "query": "Tell me about the five orange pips.", "expected": "knows"},
+        {"position": 0, "query": "Do you know Dr. Grimesby Roylott?", "expected": "unknown"},
+        {"position": 8, "query": "Do you know Dr. Grimesby Roylott?", "expected": "knows"},
+    ],
+}
 
 TEST_INPUTS = {
     "sherlock_holmes": HOLMES_TEST_INPUTS,

@@ -20,7 +20,7 @@ CHARACTER_BOOK_MAP = {
 class CharacterEngine:
     """캐릭터 에이전트의 핵심 엔진."""
 
-    def __init__(self, character_id: str, persistent_memory=None):
+    def __init__(self, character_id: str, persistent_memory=None, config: dict = None):
         self.character_id = character_id
         self.profile = load_profile(character_id)
         self.character_name = self.profile.get("name", character_id)
@@ -30,26 +30,49 @@ class CharacterEngine:
         self.bdi_state = {"beliefs": [], "desires": [], "intentions": []}
         self.arc_snapshots = load_arc(character_id)
         self.narrative_position = None  # None = 전체 지식, int = 해당 챕터까지만
+        self.reader_position = None    # None = 전체, int = 독자가 읽은 챕터까지
         self.tom_enabled = True
         self.tom_state = {}
         self._tom_turn_count = 0
         self.character_logic = load_logic(character_id)
 
+        # Feature flags for baseline/ablation experiments
+        cfg = config or {}
+        self.use_rag = cfg.get("use_rag", True)
+        self.use_temporal_filter = cfg.get("use_temporal_filter", True)
+        self.use_unknown_list = cfg.get("use_unknown_list", True)
+        self.use_arc_state = cfg.get("use_arc_state", True)
+        self.use_logic = cfg.get("use_logic", True)
+        self.use_tom = cfg.get("use_tom", True)
+
     def set_narrative_position(self, position):
         """캐릭터의 서사 시점을 설정. None이면 전체 지식."""
         self.narrative_position = position
 
+    def set_reader_position(self, position):
+        """독자의 진행도를 설정. 시스템이 이 시점 이후를 스포하지 않음."""
+        self.reader_position = position
+
     def respond(self, user_input: str) -> str:
         """사용자 입력에 대해 캐릭터로서 응답."""
-        # 1. RAG 검색 (서사 시점 필터 적용)
-        rag_results = search(user_input, book_id=self.book_id, n_results=5)
-        if self.narrative_position is not None:
-            rag_results = [
-                r for r in rag_results
-                if r["metadata"].get("story_number", 0) <= self.narrative_position
-            ]
-        rag_results = rag_results[:3]
-        rag_context = self._format_rag_context(rag_results)
+        # 1. RAG 검색
+        rag_context = "(No specific story context retrieved)"
+        if self.use_rag:
+            rag_results = search(user_input, book_id=self.book_id, n_results=5)
+            # 캐릭터 시점 필터
+            if self.use_temporal_filter and self.narrative_position is not None:
+                rag_results = [
+                    r for r in rag_results
+                    if r["metadata"].get("story_number", 0) <= self.narrative_position
+                ]
+            # 독자 시점 필터
+            if self.use_temporal_filter and self.reader_position is not None:
+                rag_results = [
+                    r for r in rag_results
+                    if r["metadata"].get("story_number", 0) <= self.reader_position
+                ]
+            rag_results = rag_results[:3]
+            rag_context = self._format_rag_context(rag_results)
 
         # 2. 대화 히스토리
         conversation_history = self.memory.format_for_prompt(self.character_name)
@@ -65,19 +88,28 @@ class CharacterEngine:
         if persistent_context:
             rag_context = f"{rag_context}\n\n## Memories from Previous Conversations\n{persistent_context}"
 
-        # 5. 캐릭터 아크 상태 (서사 시점이 설정된 경우)
+        # 5. 캐릭터 아크 상태 (unknown list 포함)
         arc_context = ""
         if self.narrative_position is not None and self.arc_snapshots:
-            state = get_state_at_position(self.arc_snapshots, self.narrative_position)
-            arc_context = format_arc_for_prompt(state, self.narrative_position, self.arc_snapshots)
+            if self.use_arc_state:
+                state = get_state_at_position(self.arc_snapshots, self.narrative_position)
+                arc_context = format_arc_for_prompt(
+                    state, self.narrative_position,
+                    self.arc_snapshots if self.use_unknown_list else None,
+                )
+            elif self.use_unknown_list:
+                # unknown list만 사용 (arc state 없이)
+                arc_context = format_arc_for_prompt(
+                    {}, self.narrative_position, self.arc_snapshots,
+                )
 
         if arc_context:
             rag_context = f"{arc_context}\n\n{rag_context}"
 
-        # 6. Theory of Mind (3턴마다 사용자 관점 추론)
+        # 6. Theory of Mind
         tom_text = ""
         self._tom_turn_count += 1
-        if self.tom_enabled and self._tom_turn_count % 3 == 0 and len(self.memory.messages) >= 4:
+        if self.use_tom and self.tom_enabled and self._tom_turn_count % 3 == 0 and len(self.memory.messages) >= 4:
             self.tom_state = infer_other_perspective(
                 self.character_name, "the user", user_input,
                 self.profile, conversation_history,
@@ -87,10 +119,11 @@ class CharacterEngine:
         if tom_text:
             bdi_text = f"{bdi_text}\n\n{tom_text}" if bdi_text else tom_text
 
-        # 8. 캐릭터 로직 규칙
-        logic_text = format_logic_for_prompt(self.character_logic)
-        if logic_text:
-            bdi_text = f"{bdi_text}\n\n{logic_text}" if bdi_text else logic_text
+        # 7. 캐릭터 로직 규칙
+        if self.use_logic:
+            logic_text = format_logic_for_prompt(self.character_logic)
+            if logic_text:
+                bdi_text = f"{bdi_text}\n\n{logic_text}" if bdi_text else logic_text
 
         # 9. 시스템 프롬프트 구성
         system_prompt = build_system_prompt(
@@ -178,3 +211,5 @@ Return JSON only:
     def reset(self):
         self.memory.clear()
         self.bdi_state = {"beliefs": [], "desires": [], "intentions": []}
+        self._tom_turn_count = 0
+        self.tom_state = {}

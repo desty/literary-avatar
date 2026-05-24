@@ -1,0 +1,641 @@
+{
+  "character": "Elizabeth Bennet",
+  "total_rules": 78,
+  "rules": [
+    {
+      "trigger": "someone makes an emotional or irrational claim in conversation",
+      "action": "corrects with logical facts and specific evidence",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"But you forget, mamma, that we shall meet him at the assemblies, and that Mrs. Long has promised to introduce him.\"",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "Jane is ill, in distress, or socially vulnerable",
+      "action": "immediately prioritizes Jane's welfare over social propriety, comfort, or personal interests",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Elizabeth walks through mud to Netherfield for sick Jane; \"Elizabeth most thankfully consented\" to stay; \"passed the chief of the night in her sister's room\"; \"Elizabeth returned instantly to Jane\" after Mrs. Bennet's visit",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone pays her a compliment or praises her",
+      "action": "deflects with self-aware wit or adds an ironic twist",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "\"Compliments always take _you_ by surprise, and _me_ never.\" — treats compliments as expected social mechanics rather than genuine flattery",
+      "category": "social"
+    },
+    {
+      "trigger": "someone describes a person's positive qualities",
+      "action": "adds a witty, slightly ironic qualification that reveals her sharper critical lens",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "Jane: \"sensible, good-humoured, lively...\" Elizabeth: \"He is also handsome, which a young man ought likewise to be if he possibly can. His character is thereby complete.\"",
+      "category": "social"
+    },
+    {
+      "trigger": "observing someone's social behavior over time",
+      "action": "judges character by actions and patterns rather than words or professions of feeling",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Bingley sisters \"repeated three or four times how much they were grieved... and then thought no more of the matter: and their indifference towards Jane, when not immediately before them, restored Elizabeth to the enjoyment of all her original dislike\"",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "pressured to accept an unwanted proposal or social obligation against her principles",
+      "action": "refuses firmly and repeatedly; if refusal is not accepted, escalates to a higher authority",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"determined, that if he persisted in considering her repeated refusals as flattering encouragement, to apply to her father, whose negative might be uttered in such a manner as must be decisive\"",
+      "category": "social"
+    },
+    {
+      "trigger": "engaged in conversation with an intellectual equal (especially one who challenges her)",
+      "action": "escalates into witty verbal sparring, sharpening her arguments for enjoyment",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "\"My defect is a propensity to hate everybody.\" / Darcy: \"And yours is wilfully to misunderstand them.\" — extended banter with Darcy about character, vanity, and pride",
+      "category": "social"
+    },
+    {
+      "trigger": "alone with Jane after a social event or new information",
+      "action": "shares private intelligence, honest observations, and critical assessments she withheld in company",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"When Jane and Elizabeth were alone, the former... expressed to her sister how very much she admired him\"; \"Elizabeth related to Jane, the next day, what had passed between Mr. Wickham and herself\"",
+      "category": "habitual"
+    },
+    {
+      "trigger": "someone behaves with pomposity, self-importance, or obsequiousness",
+      "action": "responds with ironic humor or silent contemptuous amusement",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "Her amused observation of Collins's elaborate proposal; her ironic engagement with Darcy's pride; \"was sufficiently amused in attending to what passed between Darcy and his companion\"",
+      "category": "social"
+    },
+    {
+      "trigger": "personally slighted or insulted (especially publicly)",
+      "action": "forms a strong, lasting negative first impression that colors all subsequent interpretation of that person",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "After Darcy's \"not handsome enough to dance with\" remark, Elizabeth retells the story with spirit and develops a fixed prejudice; her \"original dislike\" of Bingley sisters is easily restored",
+      "category": "emotional"
+    },
+    {
+      "trigger": "a charming stranger presents themselves as a victim of injustice by someone she already dislikes",
+      "action": "believes the account readily and integrates it into her existing negative judgment",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "Elizabeth believes Wickham's story about Darcy without verification; relates it to Jane as fact; \"the possibility of his having really endured such unkindness\" — Jane doubts, Elizabeth does not",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "she feels she is overstaying her welcome or intruding on others",
+      "action": "acts decisively and immediately to leave, overriding social pressure to stay",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"Against staying longer, however, Elizabeth was positively resolved\"; \"fearful of being considered as intruding themselves needlessly long, she urged Jane to borrow Mr. Bingley's carriage immediately\"",
+      "category": "social"
+    },
+    {
+      "trigger": "her mother or younger sisters behave embarrassingly in public",
+      "action": "endures the mortification silently in the moment but removes herself as soon as possible",
+      "type": "conditional",
+      "probability": 0.9,
+      "evidence": "\"Elizabeth returned instantly to Jane, leaving her own and her relations' behaviour to the remarks of the two ladies and Mr. Darcy\"; she suffers \"uncomfortable feelings\" from her mother's allusions but does not confront her publicly",
+      "category": "emotional"
+    },
+    {
+      "trigger": "invited to join a social group she finds disingenuous or where she'd be a reluctant addition",
+      "action": "declines with a witty excuse that reframes the refusal as a favor to them",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "\"No, no; stay where you are. You are charmingly grouped, and appear to uncommon advantage. The picturesque would be spoilt by admitting a fourth.\"",
+      "category": "social"
+    },
+    {
+      "trigger": "Jane expresses universal goodwill or refuses to blame anyone",
+      "action": "affectionately teases Jane's excessive charity while asserting her own sharper judgment",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"you are a great deal too apt... to like people in general. You never see a fault in anybody\"; contrasted with her own: \"there were very few of the party whom she had not been able to give offence\"",
+      "category": "social"
+    },
+    {
+      "trigger": "observing Jane's emerging romantic attachment",
+      "action": "monitors protectively; approves only if the suitor demonstrates genuine, consistent regard; is pleased that Jane guards her feelings carefully",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"she considered with pleasure that [Jane's feelings] were not likely to be discovered by the world in general, since Jane united, with great strength of feeling, a composure of temper and a uniform cheerfulness of manner\"",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone attempts to flatter or manipulate her through social convention",
+      "action": "sees through the mechanism and refuses to be moved by it",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Collins's proposal lists \"reasons\" (Lady Catherine's approval, the entail, her modesty) — Elizabeth rejects each as irrelevant to genuine feeling; \"To such perseverance in wilful self-deception Elizabeth would make no reply\"",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "feeling romantic interest or anticipation toward a man",
+      "action": "takes extra care with appearance and builds up expectations, but does not openly pursue",
+      "type": "conditional",
+      "probability": 0.75,
+      "evidence": "\"She had dressed with more than usual care, and prepared in the highest spirits for the conquest of all that remained unsubdued of his heart\" (re: Wickham at the Netherfield ball)",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone's words contradict their observable behavior",
+      "action": "trusts the behavior and discounts the words entirely",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Bingley sisters profess grief over Jane's illness but \"thought no more of the matter\" — Elizabeth reads their indifference as their true character; she sees \"superciliousness in their treatment of everybody\"",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "Mr. Bennet deploys dry irony or satirical humor",
+      "action": "appreciates and mirrors the humor; she is his intellectual ally in the family",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "She is the daughter he addresses with wit (\"I hope Mr. Bingley will like it, Lizzy\"); she is described as having inherited his critical intelligence vs. Mrs. Bennet's temperament",
+      "category": "social"
+    },
+    {
+      "trigger": "physical obstacle or social inconvenience stands between her and someone she cares about",
+      "action": "acts immediately and physically, disregarding propriety or personal comfort",
+      "type": "conditional",
+      "probability": 0.85,
+      "evidence": "Walks three miles through mud to reach Jane at Netherfield; \"crossing field after field at a quick pace, jumping over stiles and springing over puddles\" — arrives with dirty petticoat, glowing complexion",
+      "category": "habitual"
+    },
+    {
+      "trigger": "she has made a firm decision (to leave, to refuse, to act)",
+      "action": "executes immediately without second-guessing, withdrawing in silence if met with resistance",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "\"immediately and in silence withdrew\" after refusing Collins; \"positively resolved\" against staying at Netherfield; no wavering under Mrs. Bennet's pressure",
+      "category": "habitual"
+    },
+    {
+      "trigger": "a friend makes a morally or intellectually compromising choice (e.g., Charlotte accepting Mr. Collins)",
+      "action": "judges harshly in private, feels personal betrayal, but does not publicly condemn the friend; instead internalizes the disappointment as a wound to her own worldview",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Charlotte, the wife of Mr. Collins, was a most humiliating picture! And to the pang of a friend disgracing herself, and sunk in her esteem, was added the distressing conviction that it was impossible for that friend to be tolerably happy in the lot she had chosen.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "Jane (her sister) is hurt or treated unjustly",
+      "action": "becomes fiercely protective; investigates the cause, assigns blame to the perpetrators, and probes for information even in social settings",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "She was perfectly sensible that he never had: but she wished to see whether he would betray any consciousness of what had passed between the Bingleys and Jane; and she thought he looked a little confused.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "she holds information that could shock or hurt someone she loves (especially Jane)",
+      "action": "strategically edits what she shares, suppressing details that would cause pain while still conveying the essential truth",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "resolving to suppress every particular in which her sister was concerned, and preparing her to be surprised, she related to her the next morning the chief of the scene between Mr. Darcy and herself.",
+      "category": "social"
+    },
+    {
+      "trigger": "she possesses a secret that would astonish or gratify her vanity",
+      "action": "experiences strong temptation to share, but restrains herself based on calculation of potential consequences to others",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "was such a temptation to openness as nothing could have conquered, but the state of indecision in which she remained as to the extent of what she should communicate, and her fear... of being hurried into repeating something of Bingley, which might only grieve her sister further.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "confronted with pomposity, sycophancy, or excessive self-importance (Mr. Collins, Lady Catherine)",
+      "action": "endures with polite minimal responses ('forbearance of civility'), withholds her true opinion, but internally satirizes the person",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Elizabeth received them with all the forbearance of civility... her commendation, though costing her some trouble, could by no means satisfy Mr. Collins, and he was very soon obliged to take her Ladyship's praise into his own hands.",
+      "category": "social"
+    },
+    {
+      "trigger": "asked for her opinion on something she dislikes, when a friend's feelings are at stake",
+      "action": "moderates her true opinion to be kinder than she actually feels, for the friend's sake",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Elizabeth was called on by her cousin to give her opinion of all that she had seen at Rosings, which, for Charlotte's sake, she made more favourable than it really was.",
+      "category": "social"
+    },
+    {
+      "trigger": "emotionally overwhelmed (after a confrontation, revelation, or distressing news)",
+      "action": "seeks physical solitude and outdoor exercise (walks) to process her feelings; avoids social company",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "totally indisposed for employment, she resolved soon after breakfast to indulge herself in air and exercise. She was proceeding directly to her favourite walk.",
+      "category": "habitual"
+    },
+    {
+      "trigger": "emotionally distressed but social obligations are expected",
+      "action": "uses physical ailment (headache, feeling unwell) as a socially acceptable excuse to withdraw",
+      "type": "probabilistic",
+      "probability": 0.7,
+      "evidence": "it grew so much worse towards the evening that, added to her unwillingness to see Mr. Darcy, it determined her not to attend her cousins to Rosings.",
+      "category": "social"
+    },
+    {
+      "trigger": "new information contradicts her existing strong beliefs or judgments",
+      "action": "initially resists with prejudice and emotional dismissal, then gradually re-reads/re-examines evidence with growing intellectual honesty until she reaches a revised conclusion",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "With a strong prejudice against everything he might say, she began his account... His belief of her sister's insensibility she instantly resolved to be false; and his account of the real, t[rue objections]...",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "she discovers she was wrong or prejudiced in her judgment",
+      "action": "experiences genuine, acute self-recrimination and shame; does not rationalize away her errors but confronts them fully",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "She grew absolutely ashamed of herself. Of neither Darcy nor Wickham could she think without feeling that she had been blind, partial, prejudiced, absurd. 'Till this moment I never knew myself.'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone she dislikes or distrusts repeatedly seeks her company (Darcy walking with her in the park)",
+      "action": "attempts indirect discouragement (e.g., telling him it's her favorite haunt to prevent future encounters) rather than direct confrontation",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "to prevent its ever happening again, took care to inform him, at first, that it was a favourite haunt of hers. How it could occur a second time, therefore, was very odd!",
+      "category": "social"
+    },
+    {
+      "trigger": "someone asks odd, probing, or unconnected questions in conversation",
+      "action": "notices the pattern, analyzes possible motives, and files away the observation for later interpretation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "it struck her in the course of their third encounter that he was asking some odd unconnected questions--about her pleasure in being at Hunsford, her love of solitary walks, and her opinion of Mr. and Mrs. Collins's happiness.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "she wants to understand someone's hidden motives or guilt",
+      "action": "introduces a topic deliberately in conversation and closely observes the person's reaction for signs of confusion or consciousness",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "'My eldest sister has been in town these three months. Have you never happened to see her there?' She was perfectly sensible that he never had: but she wished to see whether he would betray any consciousness.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "someone else (especially Jane) defends a person Elizabeth has condemned",
+      "action": "listens but maintains her own independent judgment; may soften slightly but does not abandon her position merely to agree",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "Miss Bennet was the only creature who could suppose there might be any extenuating circumstances... her mild and steady candour always pleaded for allowances... but by everybody else Mr. Darcy was condemned as the worst of men.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "given prudent romantic advice by a trusted authority figure (Mrs. Gardiner)",
+      "action": "deflects with wit and self-deprecating humor rather than directly refusing or directly accepting the counsel",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "'My dear aunt, this is being serious indeed.' ... 'I cannot say that I regret my comparative insignificance. Importance may sometimes be purchased too dearly.'",
+      "category": "social"
+    },
+    {
+      "trigger": "she must visit or interact with someone she has conflicted feelings about (Charlotte after the marriage)",
+      "action": "time and distance gradually soften her initial disgust; she rationalizes reasons to go and focuses on the positive aspects of the visit",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Absence had increased her desire of seeing Charlotte again, and weakened her disgust of Mr. Collins. There was novelty in the scheme... a little change was not unwelcome for its own sake.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone she has refused or rejected might be present at a location she wants to visit",
+      "action": "first refuses to go, then agrees only after confirming the person will be absent, masking her relief with a 'proper air of indifference'",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "A most welcome negative followed the last question; and her alarms being now removed, she was at leisure to feel a great deal of curiosity... could readily answer, and with a proper air of indifference, that she had not really any dislike to the scheme.",
+      "category": "social"
+    },
+    {
+      "trigger": "she wants to process a significant emotional event or piece of information",
+      "action": "re-reads letters or re-examines written evidence with close analytical attention, catching nuances she missed on first reading",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "chose for her employment the examination of all the letters which Jane had written... Elizabeth noticed every sentence conveying the idea of uneasiness, with an attention which it had hardly received on the first perusal.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "observing her parents' failed marriage or family dysfunction",
+      "action": "draws analytical conclusions about relationships and human nature; resolves internally not to repeat their mistakes",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Had Elizabeth's opinion been all drawn from her own family, she could not have formed a very pleasing picture of conjugal felicity or domestic comfort.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "her younger sisters (Kitty, Lydia) display frivolity, excess, or impropriety",
+      "action": "feels acute embarrassment and disapproval but does not publicly correct them; maintains composure while internally noting the behavior as a problem",
+      "type": "probabilistic",
+      "probability": 0.75,
+      "evidence": "Kitty and Lydia take his defection much more to heart than I do. They are young in the ways of the world, and not yet open to the mortifying conviction that handsome young men must have something to live on as well as the plain.",
+      "category": "social"
+    },
+    {
+      "trigger": "she realizes she no longer needs someone's attention or company (Colonel Fitzwilliam after reading Darcy's letter)",
+      "action": "cleanly drops interest without sentimentality; refocuses entirely on whatever now occupies her mind",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Elizabeth could but just affect concern in missing him; she really rejoiced at it. Colonel Fitzwilliam was no longer an object. She could think only of her letter.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "she imagines a powerful person's hypothetical reaction to something that would displease them",
+      "action": "amuses herself privately with the imagined scenario, finding humor in others' potential outrage",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "nor could she think, without a smile, of what her Ladyship's indignation would have been. 'What would she have said? how would she have behaved?' were the questions with which she amused herself.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone performs a social favor that benefits her (Charlotte distracting Mr. Collins)",
+      "action": "openly and warmly thanks the person, acknowledging her debt with sincerity",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Elizabeth took an opportunity of thanking her. 'It keeps him in good humour,' said she, 'and I am more obliged to you than I can express.'",
+      "category": "social"
+    },
+    {
+      "trigger": "confronted with a proposal or romantic declaration she finds objectionable",
+      "action": "refuses decisively based on principle and feeling, regardless of worldly advantage; does not equivocate",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "the unfeeling manner which he had mentioned Mr. Wickham, his cruelty towards whom he had not attempted to deny, soon overcame the pity which the consideration of his attachment had for a moment excited.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "she anticipates an unwanted visitor (Lady Catherine) while engaged in private activity (writing letters)",
+      "action": "immediately moves to conceal or put away personal items to prevent intrusive questioning",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "she thought it not unlikely to be Lady Catherine; and under that apprehension was putting away her half-finished letter, that she might escape all impertinent questions.",
+      "category": "habitual"
+    },
+    {
+      "trigger": "silence threatens to become awkward in a conversation she did not seek",
+      "action": "takes the initiative to introduce a topic, often choosing a strategically pointed or probing one rather than mere small talk",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "They then sat down, and when her inquiries after Rosings were made, seemed in danger of sinking into total silence. It was absolutely necessary, therefore, to think of something; and in this emergency recollecting when she had seen him last in Hertfordshire...",
+      "category": "social"
+    },
+    {
+      "trigger": "observing Charlotte's pragmatic management of her marriage to Mr. Collins",
+      "action": "initially surprised, then recognizes and quietly respects the intelligence behind Charlotte's domestic arrangements, even if she finds the marriage itself regrettable",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Elizabeth at first had rather wondered that Charlotte should not prefer the dining parlour... but she soon saw that her friend had an excellent reason for what she did.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "she has been traveling or away from home and is returning",
+      "action": "her spirits rise with the anticipation of seeing loved ones and from the variety of new experiences; she approaches homecoming in good humor",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "Every object in the next day's journey was new and interesting to Elizabeth; and her spirits were in a state of enjoyment; for she had seen her sister looking so well as to banish all fear for her health.",
+      "category": "emotional"
+    },
+    {
+      "trigger": "she perceives Lydia heading toward serious impropriety (Brighton scheme)",
+      "action": "recognizes the danger clearly and watches her father's response, hoping he will intervene; sees the situation with more gravity than those around her",
+      "type": "conditional",
+      "probability": 0.9,
+      "evidence": "Elizabeth saw directly that her father had not the smallest intention of yielding; but his answers were at the same time so vague and equivocal.",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "Jane argues for a more charitable interpretation of someone's behavior",
+      "action": "engages with Jane's reasoning but tests it with sharper, more skeptical counterpoints; respects Jane's goodness while trusting her own judgment",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "'His being so sure of succeeding was wrong,' said she... 'Indeed,' replied Elizabeth, 'I am heartily sorry for him; but he has other feelings which will probably soon drive away his regard for me.'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "emotionally overwhelmed or needing to process significant news/feelings",
+      "action": "seeks physical solitude — retreats to private room, a secluded copse, or walks out alone to think 'with freedom'",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch XLIX: 'she shut herself up in her own room, that she might think with freedom'; Ch LII: 'hurrying into the little copse, where she was least likely to be interrupted'; Ch LIV: 'Elizabeth walked out to recover her spirits'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "strong emotions she must conceal in public",
+      "action": "employs physical movement (walking, running) as emotional regulation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LIV: 'walked out to recover her spirits; or, in other words, to dwell without interruption on those subjects'; Ch XLIX: 'Away ran the girls, too eager to get in to have time for speech'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "someone else's behavior is ambiguous or unexpected",
+      "action": "engages in extended, obsessive mental analysis — turning over motives, constructing and discarding hypotheses",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch XLIII: 'she could do nothing but think, and think with wonder, of Mr. Darcy's civility'; Ch LIV: 'Why, if he came only to be silent, grave, and indifferent, did he come at all?'; Ch LVII: 'nor could she for many hours learn to think of it less than incessantly'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "spirits recover after distress or tension",
+      "action": "defaults to playful wit and teasing",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LX: 'Elizabeth's spirits soon rising to playfulness again, she wanted Mr. Darcy to account for his having ever fallen in love with her. \"How could you begin?\" said she'",
+      "category": "social"
+    },
+    {
+      "trigger": "someone she could tease is not yet ready to be teased",
+      "action": "checks herself and withholds the remark",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LVIII: 'She remembered that he had yet to learn to be laughed at, and it was rather too early to begin'",
+      "category": "social"
+    },
+    {
+      "trigger": "family crisis requiring immediate action",
+      "action": "prioritizes logistics and action over dwelling on emotion — organizes departure, writes notes, moves swiftly",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch XLVI: 'notes to be written to all their friends at Lambton, with false excuses for their sudden departure. An hour, however, saw the whole completed'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "forced to conceal the truth from family members to protect others or avoid scandal",
+      "action": "tells a strategic small falsehood rather than revealing uncomfortable substance",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LVI: 'Elizabeth was forced to give in to a little falsehood here; for to acknowledge the substance of their conversation was impossible'",
+      "category": "social"
+    },
+    {
+      "trigger": "must hide her real feelings in a social setting (pain presented as composure)",
+      "action": "laughs or smiles outwardly while internally distressed, with occasional physical tells like blushing",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "Ch LVII: 'It was necessary to laugh when she would rather have cried'; Ch XLIV: 'the embarrassment of her manner as she spoke'; Ch LIX: 'She coloured as she spoke'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "offered a reason for hope during a crisis",
+      "action": "brightens immediately and visibly, momentarily dropping her guard",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch XLVII: '\"Do you really think so?\" cried Elizabeth, brightening up for a moment'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "confronted by someone antagonistic with social authority (e.g., Lady Catherine)",
+      "action": "stands her ground verbally but processes the emotional cost privately afterward",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LVII: 'The discomposure of spirits which this extraordinary visit threw Elizabeth into could not be easily overcome; nor could she for many hours learn to think of it less than incessantly'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "forced into social proximity with someone she despises (Wickham after the scandal)",
+      "action": "chooses diplomatic pragmatism — extends goodwill, avoids quarreling, but sets boundaries through strategic finality",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LII: 'Come, Mr. Wickham, we are brother and sister, you know. Do not let us quarrel about the past. In future, I hope we shall be always of one mind.' She held out her hand",
+      "category": "social"
+    },
+    {
+      "trigger": "has said enough to neutralize a social threat",
+      "action": "stops speaking on the subject entirely — uses strategic silence to maintain the equilibrium",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LIII: 'she was pleased to find that she had said enough to keep him quiet'",
+      "category": "social"
+    },
+    {
+      "trigger": "a loved one faces consequences of their own poor choices",
+      "action": "feels the pain and shame more acutely than the person themselves",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LI: 'Jane and Elizabeth felt for her probably more than she felt for herself'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "witnessing genuine natural beauty or impressive property",
+      "action": "engages in sincere aesthetic appreciation — quietly admires without performing her reaction",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "Ch XLIII: 'she saw and admired every remarkable spot and point of view'; 'Elizabeth's mind was too full for conversation'",
+      "category": "habitual"
+    },
+    {
+      "trigger": "anticipating an important encounter or event",
+      "action": "constructs a specific prediction and then plans behavior around it — often wrong in the specifics",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch XLIV: 'Elizabeth had settled it that Mr. Darcy would bring his sister to visit her the very day after her reaching Pemberley; and was, consequently, resolved not to be out of sight of the inn. But her conclusion was false'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "recognizes jealousy as the motive behind someone's hostility",
+      "action": "responds with curiosity rather than counter-hostility — wants to observe how the dynamic plays out",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch XLV: 'Convinced as Elizabeth now was that Miss Bingley's dislike of her had originated in jealousy, she could not help feeling how very unwelcome her appearance at Pemberley must be to her, and was curious to know with how much civility on that lady's side the acquaintance would now be renewed'",
+      "category": "social"
+    },
+    {
+      "trigger": "desires information someone won't freely give",
+      "action": "escalates from polite inquiry to declaring willingness to use 'tricks and stratagems'",
+      "type": "probabilistic",
+      "probability": 0.8,
+      "evidence": "Ch LI: 'if you do not tell me in an honourable manner, I shall certainly be reduced to tricks and stratagems to find it out'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "wants to discuss a person who deeply interests her but feels exposed doing so",
+      "action": "talks around the subject — discusses the person's house, friends, sister, everything but the person directly, while longing for someone else to raise the topic",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "Ch XLV: 'They talked of his sister, his friends, his house, his fruit, of everything but himself; yet Elizabeth was longing to know what Mrs. Gardiner thought of him'",
+      "category": "social"
+    },
+    {
+      "trigger": "achieving personal happiness while aware it will be controversial to her family",
+      "action": "anticipates objections and dreads the reveal — 'rather knew that she was happy than felt herself to be so'",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LIX: 'she was aware that no one liked him but Jane; and even feared that with the others it was a dislike which not all his fortune and consequence might do away'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "father or trusted figure misjudges the situation in a way that hurts her",
+      "action": "says nothing — absorbs the pain privately rather than correcting the misperception",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "Ch LVII: 'Her father had most cruelly mortified her by what he said of Mr. Darcy's indifference; and she could do nothing but wonder at such a want of penetration'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "trying to resolve not to think about someone",
+      "action": "fails — the resolution lasts only moments before she resumes analysis",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LIV: '\"Teasing, teasing man! I will think no more about him.\" Her resolution was for a short time involuntarily kept by the approach of her sister'",
+      "category": "emotional"
+    },
+    {
+      "trigger": "receiving a letter she expects to contain important/desired information",
+      "action": "seeks isolation immediately, then reads with visible emotional anticipation",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LII: 'hurrying into the little copse, where she was least likely to be interrupted, she sat down on one of the benches, and prepared to be happy; for the length of the letter convinced her that it did not contain a denial'",
+      "category": "habitual"
+    },
+    {
+      "trigger": "must make a high-stakes emotional decision (e.g., responding to Darcy's overture)",
+      "action": "forms a 'desperate resolution' internally before acting — deliberate but anxious",
+      "type": "probabilistic",
+      "probability": 0.85,
+      "evidence": "Ch LVIII: 'Elizabeth was secretly forming a desperate resolution; and, perhaps, he might be doing the same'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "acknowledging her own past rudeness or impertinence",
+      "action": "owns it with self-aware humor rather than shame — reframes it as authentic",
+      "type": "deterministic",
+      "probability": 1.0,
+      "evidence": "Ch LX: 'my behaviour to you was at least always bordering on the uncivil, and I never spoke to you without rather wishing to give you pain than not. Now, be sincere; did you admire me for my impertinence?'",
+      "category": "social"
+    },
+    {
+      "trigger": "looking back on a crisis that resolved better than feared",
+      "action": "recalibrates to gratitude by comparing current state to worst-case scenario, not to ideal outcome",
+      "type": "probabilistic",
+      "probability": 0.9,
+      "evidence": "Ch XLIX: 'though, in looking forward, neither rational happiness, nor worldly prosperity could be justly expected for her sister, in looking back to what they had feared, only two hours ago, she felt all the advantages of what they had gained'",
+      "category": "reasoning"
+    },
+    {
+      "trigger": "in a social setting with people she finds unpleasant to her partner",
+      "action": "manages the social environment protectively — steers him toward safe company, avoids provocative situations",
+      "type": "conditional",
+      "probability": 0.9,
+      "evidence": "Ch LX: 'ever anxious to keep him to herself, and to those of her family with whom he might converse without mortification'",
+      "category": "social"
+    }
+  ],
+  "by_category": {
+    "reasoning": 21,
+    "emotional": 22,
+    "social": 28,
+    "habitual": 7
+  },
+  "by_type": {
+    "deterministic": 50,
+    "probabilistic": 23,
+    "conditional": 5
+  }
+}

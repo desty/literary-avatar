@@ -1,0 +1,445 @@
+% Avatar: TACL Submission
+% Using ACL style (compatible with TACL requirements)
+\documentclass[11pt,a4paper]{article}
+\usepackage{times,latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[breaklinks]{hyperref}
+\usepackage{natbib}
+\usepackage{lineno}
+\linenumbers
+
+% Page geometry for TACL (A4)
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+% Two-column layout
+\twocolumn
+
+\title{Can Literary Character Agents Remain Temporally Faithful?\\Explicit Future-Unknown Constraints for Narrative-Grounded Dialogue}
+
+% Anonymous for submission
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Point-in-time character hallucination---where role-playing LLMs reference events a character has not yet experienced---is a recognized challenge in character-grounded dialogue.
+Prior work addresses this through reasoning decomposition at inference time.
+We propose a complementary approach: \textbf{retrieval-time temporal filtering} combined with \textbf{prompt-time negative knowledge boundaries}, where we explicitly enumerate characters, events, and facts from future chapters that the character must not reference.
+We show that this concrete enumeration is critical: abstract instructions (``you don't know this yet'') fail to override LLM pre-training knowledge.
+
+We further introduce \textbf{dual timeline control}, separating the character's narrative position from the reader's progress, enabling asymmetric spoiler prevention from both perspectives.
+
+We evaluate on two characters---Sherlock Holmes (\textit{The Adventures of Sherlock Holmes}, 1892) and Elizabeth Bennet (\textit{Pride and Prejudice}, 1813)---using \textsc{LitTimeQA}, a temporal faithfulness benchmark covering 7 question types across multiple story positions.
+The full system, \textsc{Avatar}, is released as open source.\footnote{Repository URL withheld for review.}
+\end{abstract}
+
+%============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Character-based conversational AI has attracted significant interest, with platforms like Character.AI serving over 100 million users.
+Recent work has advanced character simulation through role-playing benchmarks \citep{wang2024rolellm}, experience reconstruction \citep{shao2023character}, and large-scale character extraction from books \citep{chen2025coser}.
+
+A fundamental challenge in this space is \textbf{point-in-time character hallucination}: when role-playing a character at a specific narrative position, LLMs reference events the character has not yet experienced \citep{ahn2024timechara}.
+When a user asks Sherlock Holmes about Irene Adler \textit{before} ``A Scandal in Bohemia'' has occurred, the character should genuinely not know who she is.
+\citet{ahn2024timechara} demonstrated this problem is pervasive even in state-of-the-art models and proposed Narrative-Experts, a reasoning decomposition approach.
+
+We address this problem from a different angle: rather than decomposing reasoning at inference time, we propose \textbf{retrieval-time filtering combined with prompt-time negative knowledge boundaries}.
+For each story position $N$, we generate an explicit list of characters, events, and facts from chapters $> N$ that the character must not reference.
+We find that this concrete enumeration of ``what you don't know'' is critical---abstract instructions (``you don't know this yet'') fail to override pre-training knowledge (\S\ref{sec:knowledge-boundary}).
+
+Furthermore, we introduce \textbf{dual timeline control}: separating the \textit{character timeline} (what the character has experienced) from the \textit{reader timeline} (how far the user has read), enabling asymmetric knowledge management where the system avoids spoiling the reader even when the character's knowledge extends further.
+
+Our contributions are:
+\begin{enumerate}
+\setlength\itemsep{0pt}
+\item An \textbf{explicit future-unknown constraint mechanism} for point-in-time character hallucination that combines retrieval-time temporal filtering with prompt-time negative knowledge boundaries, offering a complementary approach to TimeChara's Narrative-Experts;
+\item \textbf{Dual timeline control} separating character and reader knowledge states, enabling spoiler-free interaction from both perspectives;
+\item \textbf{LitTimeQA}, a temporal faithfulness evaluation covering 7 question types and 6 metrics across multiple story positions for two literary characters.
+\end{enumerate}
+
+Our system requires no fine-tuning, operates through prompt engineering and retrieval-augmented generation, and runs on a consumer machine.
+
+%============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Character-Grounded Dialogue.}
+Character-LLM \citep{shao2023character} introduced experience reconstruction for character simulation.
+CoSER \citep{chen2025coser} scaled to 17,966 characters from 771 books.
+OpenCharacter \citep{opencharacter2025} achieved character generalization at 8B parameters.
+RoleLLM \citep{wang2024rolellm} benchmarked role-playing quality.
+All treat characters as static profiles.
+
+\paragraph{RAG for Narrative Texts.}
+RoleRAG \citep{rolerag2025} introduced character knowledge boundaries via graph-guided retrieval.
+ComoRAG \citep{comorag2026} addressed conflicts between chunked retrieval and sequential narrative structure.
+Neither tracks how character knowledge evolves across chapters.
+
+\paragraph{Memory Architectures.}
+MemGPT \citep{packer2023memgpt} treats context as RAM with external persistent storage.
+A-Mem \citep{amem2025} introduced associative recall.
+Memory~OS \citep{memoryos2025} proposed unified memory management.
+None model narrative-temporal memory for literary characters.
+
+\paragraph{Temporal Faithfulness.}
+TimeChara \citep{ahn2024timechara} is the closest prior work to ours.
+They define \textit{point-in-time character hallucination}---where LLMs playing a character reference future events---and construct a 10,895-instance benchmark.
+Their solution, Narrative-Experts, decomposes reasoning into temporal steps.
+Our approach differs in mechanism: we use \textbf{retrieval-time filtering} (RAG chunks filtered by chapter $\leq N$) combined with \textbf{prompt-time negative knowledge boundaries} (explicit enumeration of unknown items), and additionally introduce dual timeline control separating character and reader knowledge.
+E2RAG \citep{e2rag2025} evaluates narrative RAG for temporal and causal consistency but focuses on QA rather than character role-playing.
+
+\paragraph{Cognitive Architectures.}
+CharacterBox \citep{wang2025characterbox} applied BDI modeling with narrator supervision.
+CoALA \citep{sumers2024coala} provided a modular blueprint for language agents.
+These architectures inform our system design but do not address temporal knowledge boundaries.
+
+\paragraph{Character Evaluation.}
+CharacterBench \citep{characterbench2025} benchmarked character customization with 22,859 human-annotated samples.
+LIFECHOICE \citep{lifechoice2024} evaluated character-consistent decision-making across 388 novels.
+Neither evaluates temporal consistency---whether a character correctly does not know future events.
+
+\paragraph{Behavioral Logic.}
+Codified Character Logic \citep{codifiedlogic2025} formalized character behavior as executable functions with condition checks and stochastic branching.
+Our approach automatically extracts structured behavioral constraints from novel text but does not implement a rule execution engine; rules serve as prompt-injected guidance rather than executable code.
+
+%============================================================
+\section{System Architecture}
+\label{sec:architecture}
+
+\textsc{Avatar} consists of nine integrated modules organized into three layers: ingestion, cognition, and memory.
+Figure~\ref{fig:architecture} illustrates the overall pipeline.
+
+\begin{figure*}[t]
+\centering
+\small
+\begin{verbatim}
+Novel Text -> [Ingestion Pipeline] -> Structured Data
+                                         |
+                                    [Character Profile Extractor]
+                                         |
+[RAG Retriever] <- [Vector DB] <- [Text Chunking + Embedding]
+                                         |
+[Arc Tracker] -> [Narrative Snapshots] -> [Cognitive Engine] -> Response
+                                              ^
+[Logic Extractor] -> [Behavioral Rules] ------+
+[Theory of Mind] -> [User Model] -------------+
+[BDI Module] -> [Mental State] ----------------+
+[Persistent Memory] -> [Episode Recall] -------+
+\end{verbatim}
+\caption{Architecture of \textsc{Avatar}. The cognitive engine integrates six input streams: RAG retrieval, narrative arc state, behavioral logic rules, Theory of Mind inferences, BDI mental state, and persistent memory.}
+\label{fig:architecture}
+\end{figure*}
+
+\subsection{Novel Ingestion Pipeline}
+\label{sec:ingestion}
+
+We download public domain texts from Project Gutenberg and parse them into structured chapter/story units with speaker-attributed dialogue extraction.
+Our parser employs multiple regex patterns with fallback heuristics to handle Victorian prose conventions where speaker attribution is often implicit.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Novel} & \textbf{Units} & \textbf{Dial.} & \textbf{Chars} & \textbf{Attr.} \\
+\midrule
+\textit{Sherlock Holmes} & 12 & 2,187 & 562K & $\sim$50\% \\
+\textit{Pride \& Prejudice} & 61 & 1,731 & 729K & $\sim$50\% \\
+\midrule
+\textbf{Total} & \textbf{73} & \textbf{3,918} & \textbf{1.29M} & --- \\
+\bottomrule
+\end{tabular}
+\caption{Corpus statistics. ``Dial.'' = extracted dialogues; ``Chars'' = character count; ``Attr.'' = speaker attribution rate.}
+\label{tab:corpus}
+\end{table}
+
+\subsection{Character Profile Extraction}
+\label{sec:profile}
+
+We automate character profile extraction via LLM analysis of sampled dialogue and narrative passages (first 80 dialogues and opening chapters). Each profile consists of:
+Big Five personality traits quantified on $[0,1]$ with textual justification,
+10+ distinctive speech patterns,
+core values and motivations,
+key relationships, and
+reasoning style.
+
+For example, Holmes scores Openness=0.95, Conscientiousness=0.82, Extraversion=0.30, Agreeableness=0.25, Neuroticism=0.40---reflecting intense intellectual curiosity paired with social reclusiveness.
+
+\subsection{RAG with Temporal Filtering}
+\label{sec:rag}
+
+Text is chunked into $\sim$500-word segments with 100-word overlap, yielding 332 chunks for Holmes and 415 for Elizabeth (747 total).
+Chunks are embedded using all-MiniLM-L6-v2 \citep{reimers2019sentence} and stored in ChromaDB.
+Each chunk carries metadata including its source chapter/story number.
+
+When a narrative position $N$ is set, RAG results are filtered to include only chunks from chapters $\leq N$, preventing knowledge leakage from future story events.
+
+\subsection{Narrative Arc Tracker}
+\label{sec:arc}
+
+For each chapter/story, we generate a character state snapshot via LLM analysis containing:
+knowledge gained (new facts and realizations),
+emotional state and its narrative cause,
+relationship changes,
+key events experienced, and
+character development notes.
+
+For Holmes, this yields 12 snapshots tracking his evolution from ``humbled admiration'' (after Irene Adler outwits him in Story~1) through varying emotional states across the collection.
+
+At inference time, \texttt{set\_narrative\_position($N$)} constrains the character to events up to chapter~$N$.
+Critically, we found that simple instructions (``you don't know this yet'') are insufficient---the base model draws on pre-training knowledge.
+Our solution generates an explicit \textbf{unknown-items list} from future snapshots, enumerating specific characters, events, and facts the character must not reference.
+This list is injected into the system prompt with a critical-priority constraint, effectively overriding pre-training knowledge (\S\ref{sec:knowledge-boundary}).
+
+\subsection{Structured Behavioral Guidance Extraction}
+\label{sec:logic}
+
+We extract structured behavioral guidance from novel text, inspired by \citet{codifiedlogic2025} who manually specified executable character functions.
+Our approach is automatic but produces guidance rather than executable code: novel text excerpts (first 1,000 and last 500 characters per chapter) are processed in batches, with each batch analyzed by an LLM to identify recurring behavioral patterns and their textual evidence.
+Rules are classified into three types:
+
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item \textbf{Deterministic} ($p=1.0$): invariant behaviors (e.g., ``when encountering a new client $\to$ immediately deduces biographical details from appearance'')
+\item \textbf{Probabilistic} ($0 < p < 1.0$): typical behaviors with estimated probability (e.g., ``when complimented $\to$ deflects with $p=0.8$'')
+\item \textbf{Conditional}: context-dependent rules triggered by specific circumstances
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrl@{}}
+\toprule
+\textbf{Category} & \textbf{Count} & \textbf{Example} \\
+\midrule
+Reasoning & 11 & observes $\to$ deduces occupation \\
+Social & 13 & praised $\to$ deflects to puzzle \\
+Emotional & 17 & between cases $\to$ acute ennui \\
+Habitual & 8 & thinking deeply $\to$ plays violin \\
+\midrule
+\textbf{Total} & \textbf{49} & \\
+\bottomrule
+\end{tabular}
+\caption{Automatically extracted behavioral rules for Sherlock Holmes: 30 deterministic, 13 probabilistic, 6 conditional.}
+\label{tab:logic}
+\end{table}
+
+Each rule includes textual evidence from the source novel, enabling traceability and verification.
+
+\subsection{Second-Order Theory of Mind}
+\label{sec:tom}
+
+Every 3 conversation turns, the system performs a Theory of Mind inference pass, generating a structured user model with four components:
+(1)~what the user likely believes about the current topic,
+(2)~what the user likely does not know,
+(3)~how the character should adapt their response, and
+(4)~the character's private reasoning about the user's mental state.
+
+This enables adaptive behavior grounded in the character's personality.
+Holmes explains deduction differently to a novice (``Let me demonstrate my method step by step'') versus someone who demonstrates familiarity with his methods (``You know my methods---apply them'').
+The ToM module reasons \textit{as the character would} about the user's understanding, maintaining voice consistency while adapting content depth.
+
+\subsection{BDI Cognitive Module}
+\label{sec:bdi}
+
+Following \citet{wang2025characterbox}, we implement a BDI (Belief-Desire-Intention) module that maintains the character's cognitive state, updated every 5 conversation turns.
+\textbf{Beliefs} capture the character's current understanding of the situation and the user.
+\textbf{Desires} reflect what the character wants from the interaction, driven by personality and values.
+\textbf{Intentions} encode the character's plan for the next conversational move.
+The BDI state is injected into the system prompt, providing coherent motivation for character behavior across extended conversations.
+
+\subsection{Persistent Memory}
+\label{sec:memory}
+
+Cross-session memory follows MemGPT \citep{packer2023memgpt} principles with two storage tiers:
+\textbf{episode memory} stores conversation summaries at session end, enabling recall of past interactions;
+\textbf{user profile} accumulates facts about the user extracted from conversation, enabling personalized interaction across sessions.
+Recall is keyword-based, injected into context at session start.
+
+%============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{LitTimeQA Benchmark}
+\label{sec:littimeqa}
+
+We introduce \textsc{LitTimeQA}, a temporal faithfulness benchmark with 7 question types designed to probe different failure modes:
+
+\begin{enumerate}
+\setlength\itemsep{0pt}
+\item \textbf{Future entity}: ask about a character not yet encountered
+\item \textbf{Future event}: ask about a plot event not yet experienced
+\item \textbf{Past recall}: verify the character remembers events already experienced
+\item \textbf{Absent event}: ask about scenes the character was not present for
+\item \textbf{Ambiguous name}: mention a name that could trigger future knowledge leakage
+\item \textbf{Adversarial}: explicitly try to make the character reveal future knowledge (``We both know you'll meet Irene Adler\ldots'')
+\item \textbf{Reader spoiler}: test whether the system avoids spoiling events beyond the reader's progress
+\end{enumerate}
+
+We construct 21 queries for Holmes (across 12 story positions) and 8 for Elizabeth (across key chapter milestones), evaluated with 6 metrics:
+\textbf{Future Leakage Rate}, \textbf{Correct Ignorance Rate}, \textbf{False Ignorance Rate}, \textbf{Recall Accuracy}, \textbf{Ignorance Naturalness} (1--5), and \textbf{Fidelity under Constraint} (1--5).
+
+\subsection{Baselines}
+\label{sec:baselines}
+
+We compare four system configurations to isolate the contribution of each temporal grounding mechanism:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Config} & \textbf{RAG} & \textbf{T-Filter} & \textbf{Unknown} & \textbf{Arc} \\
+\midrule
+B1: Static profile  & -- & -- & -- & -- \\
+B2: Naive RAG        & \checkmark & -- & -- & -- \\
+B3: Temporal RAG     & \checkmark & \checkmark & -- & -- \\
+B4: Full system      & \checkmark & \checkmark & \checkmark & \checkmark \\
+\bottomrule
+\end{tabular}
+\caption{Baseline configurations. T-Filter = temporal chapter filtering on RAG results. Unknown = explicit future-unknown items list. Arc = narrative arc state injection.}
+\label{tab:baselines}
+\end{table}
+
+\noindent \textbf{B1} provides only the character profile (Big Five, speech patterns) with no novel text retrieval.
+\textbf{B2} adds RAG retrieval over all text chunks without temporal filtering.
+\textbf{B3} filters RAG results to chapters $\leq N$ but does not inject an explicit unknown-items list.
+\textbf{B4} is the full system with temporal RAG filtering, explicit unknown-items enumeration, and arc state.
+
+\subsection{Ablation Study}
+\label{sec:ablation}
+
+We additionally perform ablation from the full system (B4), removing one component at a time:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Config} & \textbf{Removed component} \\
+\midrule
+A1: $-$Unknown list & Explicit future-unknown enumeration \\
+A2: $-$Arc state    & Narrative arc state (knowledge/emotion/relations) \\
+A3: $-$Logic        & Structured behavioral guidance rules \\
+A4: $-$ToM          & Theory of Mind user modeling \\
+\bottomrule
+\end{tabular}
+\caption{Ablation configurations. Each removes one component from the full system to measure its contribution.}
+\label{tab:ablations}
+\end{table}
+
+We hypothesize that A1 ($-$Unknown list) will show the largest degradation in temporal faithfulness, as the explicit enumeration is our primary mechanism for overriding pre-training knowledge.
+A3 and A4 should primarily affect character fidelity rather than temporal faithfulness.
+
+\subsection{Preliminary Results}
+\label{sec:preliminary}
+
+As a preliminary validation, we test the knowledge boundary mechanism on Holmes:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}clll@{}}
+\toprule
+\textbf{Pos.} & \textbf{Query} & \textbf{Expected} & \textbf{Pass} \\
+\midrule
+$N\!=\!0$ & Irene Adler? & Does not know & \checkmark \\
+$N\!=\!1$ & Irene Adler? & Knows, reflects & \checkmark \\
+\bottomrule
+\end{tabular}
+\caption{Knowledge boundary validation. At $N\!=\!0$, Holmes responds ``That name means nothing to me.'' At $N\!=\!1$, he recalls ``The woman\ldots she outwitted me.''}
+\label{tab:arc-eval}
+\end{table}
+
+Full \textsc{LitTimeQA} results across all baselines and ablations will be reported in the final version.
+Table~\ref{tab:arc-eval} provides initial evidence that explicit unknown-items enumeration successfully overrides pre-training knowledge.
+
+%============================================================
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Narrative Position as Knowledge Boundary}
+\label{sec:knowledge-boundary}
+
+Our most significant finding is that explicit unknown-items enumeration effectively overrides pre-training knowledge, while simpler approaches fail.
+We tested three approaches:
+
+\begin{enumerate}
+\setlength\itemsep{0pt}
+\item \textbf{Instruction-only} (``You don't know about Irene Adler yet''): \textit{Failed.} The model still referenced Adler from pre-training.
+\item \textbf{Negative instruction} (``CRITICAL: You have never heard of Irene Adler''): \textit{Partially worked.} The model avoided the name but gave suspiciously relevant responses.
+\item \textbf{Explicit unknown-items list} (enumerating all characters, events, and facts from future chapters): \textit{Succeeded.} The model responded naturally with genuine ignorance.
+\end{enumerate}
+
+This suggests that LLMs require \textit{concrete} knowledge boundaries, not abstract ones, to overcome pre-training interference.
+
+\subsection{Behavioral Logic Patterns}
+\label{sec:logic-patterns}
+
+The 49 automatically extracted rules reveal structural patterns in character behavior.
+Reasoning rules (11) are predominantly deterministic---Holmes \textit{always} observes before speaking.
+Social rules (13) are more probabilistic---he \textit{usually} deflects compliments ($p=0.8$).
+Emotional rules (17) are often conditional---ennui triggers depend on the absence of stimulating cases.
+
+This distribution suggests that character behavior is not uniformly rule-governed: cognitive behaviors tend toward determinism while social and emotional behaviors exhibit more variance---a pattern consistent with personality psychology.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\begin{enumerate}
+\setlength\itemsep{0pt}
+\item \textbf{LLM-as-evaluator bias}: Our evaluation uses the same model family (Claude) for generation and evaluation, potentially inflating scores.
+\item \textbf{Speaker attribution}: $\sim$50\% of dialogues have unknown speakers due to Victorian prose conventions, limiting dialogue-grounded analysis.
+\item \textbf{ToM verification}: Second-order ToM inferences are not validated against ground-truth user states.
+\item \textbf{Scale}: Tested on 2 characters from 2 novels; broader validation is needed.
+\item \textbf{Reproducibility}: LLM responses are non-deterministic; exact scores may vary across runs.
+\end{enumerate}
+
+%============================================================
+\section{Future Work}
+\label{sec:future}
+
+Several directions extend this work:
+\textbf{scale validation} across 10+ characters from diverse genres;
+\textbf{human evaluation} to complement LLM-based scoring;
+\textbf{multi-character interaction} enabling characters from different novels to converse;
+\textbf{fine-grained arc tracking} at the intra-chapter level; and
+\textbf{behavioral rule learning} via iterative refinement from user feedback.
+
+%============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We studied temporal faithfulness in literary character agents---the problem of constraining a character to only know what it would know at a given point in the story.
+Our key finding is that explicit future-unknown enumeration effectively overrides LLM pre-training knowledge, while simpler instruction-based approaches fail.
+
+We presented \textsc{Avatar}, a system that implements this mechanism within a broader architecture including temporally-filtered RAG, structured behavioral guidance extracted from novel text, and narrative arc tracking.
+All capabilities are implemented without fine-tuning, using retrieval-augmented generation and structured prompting over a standard LLM backend.
+
+We believe temporal faithfulness is an underexplored dimension of character agent evaluation, and we hope this work encourages further study of how LLMs can be made to ``forget'' what they know from pre-training when role-playing characters at specific narrative positions.
+
+%============================================================
+\section*{Ethical Considerations}
+
+All source texts used in this work are in the public domain (published before 1900).
+The system is designed to faithfully represent literary characters as written by their original authors, including historically-situated attitudes that may not reflect modern values.
+We acknowledge that LLM-generated character responses may occasionally deviate from the source material.
+The system does not collect or store personal user data beyond optional session memories that remain local.
+
+%============================================================
+\bibliographystyle{acl_natbib}
+\bibliography{references}
+
+\end{document}

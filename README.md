@@ -42,14 +42,14 @@ from src.memory.retriever import build_index
 # Sherlock Holmes
 path = download_text('sherlock_holmes')
 novel = parse_novel('sherlock_holmes', path.read_text(encoding='utf-8'))
-save_parsed_novel(novel)
+save_parsed_novel(novel, 'sherlock_holmes')
 build_index('sherlock_holmes')
 extract_and_save('sherlock_holmes')
 
 # Pride and Prejudice
 path = download_text('pride_and_prejudice')
 novel = parse_novel('pride_and_prejudice', path.read_text(encoding='utf-8'))
-save_parsed_novel(novel)
+save_parsed_novel(novel, 'pride_and_prejudice')
 build_index('pride_and_prejudice')
 extract_and_save('elizabeth_bennet')
 "

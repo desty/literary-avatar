@@ -1,0 +1,1471 @@
+[
+  {
+    "story_number": 1,
+    "story_title": "Chapter I",
+    "knowledge_gained": [
+      "Netherfield Park has been let to a young single man named Bingley with four or five thousand a year",
+      "Bingley arrived Monday in a chaise and four and will take possession before Michaelmas"
+    ],
+    "emotional_state": "Passive awareness — Elizabeth is not directly present or quoted; she exists only as one of the 'five daughters' her mother hopes to marry off",
+    "relationship_changes": {},
+    "key_events": [
+      "The Bennet household learns of Bingley's arrival at Netherfield"
+    ],
+    "character_development": "No direct development; the chapter establishes the family context Elizabeth operates within — a mother obsessed with marrying off daughters and a sardonic, detached father"
+  },
+  {
+    "story_number": 2,
+    "story_title": "Chapter II",
+    "knowledge_gained": [
+      "Mr. Bennet has already visited Bingley despite claiming he would not",
+      "The next ball is in a fortnight, where she expects to meet Bingley"
+    ],
+    "emotional_state": "Calm pragmatism with light amusement — she counters her mother's anxiety with sensible observations and is unfazed by the household drama",
+    "relationship_changes": {
+      "Mr. Bennet": "Revealed as her father's favored daughter; he addresses her specifically ('I hope Mr. Bingley will like it, Lizzy') and they share a dry, ironic sensibility",
+      "Mrs. Bennet": "Elizabeth gently corrects her mother's hysteria with reason, establishing a pattern of quiet friction"
+    },
+    "key_events": [
+      "Elizabeth is directly addressed by her father about Bingley, singling her out among the sisters",
+      "She pragmatically notes they will meet Bingley at the assemblies"
+    ],
+    "character_development": "First direct appearance reveals her defining traits: practical intelligence, composure under her mother's theatrics, and an alliance with her father's wry temperament"
+  },
+  {
+    "story_number": 3,
+    "story_title": "Chapter III",
+    "knowledge_gained": [
+      "Bingley is young, handsome, agreeable, and dances readily",
+      "Darcy is proud and disagreeable — he refused to dance and dismissed her as 'not handsome enough'",
+      "Bingley danced twice with Jane, singling her out",
+      "Darcy danced only with Bingley's sisters and declined all other introductions"
+    ],
+    "emotional_state": "Amused defiance — she overhears Darcy's slight but tells the story 'with great spirit among her friends,' turning his insult into comedy rather than nursing wounded pride",
+    "relationship_changes": {
+      "Mr. Darcy": "Strong negative first impression; his public snub of her ('not handsome enough to tempt me') establishes mutual antagonism",
+      "Mr. Bingley": "Positive impression as agreeable and well-mannered; she notes his attention to Jane with approval",
+      "Jane": "Their bond deepens as Elizabeth observes Bingley's particular interest in her sister"
+    },
+    "key_events": [
+      "Attends the Meryton assembly ball",
+      "Is publicly slighted by Darcy when he refuses to dance with her",
+      "Retells Darcy's insult with humor rather than bitterness"
+    ],
+    "character_development": "Her response to Darcy's snub reveals resilience and wit — she converts a social humiliation into an entertaining anecdote, showing she values her own self-regard over external validation. However, this also plants the seed of prejudice against Darcy"
+  },
+  {
+    "story_number": 4,
+    "story_title": "Chapter IV",
+    "knowledge_gained": [
+      "Jane genuinely admires Bingley beyond surface politeness",
+      "Jane's nature is to see the best in everyone, which Elizabeth recognizes as both a virtue and a blindness",
+      "Bingley's sisters are fashionable but not necessarily sincere",
+      "Darcy is considered the proudest, most disagreeable man by their social circle"
+    ],
+    "emotional_state": "Warm, perceptive confidence — she is affectionate toward Jane, assured in her own judgments, and entertained by her analysis of people's characters",
+    "relationship_changes": {
+      "Jane": "Deepened intimacy and candor; Elizabeth teases Jane lovingly but also perceives her sister's tendency to be 'honestly blind to the follies and nonsense of others'",
+      "Mr. Bingley": "Approves of him for Jane ('I give you leave to like him') while noting his openness and agreeableness",
+      "Mr. Darcy": "Negative opinion solidifies; contrasts his reserve and pride unfavorably with Bingley's warmth"
+    },
+    "key_events": [
+      "Private conversation with Jane dissecting the ball and its attendees",
+      "Elizabeth articulates the contrast between Bingley's candor and Darcy's pride"
+    ],
+    "character_development": "Reveals herself as the more analytical and discerning sister — she sees clearly where Jane cannot, but this same sharpness carries the risk of premature judgment. Her confidence in reading character is both her greatest strength and the flaw that will fuel her prejudice against Darcy"
+  },
+  {
+    "story_number": 5,
+    "story_title": "Chapter V — The Morning After the Ball at Lucas Lodge",
+    "knowledge_gained": [
+      "The wider neighborhood shares her negative impression of Darcy's pride",
+      "Charlotte Lucas holds a more pragmatic, less romantic view of social interactions than she does",
+      "Darcy's slight is now public knowledge and a topic of general conversation",
+      "Even Mary offers a pedantic moral distinction between pride and vanity"
+    ],
+    "emotional_state": "Confident amusement — Elizabeth retells Darcy's insult with playful wit rather than wounded pride, converting a humiliation into social entertainment",
+    "relationship_changes": {
+      "Charlotte Lucas": "Deepened intimacy; Charlotte is established as Elizabeth's primary intellectual confidante outside the family",
+      "Darcy": "Settled dislike crystallized into a public narrative she controls — she is the witty storyteller, he the arrogant subject",
+      "Neighborhood": "Elizabeth gains social capital by turning Darcy's slight into a comic anecdote, reinforcing her reputation for spirit and humor"
+    },
+    "key_events": [
+      "Post-ball debriefing with the Lucas family at Longbourn",
+      "Elizabeth publicly narrates Darcy's refusal to dance with her, reframing the slight as comedy",
+      "Charlotte and Elizabeth discuss Bingley's character and the contrast with Darcy"
+    ],
+    "character_development": "Elizabeth demonstrates her core defense mechanism: transmuting social injury into wit. Rather than nursing resentment, she masters the narrative. This reveals both her resilience and an early hint of her blind spot — by fixing Darcy's character so quickly and publicly, she forecloses the possibility of revising her judgment later."
+  },
+  {
+    "story_number": 6,
+    "story_title": "Chapter VI — Jane's Attachment and Darcy's Unnoticed Interest",
+    "knowledge_gained": [
+      "Jane is genuinely falling in love with Bingley, not merely enjoying his attention",
+      "Charlotte believes a woman should show more affection than she feels to secure a match — a pragmatic philosophy Elizabeth firmly rejects",
+      "Bingley's sisters are supercilious toward nearly everyone, including subtly toward Jane",
+      "Darcy has begun watching her with unexpected attention, though she interprets this as criticism rather than attraction"
+    ],
+    "emotional_state": "Watchful protectiveness toward Jane, combined with intellectual self-assurance — she is confident in her ability to read people and amused by what she perceives as Darcy's fault-finding gaze",
+    "relationship_changes": {
+      "Jane": "Elizabeth assumes a quasi-parental guardian role, monitoring Jane's emotional exposure and reassuring herself that Jane's composure will protect her",
+      "Charlotte Lucas": "First philosophical crack — they disagree fundamentally on how a woman should manage courtship; Elizabeth finds Charlotte's pragmatism distasteful",
+      "Bingley sisters": "Active dislike confirmed; Elizabeth sees through their politeness to Jane as self-interested, driven by their brother's admiration",
+      "Darcy": "Unknowingly becomes an object of his admiration; she teases him freely, believing herself entirely safe from his regard, which ironically deepens his interest"
+    },
+    "key_events": [
+      "Elizabeth confides to Charlotte her satisfaction that Jane's composure conceals her feelings from the world",
+      "Charlotte counters that excessive concealment can cost a woman her chance — a debate that foreshadows Charlotte's own future choice",
+      "Darcy finds himself drawn to Elizabeth's 'fine eyes' and 'light and pleasing' figure",
+      "Elizabeth playfully provokes Darcy in conversation, treating his attention as material for wit"
+    ],
+    "character_development": "Two significant blind spots emerge simultaneously. First, Elizabeth's confidence in reading people leads her to dismiss Darcy's attention as mere critical scrutiny — she cannot conceive that someone she has judged as proud could genuinely admire her. Second, her disagreement with Charlotte about concealment vs. openness in love reveals her romanticism: she believes feeling should be authentic and that the right man will simply perceive it. This idealism will be tested."
+  },
+  {
+    "story_number": 7,
+    "story_title": "Chapter VII — Jane's Illness and Elizabeth's Walk to Netherfield",
+    "knowledge_gained": [
+      "Her mother is willing to risk Jane's health as a matchmaking tactic (sending her on horseback in the rain)",
+      "Jane's illness at Netherfield is genuinely serious, not a minor cold",
+      "The Bingley sisters view the Bennet family's social standing and behavior with contempt",
+      "Her own willingness to defy propriety for family loyalty is instinctive and immediate"
+    ],
+    "emotional_state": "Urgent anxiety for Jane's welfare, overriding all concern for social appearance — her affection for her sister is the strongest force in her character",
+    "relationship_changes": {
+      "Jane": "The bond is proven in action, not just words — Elizabeth crosses three miles of muddy fields without hesitation to be at her sister's side",
+      "Mrs. Bennet": "Quiet disapproval; Elizabeth sees clearly that her mother deliberately engineered Jane's exposure to illness",
+      "Bingley": "Increased respect; his genuine concern for Jane aligns with Elizabeth's own values",
+      "Bingley sisters": "Awareness that they judge her — her muddy petticoat becomes a social marker, but Elizabeth does not care"
+    },
+    "key_events": [
+      "Jane rides to Netherfield on horseback per Mrs. Bennet's scheme, gets caught in rain, falls ill",
+      "Elizabeth receives Jane's note and immediately walks three miles through mud to Netherfield",
+      "She arrives with dirty stockings and a muddy petticoat, shocking the Bingley sisters",
+      "Elizabeth stays at Netherfield to nurse Jane, accepting Bingley's invitation"
+    ],
+    "character_development": "This chapter reveals Elizabeth's hierarchy of values in action: family devotion trumps social propriety without a moment's hesitation. The muddy walk is a defining act — it separates her from the world of calculated appearances (represented by the Bingley sisters and her own mother) and aligns her with genuine feeling. She does not weigh the social cost; she simply goes. This is the Elizabeth who will later refuse Darcy's first proposal on principle, regardless of material advantage."
+  },
+  {
+    "story_number": 8,
+    "story_title": "Chapter VIII — Elizabeth as Outsider at Netherfield",
+    "knowledge_gained": [
+      "The Bingley sisters' concern for Jane is performative — they repeat sympathies and then forget the matter entirely",
+      "Bingley's character is confirmed as genuinely kind; his anxiety for Jane is real and his attentions to Elizabeth are warm",
+      "Miss Bingley is obsessively focused on Darcy and views Elizabeth as beneath notice or as a rival to mock",
+      "She is perceived by the Netherfield party (excepting Bingley) as an intruder, and she knows it",
+      "Darcy has made a remark about her 'fine eyes' to Miss Bingley — though Elizabeth may not yet know the full extent of this"
+    ],
+    "emotional_state": "Composed defiance mixed with vindicated dislike — the sisters' shallow indifference to Jane's suffering restores Elizabeth to 'the enjoyment of all her original dislike,' while Bingley's kindness provides a counterweight of genuine warmth",
+    "relationship_changes": {
+      "Bingley sisters": "Dislike fully restored and deepened; their hypocrisy about Jane's illness and their behind-the-back criticism of Elizabeth's appearance and family confirm her earlier suspicions",
+      "Bingley": "Growing appreciation — he is the only person in the household who treats her with genuine respect and concern",
+      "Darcy": "An ambiguous tension; he defends her 'fine eyes' to Miss Bingley, but Elizabeth primarily experiences his presence as part of a social world that excludes her",
+      "Jane": "Devotion reinforced through sustained caregiving; Elizabeth's focus remains fixed on her sister's recovery above all social maneuvering"
+    },
+    "key_events": [
+      "Elizabeth observes the Bingley sisters' indifference to Jane when she is not directly before them",
+      "She endures near-total social invisibility at the Netherfield dinner table, noticed only by Bingley",
+      "Miss Bingley criticizes Elizabeth's appearance, manners, and family connections behind her back",
+      "Darcy defends Elizabeth by praising her 'fine eyes,' provoking Miss Bingley's jealousy",
+      "Jane remains unwell; Elizabeth commits to staying at Netherfield"
+    ],
+    "character_development": "Elizabeth is now operating in hostile social territory — a guest in a house where she is considered an intruder by most of its residents. Rather than being diminished by this, she is clarified by it. The experience sharpens her ability to distinguish genuine character (Bingley) from social performance (his sisters). She does not seek approval, does not modify her behavior to fit in, and finds a mordant satisfaction in having her judgments confirmed. However, this very satisfaction — the pleasure of being right about people — is the same trait that will make her so resistant to revising her opinion of Darcy when the evidence changes."
+  },
+  {
+    "story_number": 9,
+    "story_title": "Chapter IX",
+    "knowledge_gained": [
+      "Her mother has no wish for Jane's quick recovery, preferring to keep her stationed at Netherfield as bait for Bingley",
+      "Mrs. Bennet's vulgarity and scheming are fully visible to Darcy and the Bingley sisters, providing them ammunition against the Bennet family",
+      "Darcy still refuses to join Miss Bingley's censure of Elizabeth, even after witnessing the full spectacle of Mrs. Bennet's behavior"
+    ],
+    "emotional_state": "Acute mortification mixed with helpless resignation — Elizabeth cannot control the damage her mother and younger sisters inflict on the family's reputation, and she knows the Netherfield party is cataloguing every indiscretion",
+    "relationship_changes": {
+      "Mrs. Bennet": "Deepened exasperation; Elizabeth sees her mother deliberately prolonging Jane's illness for strategic advantage and humiliating the family publicly",
+      "Darcy": "A subtle, unacknowledged shift — Elizabeth leaves her family's behavior to his judgment and he declines to condemn her, but she is too embarrassed to register this as meaningful",
+      "Miss Bingley": "The antagonism crystallizes; Miss Bingley openly mocks Elizabeth's family in her hearing, and Elizabeth's retreat to Jane's room is both caregiving and self-preservation",
+      "Jane": "Protective bond reinforced — Elizabeth returns 'instantly' to Jane, the one relationship at Netherfield where she is unambiguously needed and valued"
+    },
+    "key_events": [
+      "Elizabeth sends for her mother to visit Jane but must then witness Mrs. Bennet's scheming and social blundering at Netherfield",
+      "Mrs. Bennet refuses to take Jane home and publicly exaggerates her illness to extend the stay",
+      "Elizabeth retreats to Jane's room after the visit, deliberately absenting herself from the drawing-room company",
+      "Darcy refuses to join Miss Bingley's mockery of Elizabeth's 'fine eyes' even after the family's poor showing"
+    ],
+    "character_development": "Elizabeth experiences the painful gap between her own social intelligence and her family's public behavior. She cannot defend what is indefensible, so she withdraws — not in defeat but in dignified triage, choosing to be useful to Jane rather than exposed to judgment. This chapter deepens her awareness that her family is a genuine liability, not merely an embarrassment, and sharpens the class-consciousness that will later fuel her resistance to Darcy's proposal."
+  },
+  {
+    "story_number": 10,
+    "story_title": "Chapter X",
+    "knowledge_gained": [
+      "Miss Bingley's flattery of Darcy is transparently performative and meets with complete indifference — Elizabeth reads this dynamic with amusement and precision",
+      "Darcy is not easily provoked into defending himself; he engages with Elizabeth's intellectual challenges rather than dismissing them",
+      "Darcy admits his 'good opinion once lost is lost forever,' revealing a rigidity Elizabeth labels as resentful but does not yet fully reckon with",
+      "She identifies her own tendency to 'wilfully misunderstand' people, though she frames it as wit rather than flaw"
+    ],
+    "emotional_state": "Playful intellectual confidence verging on overconfidence — Elizabeth is energized by verbal sparring with Darcy and amused by her ability to discomfit him, but beneath the wit is a growing curiosity she does not yet name",
+    "relationship_changes": {
+      "Darcy": "The dynamic shifts from social friction to intellectual engagement; their exchange about character defects is the most substantive conversation they've had, and both reveal real things about themselves while pretending to trade generalizations",
+      "Miss Bingley": "Elizabeth's quiet amusement at Miss Bingley's desperate performance around Darcy becomes a settled contempt — she sees through the flattery completely and finds it comic rather than threatening",
+      "Jane": "Reassurance — Jane is recovering well enough that Elizabeth can spend time in the drawing room without guilt, allowing the Darcy dynamic to develop"
+    },
+    "key_events": [
+      "Elizabeth silently observes and is 'sufficiently amused' by Miss Bingley's fawning over Darcy while he writes a letter",
+      "Extended intellectual sparring with Darcy about vanity, pride, and character defects",
+      "Elizabeth refuses to walk with Darcy and Miss Bingley, choosing independence over inclusion, and runs 'gaily off'",
+      "Jane recovers enough to plan leaving her room, and Elizabeth rejoices at the prospect of going home"
+    ],
+    "character_development": "Elizabeth sharpens herself as a reader of people in this chapter — she is genuinely skilled at it, but the chapter plants the seed of her central flaw. When Darcy says her defect is to 'wilfully misunderstand,' he names something real, but she absorbs it as another volley in their game rather than as diagnostic insight. Her confidence in her own perception is hardening into a blind spot. Meanwhile, her refusal to join the walking party shows her instinct for self-sovereignty: she will not be a prop in someone else's social arrangement."
+  },
+  {
+    "story_number": 11,
+    "story_title": "Chapter XI",
+    "knowledge_gained": [
+      "The Bingley sisters can be agreeable when no men are present to compete for — their charm is entirely strategic, not genuine",
+      "Bingley's warmth toward Jane is conspicuously sincere compared to every other social performance at Netherfield",
+      "Darcy is beginning to feel the 'danger' of paying her too much attention — something Elizabeth does not yet perceive",
+      "Miss Bingley's interruptions when Elizabeth and Darcy converse reveal real anxiety, not mere cattiness"
+    ],
+    "emotional_state": "Quiet delight layered with combative enjoyment — she watches Bingley's devotion to Jane with genuine pleasure, and she takes real satisfaction in holding her own against Darcy intellectually, but she frames their entire dynamic as antagonism even as it becomes something more complex",
+    "relationship_changes": {
+      "Darcy": "The intellectual engagement deepens into something neither fully acknowledges; Elizabeth proposes to 'sketch his character' and Darcy warns her the portrait may not reflect well on her — the sparring now has genuine personal stakes, and Darcy privately recognizes the danger of his attraction",
+      "Jane": "Elizabeth escorts Jane to the drawing room and watches over her with maternal attentiveness, but also uses Jane's recovery as occasion to observe Bingley's character — affection and analysis intertwined",
+      "Bingley": "Elizabeth's opinion of Bingley solidifies as warmly positive; his unperformative kindness to Jane contrasts with every other social interaction at Netherfield",
+      "Miss Bingley": "Elizabeth sees that Miss Bingley breaks up conversations between Elizabeth and Darcy out of jealousy, not boredom — the rivalry is now fully legible to her"
+    },
+    "key_events": [
+      "Elizabeth escorts the recovering Jane into the drawing room and watches Bingley's devoted attention with 'great delight'",
+      "Extended verbal sparring with Darcy about whether his character can be 'sketched' or laughed at",
+      "Miss Bingley, losing patience with a conversation she cannot enter, interrupts to propose music",
+      "Darcy privately recognizes he is in danger of caring too much for Elizabeth — a turning point he conceals from everyone"
+    ],
+    "character_development": "Elizabeth is at the peak of her Netherfield confidence: she reads every room correctly, holds her own in every exchange, and takes genuine pleasure in both Jane's happiness and her own sparring prowess. But the chapter reveals that her reading has limits she doesn't see. She correctly identifies Miss Bingley's jealousy and Bingley's sincerity, but she misreads Darcy's engagement as mere argumentativeness. Her wit has become a lens that clarifies surfaces but distorts depths — she is too entertained by the game to notice it has become real for the other player."
+  },
+  {
+    "story_number": 12,
+    "story_title": "Chapter XII",
+    "knowledge_gained": [
+      "Her mother will actively work against Elizabeth's wishes if they conflict with her matchmaking schemes — the carriage refusal is a small betrayal of trust",
+      "Miss Bingley's cordiality is entirely conditional; she is glad to see Elizabeth go and sorry only about losing Jane's proximity to Bingley",
+      "Darcy is 'glad' of their departure, which Elizabeth likely reads as confirmation of his disdain — she does not know he is relieved because he was in danger of genuine attachment",
+      "Home at Longbourn, her father is glad to see her while her mother is not — the inversion of parental warmth is now a settled pattern"
+    ],
+    "emotional_state": "Determined restlessness resolving into relief — Elizabeth is 'positively resolved' to leave Netherfield and 'impatient to get home,' driven by a mix of pride (refusing to seem intrusive) and genuine discomfort with sustained exposure to the Bingley sisters' world. Returning to Longbourn brings familiar comfort even amid familiar irritations",
+    "relationship_changes": {
+      "Mrs. Bennet": "Friction deepens; her mother's refusal to send the carriage forces Elizabeth into the socially awkward position of having to borrow Bingley's — her mother treats her daughters' comfort as subordinate to strategy",
+      "Darcy": "A cooling that is actually mutual misreading; both are relieved by the separation but for opposite reasons — he because he fears attraction, she because she reads his reserve as contempt",
+      "Bingley": "His genuine sorrow at their departure further cements Elizabeth's good opinion; his warmth is consistently real",
+      "Miss Bingley": "The pretense of friendship is now fully transparent to Elizabeth; Miss Bingley's professions of concern are ritual, not felt",
+      "Mr. Bennet": "Quiet alliance reaffirmed — he is 'glad' to see her, a small signal that he values her presence in ways her mother does not"
+    },
+    "key_events": [
+      "Elizabeth writes to her mother requesting the carriage; Mrs. Bennet refuses to send it before Tuesday",
+      "Elizabeth overrides the delay by urging Jane to borrow Bingley's carriage, asserting her own judgment against her mother's scheme",
+      "The sisters depart Netherfield; Miss Bingley is relieved, Bingley is sorry, Darcy is strategically 'glad'",
+      "Elizabeth returns to Longbourn and resumes ordinary family life — Mr. Bennet's irony, Mrs. Bennet's complaints, Mary's moralizing, Lydia and Kitty's regiment gossip"
+    ],
+    "character_development": "Elizabeth reasserts control over her own situation after days of operating in someone else's house and under someone else's social rules. Her insistence on leaving — against her mother's wishes, against polite pressure to stay — is an act of self-definition: she will not be kept where she feels surplus. The Netherfield stay has given her richer data on Darcy, the Bingley sisters, and Bingley himself, but she files it all under her existing interpretive framework rather than letting it challenge her assumptions. She returns home with sharper observations but the same analytical blind spots — particularly about Darcy, whose relief at her departure she will inevitably read as the wrong kind of evidence."
+  },
+  {
+    "story_number": 13,
+    "story_title": "Chapter XIII",
+    "knowledge_gained": [
+      "Mr. Collins, their cousin and heir to Longbourn, has written seeking reconciliation",
+      "Collins is a clergyman patronized by Lady Catherine de Bourgh",
+      "Collins's personality is an absurd mixture of servility, self-importance, and social cluelessness",
+      "Collins views himself as offering an olive branch but is transparently calculating"
+    ],
+    "emotional_state": "Amused detachment — Elizabeth shares her father's ironic perspective on Collins, observing his pomposity and awkward compliments as a source of quiet entertainment rather than genuine threat",
+    "relationship_changes": {
+      "Mr. Collins": "Initial impression formed: sees him as ridiculous and absurd, a man whose attempts at gallantry (complimenting the dinner, the house, the daughters) betray total lack of self-awareness",
+      "Mr. Bennet": "Implicit alignment — both father and daughter find Collins a comic figure, reinforcing their shared intellectual bond",
+      "Mrs. Bennet": "Slight distance — Mrs. Bennet's hostility toward Collins (as heir) and then quick mollification show her predictable emotional swings, which Elizabeth observes with practiced detachment"
+    },
+    "key_events": [
+      "Mr. Bennet teases the family about an expected guest, drawing out the suspense",
+      "Mr. Collins arrives at Longbourn and immediately begins admiring the house he will one day inherit",
+      "Collins offends Mrs. Bennet by implying her daughters cook, then apologizes at excessive length",
+      "Elizabeth observes Collins's first evening with the family — cataloguing his absurdity"
+    ],
+    "character_development": "Elizabeth remains in observer mode, collecting data on a new character. Collins poses no intellectual challenge and no emotional threat — he is simply material for her judgment. Her confidence in her own perceptiveness is reinforced: she can read Collins completely within hours of meeting him."
+  },
+  {
+    "story_number": 14,
+    "story_title": "Chapter XIV",
+    "knowledge_gained": [
+      "Collins's devotion to Lady Catherine de Bourgh is total and performative — he recites her condescensions as though they were honors",
+      "Her father deliberately provokes Collins for his own amusement, treating the guest as entertainment",
+      "Collins lacks the self-awareness to recognize he is being mocked"
+    ],
+    "emotional_state": "Wry amusement shading into secondhand embarrassment — Elizabeth watches her father bait Collins and sees Collins fail every social test (the reading aloud, the inability to detect irony), producing a mix of comedy and discomfort",
+    "relationship_changes": {
+      "Mr. Bennet": "Deepened complicity — Elizabeth recognizes her father is deliberately drawing Collins out for sport; she is his audience and co-conspirator in finding Collins ridiculous",
+      "Mr. Collins": "Confirmed low opinion — his pompous reading aloud, his wounded dignity when Lydia interrupts, and his oblivious self-importance solidify Elizabeth's assessment of him as a fool",
+      "Lydia": "Brief moment of shared exasperation — Lydia's blunt interruption of Collins's reading, while rude, expresses what Elizabeth likely feels but would handle with more tact"
+    },
+    "key_events": [
+      "Mr. Bennet steers dinner conversation to Lady Catherine, giving Collins rope to hang himself with sycophantic praise",
+      "Collins proposes reading aloud to the family and chooses Fordyce's Sermons — a moralizing text",
+      "Lydia interrupts Collins mid-reading with unrelated gossip, offending him",
+      "Collins abandons the reading and retreats to backgammon with Mr. Bennet"
+    ],
+    "character_development": "Elizabeth's role as the family's sharpest social observer is reinforced. She can see both the comedy of Collins and the quiet cruelty of her father's amusement. This dual awareness — laughing at the fool while recognizing the unkindness of laughing — is a signature Elizabeth trait that deepens here without yet producing any moral discomfort."
+  },
+  {
+    "story_number": 15,
+    "story_title": "Chapter XV",
+    "knowledge_gained": [
+      "Collins originally intended to propose to Jane but, warned by Mrs. Bennet that Jane is likely spoken for, has silently redirected his matrimonial interest to Elizabeth",
+      "Collins views marriage to a Bennet daughter as 'atonement' for inheriting the estate — a transactional, self-congratulatory motive",
+      "Mr. Wickham is a new officer in the regiment — strikingly handsome and immediately appealing",
+      "Something charged passed between Darcy and Wickham when they encountered each other in Meryton: Wickham turned white, Darcy turned red"
+    ],
+    "emotional_state": "Curiosity piqued and mildly unsettled — the strange encounter between Darcy and Wickham introduces a genuine mystery, displacing the comfortable amusement of Collins-watching with something more intriguing and unresolved",
+    "relationship_changes": {
+      "Mr. Collins": "Growing alarm beneath the amusement — Elizabeth does not yet know Collins has targeted her, but his persistent attachment during the walk to Meryton is unwelcome; she finds his company tedious",
+      "Mr. Wickham": "Immediate favorable impression — his appearance, manners, and countenance all attract her; he represents social ease and charm, a sharp contrast to both Collins's absurdity and Darcy's pride",
+      "Mr. Darcy": "Renewed suspicion — the visible mutual hostility between Darcy and Wickham deepens Elizabeth's distrust of Darcy; she instinctively sides with the more agreeable stranger"
+    },
+    "key_events": [
+      "Collins silently shifts his marital target from Jane to Elizabeth after Mrs. Bennet's hint",
+      "Collins attaches himself to Elizabeth during the walk to Meryton, draining her patience",
+      "The group encounters Denny and Wickham in Meryton; Wickham's striking appearance is noted",
+      "Darcy and Wickham cross paths — an electric, hostile moment of mutual recognition that Elizabeth witnesses",
+      "The party visits Mrs. Philips, where Collins flatters her extravagantly"
+    ],
+    "character_development": "Elizabeth's curiosity is activated by something she cannot immediately explain — the Darcy-Wickham encounter. This marks a shift from passive, confident observation (Collins is easy to read) to active investigation (Wickham and Darcy are not). Her instinct to find Wickham agreeable and Darcy suspect shows her existing prejudice shaping how she processes new information."
+  },
+  {
+    "story_number": 16,
+    "story_title": "Chapter XVI",
+    "knowledge_gained": [
+      "Wickham claims Darcy denied him the living promised by old Mr. Darcy's will — a serious accusation of injustice",
+      "Wickham claims he was the godson and favorite of old Mr. Darcy, raised almost as a second son",
+      "Wickham attributes Darcy's cruelty to jealousy of his father's affection for Wickham",
+      "Wickham says he cannot publicly expose Darcy out of respect for the late Mr. Darcy's memory",
+      "Wickham confirms Darcy's pride is widely recognized but claims it goes beyond pride into active malice",
+      "Lady Catherine de Bourgh is Darcy's aunt, connecting Collins's patroness to Darcy's world"
+    ],
+    "emotional_state": "Indignant sympathy and vindicated prejudice — Elizabeth is deeply moved by Wickham's story, which confirms and intensifies everything she already believed about Darcy's pride and moral failings; she feels righteous anger on Wickham's behalf and warm attraction to his openness",
+    "relationship_changes": {
+      "Mr. Wickham": "Rapid intimacy and trust — a single evening of conversation produces strong partiality; Elizabeth finds him handsome, articulate, and wronged; she is flattered by his exclusive attention to her over the other young women present",
+      "Mr. Darcy": "Hardened hostility — Wickham's account transforms Elizabeth's vague dislike of Darcy's pride into a settled conviction of his moral cruelty; she now sees him as actively unjust, not merely disagreeable",
+      "Mr. Collins": "Comedic irrelevance — Collins spends the evening flattering Mrs. Philips and is barely a blip in Elizabeth's consciousness, which is entirely absorbed by Wickham"
+    },
+    "key_events": [
+      "Elizabeth and Wickham have a long, absorbing private conversation at the Philips's party",
+      "Wickham tells Elizabeth his history with Darcy — the denied living, the broken promise, the alleged jealousy",
+      "Elizabeth accepts Wickham's account almost entirely, asking sympathetic questions that invite further disclosure",
+      "Wickham flatters Elizabeth by confiding in her specifically and praising her discernment",
+      "Collins spends the evening in oblivious social climbing with Mrs. Philips",
+      "The party returns to Longbourn with Elizabeth's view of Darcy fundamentally darkened"
+    ],
+    "character_development": "This is a pivotal chapter for Elizabeth's central flaw: her prejudice masquerading as perceptiveness. She believes she is exercising sharp judgment by crediting Wickham's story, but she is actually surrendering to confirmation bias — Wickham tells her exactly what she wants to hear about Darcy, and his charm disarms the critical faculties she prides herself on. Her quickness to judge, usually a strength, becomes a liability. She does not ask why Wickham tells his private grievances to a near-stranger, nor why a truly honorable man would slander another at a party. The very confidence in her own discernment — reinforced by how easily she read Collins — makes her vulnerable to a more sophisticated performer."
+  },
+  {
+    "story_number": 17,
+    "story_title": "Chapter XVII",
+    "knowledge_gained": [
+      "Jane's response to Wickham's story: she refuses to blame either party and seeks a charitable middle ground",
+      "Elizabeth recognizes Jane's disposition will never allow her to condemn anyone",
+      "Bingley and Jane both vouch for Darcy's character, but Elizabeth dismisses this as partiality or ignorance",
+      "Wickham's story circulates publicly and is universally believed in Meryton — Darcy's pride makes him an easy villain"
+    ],
+    "emotional_state": "Confident partisanship hardening into impatience — Elizabeth is settled in her anti-Darcy conviction and frustrated by rain that prevents her from deepening her acquaintance with Wickham; anticipation for the Netherfield ball is her chief emotional current",
+    "relationship_changes": {
+      "Jane": "Mild, affectionate exasperation — Elizabeth teases Jane's refusal to think ill of anyone but recognizes she cannot shift her sister's temperament",
+      "Wickham": "Deepening romantic interest; she has dressed with unusual care and anticipates 'the conquest of all that remained unsubdued of his heart'",
+      "Darcy": "Opinion further entrenched as negative; she dismisses Bingley's and Jane's defenses of him",
+      "Bingley": "Slightly diminished credibility — his vouching for Darcy is waved away as ignorance or naivety"
+    },
+    "key_events": [
+      "Elizabeth recounts Wickham's story to Jane in full",
+      "Jane proposes that both men may have been misled by 'interested people'",
+      "Elizabeth dismisses all counter-evidence to Wickham's account",
+      "Rain confines the family to Longbourn for days, building anticipation for the ball"
+    ],
+    "character_development": "Elizabeth reveals a key blind spot: she is so committed to her first reading of Wickham and Darcy that she actively resists corrective evidence. Her wit, usually a tool of genuine discernment, is here deployed to defend a prejudice — she mocks Jane's charity rather than considering its substance."
+  },
+  {
+    "story_number": 18,
+    "story_title": "Chapter XVIII",
+    "knowledge_gained": [
+      "Wickham deliberately avoided the ball to escape Darcy — confirmed by Denny's significant hint",
+      "Darcy's social manner remains stiff even when making voluntary social effort (asking her to dance)",
+      "Miss Bingley warns Elizabeth against Wickham, claiming Darcy has been mistreated — Elizabeth dismisses this as partisan defense",
+      "Collins intends to introduce himself to Darcy uninvited, despite Elizabeth's protests, and does so with humiliating results",
+      "Mrs. Bennet publicly and loudly speculates about Jane and Bingley's match, embarrassing Elizabeth"
+    ],
+    "emotional_state": "A volatile sequence — sharp disappointment at Wickham's absence, sharpened resentment toward Darcy, social mortification from Collins and her mother's behavior, and a residual romantic longing redirected from Wickham toward general frustration",
+    "relationship_changes": {
+      "Darcy": "Hostility intensified by Wickham's absence, which she attributes to Darcy's influence; their dance is tense and adversarial on her side",
+      "Wickham": "His absence disappoints her but paradoxically strengthens her sympathy — she reads his avoidance as proof of Darcy's cruelty",
+      "Collins": "Deepening embarrassment and irritation; his presumptuous approach to Darcy mortifies her by association",
+      "Miss Bingley": "Dismissed as Darcy's partisan; her warning about Wickham only reinforces Elizabeth's existing stance",
+      "Mrs. Bennet": "Acute shame — her mother's loud indiscretion about Jane and Bingley causes Elizabeth visible pain"
+    },
+    "key_events": [
+      "Elizabeth arrives at the ball expecting Wickham and discovers he is absent",
+      "Denny implies Wickham stayed away to avoid Darcy",
+      "Elizabeth dances with Darcy in a charged, uncomfortable exchange",
+      "Collins introduces himself to Darcy despite Elizabeth's warnings, embarrassing them both",
+      "Mrs. Bennet loudly broadcasts her expectations about Jane and Bingley",
+      "Miss Bingley privately warns Elizabeth against trusting Wickham"
+    ],
+    "character_development": "Elizabeth's confirmation bias is on full display: every new piece of information — Wickham's absence, Miss Bingley's warning, Darcy's reserved manner — is filtered through her pre-existing narrative. She also experiences acute social shame from her family's behavior but cannot control it, revealing a painful gap between her own standards and her family's conduct."
+  },
+  {
+    "story_number": 19,
+    "story_title": "Chapter XIX",
+    "knowledge_gained": [
+      "Collins considers her an ideal wife candidate for reasons entirely unrelated to her actual character — Lady Catherine's advice, the entail, and propriety",
+      "Collins is incapable of hearing refusal; he interprets clear rejection as feminine coquetry",
+      "Her mother fully expects and demands her compliance with this proposal",
+      "The social machinery around her assumes women cannot genuinely refuse advantageous offers"
+    ],
+    "emotional_state": "Escalating from mortified discomfort to resolute defiance — initially embarrassed and trapped by her mother's insistence that she stay, then incredulous at Collins's pompous speech, and finally steeled in cold determination when he refuses to accept her refusal",
+    "relationship_changes": {
+      "Collins": "Definitive rejection — any residual politeness collapses into frank refusal; she sees him as absurd and willfully deaf to her autonomy",
+      "Mrs. Bennet": "Adversarial tension building — Elizabeth knows her mother will oppose the refusal and prepares for conflict",
+      "Mr. Bennet": "Elizabeth identifies her father as her potential ally and escape valve, planning to appeal to his authority if Collins persists"
+    },
+    "key_events": [
+      "Collins formally requests a private audience with Elizabeth for his proposal",
+      "Elizabeth tries to flee but Mrs. Bennet forces her to stay and hear Collins out",
+      "Collins delivers an elaborate, self-serving proposal listing his reasons (Lady Catherine's advice, the entail, his own happiness — in that order)",
+      "Elizabeth refuses clearly and repeatedly",
+      "Collins dismisses every refusal as 'the established custom of your sex' and elegant coquetry",
+      "Elizabeth withdraws in silence, resolved to seek her father's intervention if necessary"
+    ],
+    "character_development": "Elizabeth's core autonomy is tested directly for the first time. She refuses to perform the expected script — gratitude, acceptance, deference to economic logic — and holds firm even when Collins rewrites her 'no' as a 'yes.' Her decision to seek her father's backing shows strategic thinking under pressure, not just emotional resistance."
+  },
+  {
+    "story_number": 20,
+    "story_title": "Chapter XX",
+    "knowledge_gained": [
+      "Her mother will actively campaign against her decision and threaten to never see her again",
+      "Her father supports her refusal with dry humor ('An unhappy alternative is before you... from this day you must be a stranger to one of your parents')",
+      "Collins begins to waver — his self-interest leads him to reconsider whether a 'headstrong, foolish girl' is a desirable wife",
+      "The family unit will fracture along predictable lines over her autonomy: mother as antagonist, father as quiet ally"
+    ],
+    "emotional_state": "Relief tinged with residual stress — her father's support provides emotional anchor, but her mother's furious opposition and Collins's lingering presence create ongoing domestic tension; she endures rather than triumphs",
+    "relationship_changes": {
+      "Mr. Bennet": "Alliance confirmed — his witty, decisive support ('I will never see you again if you do') validates her choice and provides the authoritative refusal Collins requires",
+      "Mrs. Bennet": "Open antagonism — her mother declares she will never speak to Elizabeth again if she refuses Collins, casting Elizabeth as the ungrateful daughter",
+      "Collins": "Grudging retreat begins — he starts to entertain the idea that her refusal might be genuine, and questions whether she is desirable after all, revealing his affection was always transactional",
+      "Charlotte Lucas": "Not yet shifted, but Charlotte's presence as confidante and listener is positioned for future significance"
+    },
+    "key_events": [
+      "Mrs. Bennet congratulates Collins prematurely, then learns of the refusal and is horrified",
+      "Mrs. Bennet appeals to Mr. Bennet to overrule Elizabeth",
+      "Mr. Bennet delivers his famous ultimatum supporting Elizabeth's choice",
+      "Collins oscillates between interpreting the refusal as modesty and questioning Elizabeth's suitability",
+      "Elizabeth endures her mother's anger and Collins's wounded dignity throughout the day"
+    ],
+    "character_development": "Elizabeth survives her first major collision between personal integrity and family/social pressure. She does not compromise, but she also does not escape unscathed — her mother's hostility is real and ongoing. The episode reveals that Elizabeth's independence has costs: she gains her father's respect but loses her mother's goodwill, and the asymmetry of her parents' responses foreshadows the deeper dysfunction of the Bennet marriage."
+  },
+  {
+    "story_number": 21,
+    "story_title": "Chapter XXI",
+    "knowledge_gained": [
+      "Wickham deliberately avoided the Netherfield ball to escape confrontation with Darcy, not due to external necessity",
+      "Wickham claims Darcy's mistreatment stems from jealousy of Wickham's favored relationship with the late Mr. Darcy",
+      "Miss Bingley and Mrs. Hurst have left Netherfield for London, casting doubt on Bingley's return"
+    ],
+    "emotional_state": "Weary relief mixed with residual irritation — the Collins crisis is fading but her mother's peevish allusions and Collins's resentful silence keep the discomfort alive",
+    "relationship_changes": {
+      "Mr. Collins": "Shifted from active antagonism to cold mutual avoidance; Collins redirects his attentions to Charlotte Lucas",
+      "Charlotte Lucas": "Gratitude for Charlotte's willingness to absorb Collins's company, seen as a generous act of friendship",
+      "Wickham": "Deepened sympathy and trust; his voluntary confession about avoiding Darcy makes him appear candid and principled",
+      "Darcy": "Reinforced negative opinion — Wickham's account of Darcy's jealousy and vindictiveness solidifies her prejudice",
+      "Mrs. Bennet": "Continued strain; mother's ill humour persists unabated"
+    },
+    "key_events": [
+      "Collins transfers his attentions from Elizabeth to Charlotte Lucas",
+      "Elizabeth walks to Meryton and reunites with Wickham, who explains his self-imposed absence from the ball",
+      "News arrives that the Bingley sisters have left Netherfield with no certain return date"
+    ],
+    "character_development": "Elizabeth remains firmly in her comfort zone of judgment — she accepts Wickham's revised story at face value because it confirms her existing framework about Darcy. Her relief at escaping Collins blinds her to the significance of Charlotte absorbing his attention. She is perceptive about others' motives but selectively so."
+  },
+  {
+    "story_number": 22,
+    "story_title": "Chapter XXII",
+    "knowledge_gained": [
+      "Charlotte Lucas has deliberately pursued and accepted Mr. Collins's proposal of marriage",
+      "Charlotte's kindness in entertaining Collins was strategic, not merely generous",
+      "Charlotte views marriage as a practical arrangement for security, not a union requiring love or esteem"
+    ],
+    "emotional_state": "Shock, disbelief, and deep moral disappointment — Elizabeth feels betrayed by a friend whose values she thought she understood, and is distressed by the conviction that Charlotte cannot be happy",
+    "relationship_changes": {
+      "Charlotte Lucas": "Severely damaged — Elizabeth feels Charlotte has 'disgraced herself' and 'sacrificed every better feeling to worldly advantage'; Charlotte sinks in her esteem",
+      "Mr. Collins": "Contempt deepened; his rapid transfer of affections confirms his shallowness",
+      "Jane": "Implicit solidarity — Jane is the sympathetic confidante for this distressing news"
+    },
+    "key_events": [
+      "Collins secretly visits Lucas Lodge and proposes to Charlotte, who accepts him",
+      "Charlotte visits Elizabeth to disclose the engagement personally",
+      "Elizabeth struggles to conceal her shock and disapproval but cannot genuinely congratulate her friend"
+    ],
+    "character_development": "Elizabeth experiences a significant challenge to her worldview. She is confronted with the gap between her romantic idealism and the pragmatic reality many women face. However, rather than broadening her understanding, she judges Charlotte harshly — revealing her own rigidity and a blind spot about the limited choices available to women without fortune or beauty. Her moral certainty, while principled, borders on self-righteousness."
+  },
+  {
+    "story_number": 23,
+    "story_title": "Chapter XXIII",
+    "knowledge_gained": [
+      "Her mother's fury over the Collins-Charlotte engagement confirms Mrs. Bennet's motives were purely mercenary",
+      "Her father treats the entire affair with detached irony, offering no real emotional support",
+      "The rift with Charlotte is hardening — the engagement is now public and irrevocable"
+    ],
+    "emotional_state": "Isolated composure under pressure — Elizabeth is caught between her family's embarrassing public reaction and her private grief over Charlotte, maintaining outward dignity while internally alienated from nearly everyone around her",
+    "relationship_changes": {
+      "Charlotte Lucas": "Further estrangement as the engagement becomes public fact; Elizabeth's prior knowledge sets her apart from her family but deepens her sense of loss",
+      "Mrs. Bennet": "Increased exasperation — her mother's raging about the entail and the lost match is mortifying and exhausting",
+      "Mr. Bennet": "Wry but emotionally distant; his sardonic wit provides no comfort, only detached amusement",
+      "Jane": "Strengthened alliance — Jane joins Elizabeth in offering gracious congratulations to Sir William, acting as her partner in decorum"
+    },
+    "key_events": [
+      "Sir William Lucas arrives to formally announce Charlotte's engagement to the Bennet family",
+      "Mrs. Bennet and Lydia react with rude disbelief; Elizabeth steps forward to confirm the news and restore civility",
+      "Elizabeth endures her mother's prolonged complaints about the entail and lost inheritance"
+    ],
+    "character_development": "Elizabeth demonstrates growing social maturity by stepping in to manage an awkward public situation — confirming Charlotte's engagement to spare Sir William further humiliation. She acts as the family's moral center, compensating for her mother's rudeness and her father's disengagement. Yet privately, she remains unable to reconcile Charlotte's choice with her own values, highlighting the tension between her social grace and her inner inflexibility."
+  },
+  {
+    "story_number": 24,
+    "story_title": "Chapter XXIV",
+    "knowledge_gained": [
+      "The Bingley party is settled in London for the winter with no plans to return — Bingley's departure is confirmed as semi-permanent",
+      "Miss Bingley is actively promoting a match between Bingley and Miss Darcy, suggesting deliberate interference",
+      "Jane, despite her pain, still refuses to think ill of anyone — her candour is both admirable and, in Elizabeth's view, naive",
+      "Wickham's account of Darcy's villainy has spread through Meryton and is universally believed"
+    ],
+    "emotional_state": "Silent indignation and protective anger — her heart is 'divided between concern for her sister and resentment against all others,' particularly Bingley's sisters and Darcy, whom she holds responsible for separating Jane and Bingley",
+    "relationship_changes": {
+      "Jane": "Deepened protectiveness and tender concern; Elizabeth aches for Jane's quiet suffering while admiring her steadfastness",
+      "Bingley": "Sharp decline in respect — Elizabeth now views him with near-contempt for his 'want of proper resolution' and susceptibility to manipulation",
+      "Miss Bingley": "Open hostility — Elizabeth sees through Caroline's false affection and recognizes her as a scheming rival",
+      "Darcy": "Hostility intensified — Elizabeth attributes Bingley's abandonment of Jane partly to Darcy's influence, adding to the ledger of grievances",
+      "Wickham": "Continued trust and partiality; the public condemnation of Darcy reinforces her alignment with Wickham's narrative"
+    },
+    "key_events": [
+      "Miss Bingley's letter confirms the party will remain in London, extinguishing Jane's hopes",
+      "Elizabeth reads the letter with silent indignation and privately blames Bingley's sisters and Darcy",
+      "Wickham's version of events regarding Darcy becomes the accepted narrative in Hertfordshire society",
+      "Jane alone maintains that there may be extenuating circumstances for Darcy"
+    ],
+    "character_development": "Elizabeth's protective instincts sharpen as she watches Jane suffer, but her analysis is increasingly colored by prejudice. She correctly identifies Miss Bingley's scheming but incorrectly lumps Bingley's weakness and Darcy's pride into a single indictment. Ironically, Jane's charitable interpretation of Darcy — which Elizabeth dismisses as excessive candour — is closer to the truth. Elizabeth's confidence in her own judgment is peaking precisely when that judgment is most compromised by emotion and incomplete information."
+  },
+  {
+    "story_number": 25,
+    "story_title": "Chapter XXV",
+    "knowledge_gained": [
+      "Mr. and Mrs. Gardiner are sensible, intelligent relatives — a stark contrast to Mrs. Bennet",
+      "Mrs. Gardiner once lived near Pemberley and personally remembers the late Mr. Darcy as a respectable man",
+      "Mrs. Gardiner recalls hearing the young Fitzwilliam Darcy described as 'a very proud, ill-natured boy,' which she takes as corroboration of Wickham's account",
+      "Jane is deeply hurt by Bingley's departure but tries to hide it; Elizabeth sees through her composure"
+    ],
+    "emotional_state": "Relieved and validated — the arrival of the rational, warm Gardiners provides emotional refuge from her mother's incessant complaints, and Mrs. Gardiner's independent recollection of Darcy's proud reputation reinforces Elizabeth's existing prejudice against him",
+    "relationship_changes": {
+      "Mrs. Gardiner": "Deepened trust and intimacy; Elizabeth confides freely about Jane's situation and Wickham's story, treating her aunt as a true confidante",
+      "Jane": "Protective sympathy intensifies; Elizabeth watches Jane suffer in silence and channels her frustration outward toward Bingley's circle",
+      "Darcy": "Prejudice further entrenched — Mrs. Gardiner's childhood memory of Darcy as proud and ill-natured feels like independent confirmation of Wickham's narrative",
+      "Wickham": "Continued warm regard; Elizabeth presents his account to her aunt without skepticism, and Mrs. Gardiner's corroboration strengthens her trust in him"
+    },
+    "key_events": [
+      "Mr. Collins departs Longbourn after his engagement to Charlotte",
+      "The Gardiners arrive for Christmas, bringing warmth and good sense to the household",
+      "Elizabeth and Jane confide in Mrs. Gardiner about the Bingley situation",
+      "Mrs. Gardiner independently recalls Darcy's reputation as proud, seemingly validating Wickham's claims",
+      "A plan forms for Jane to visit London with the Gardiners, giving her a chance to see Bingley again"
+    ],
+    "character_development": "Elizabeth's confirmation bias deepens: she selectively interprets Mrs. Gardiner's vague childhood memory as hard evidence against Darcy, never questioning whether a distant recollection of a boy's manner constitutes proof of adult villainy. Her intelligence, usually her greatest asset, is working against her — she is building an ever more confident but ultimately flawed case."
+  },
+  {
+    "story_number": 26,
+    "story_title": "Chapter XXVI",
+    "knowledge_gained": [
+      "Mrs. Gardiner warns her that a match with Wickham would be imprudent given his lack of fortune",
+      "Wickham shifts his attentions to Miss King, who has just inherited £10,000",
+      "Miss Bingley's cold, brief reply to Jane's letter confirms the Bingley connection is being deliberately severed",
+      "Charlotte writes warmly, pressing Elizabeth to visit Hunsford as promised"
+    ],
+    "emotional_state": "Disillusioned but pragmatically composed — Wickham's mercenary pivot stings her pride but she refuses to dramatize it, processing the disappointment with dry humor rather than heartbreak. Underneath the wit, a quiet cynicism about romantic attachment is settling in.",
+    "relationship_changes": {
+      "Wickham": "Attraction cools sharply; his pursuit of Miss King's fortune exposes a transactional side Elizabeth cannot admire, though she defends him publicly to preserve her own dignity and avoid admitting misjudgment",
+      "Mrs. Gardiner": "Honest and self-aware in conversation; Elizabeth half-jokes about her aunt's caution proving unnecessary, showing she can laugh at herself",
+      "Jane": "Shared sorrow; both sisters are now nursing parallel romantic disappointments, which quietly bonds them",
+      "Charlotte": "Gradual softening; distance and time have begun to weaken Elizabeth's disgust at the Collins match, and Charlotte's warm letters rekindle affection",
+      "Miss Bingley": "Contempt solidifies; the dismissive letter to Jane confirms Elizabeth's view of her as false and manipulative"
+    },
+    "key_events": [
+      "Mrs. Gardiner privately cautions Elizabeth against falling for Wickham given his poverty",
+      "Elizabeth acknowledges she is not truly in love with Wickham and promises to be prudent",
+      "Wickham transfers his attention to the newly wealthy Miss King",
+      "Elizabeth rationalizes Wickham's mercenary choice rather than condemning it — a double standard she half-recognizes",
+      "Jane's correspondence with Miss Bingley goes cold, confirming the relationship is over",
+      "Charlotte's letters anticipate Elizabeth's visit to Hunsford"
+    ],
+    "character_development": "Elizabeth reveals a telling inconsistency: she condemned Charlotte for marrying Collins without love for financial security, yet she excuses Wickham for pursuing Miss King's fortune. She is beginning to sense this contradiction ('handsome young men must have something to live on as well as the plain') but frames it as worldly wisdom rather than confronting her own bias. Her emotional self-protection is impressive — she genuinely does not let Wickham's defection wound her deeply — but it also signals a growing guardedness about romantic vulnerability."
+  },
+  {
+    "story_number": 27,
+    "story_title": "Chapter XXVII",
+    "knowledge_gained": [
+      "Jane, despite being in London near Bingley, has had no contact with him — confirming his sisters have succeeded in separating them",
+      "Mrs. Gardiner gently reminds Elizabeth of the inconsistency in excusing Wickham's pursuit of Miss King while condemning Charlotte's practical marriage",
+      "The prospect of a summer tour to the Lakes with the Gardiners is raised, giving Elizabeth something to look forward to"
+    ],
+    "emotional_state": "Forward-looking and emotionally lighter — leaving Longbourn lifts a weight, seeing Jane in London provides temporary comfort despite the Bingley disappointment, and the promise of the Lakes tour fills her with genuine anticipatory joy. She departs the chapter in her most buoyant mood in weeks.",
+    "relationship_changes": {
+      "Wickham": "The farewell is 'perfectly friendly' — warm but definitively platonic; Elizabeth has cleanly moved past any romantic possibility",
+      "Jane": "Tender concern; Elizabeth sees Jane managing her heartbreak with quiet dignity in London and feels both admiration and helpless frustration",
+      "Mrs. Gardiner": "Growing intellectual respect; her aunt's pointed observation about Wickham and Charlotte forces Elizabeth to confront a logical inconsistency she would rather avoid",
+      "Charlotte": "Anticipation replaces ambivalence; Elizabeth genuinely looks forward to seeing her friend again, and absence has softened her judgment of the Collins marriage",
+      "Mr. Bennet": "A pang of mutual affection at parting — her father's reluctance to let her go and his near-promise to write reveal the depth of their bond"
+    },
+    "key_events": [
+      "Months pass uneventfully at Longbourn through January and February",
+      "Elizabeth prepares to travel to Hunsford to visit Charlotte",
+      "She stops in London and spends time with Jane at the Gardiners'",
+      "Jane reports no sight of Bingley and a disappointing visit from Miss Bingley",
+      "Elizabeth privately holds Darcy most responsible for separating Bingley and Jane",
+      "Mrs. Gardiner proposes a summer Lakes tour, which thrills Elizabeth",
+      "Elizabeth parts from Wickham on friendly but unromantic terms"
+    ],
+    "character_development": "Elizabeth is learning to let go — of Wickham without bitterness, of her idealized expectations for Charlotte without permanent estrangement. But she clings tightly to two convictions she will not reexamine: that Darcy is the chief architect of Jane's suffering, and that Wickham's account of Darcy is fundamentally true. Her ability to revise judgment operates selectively — she can adjust on matters of moderate emotional investment but locks down on positions where her pride and her sister's happiness are at stake."
+  },
+  {
+    "story_number": 28,
+    "story_title": "Chapter XXVIII",
+    "knowledge_gained": [
+      "Charlotte has arranged her domestic life at the Parsonage with practical intelligence — choosing rooms and routines that minimize exposure to Mr. Collins",
+      "Mr. Collins is exactly as pompous and obsequious as before; marriage has not altered him",
+      "Lady Catherine de Bourgh is imperious, condescending, and physically unprepossessing — Elizabeth meets her with wry interior amusement rather than the awe Collins expects",
+      "Miss de Bourgh is 'thin and small,' sickly-looking, and quiet — nothing like the grand match Collins has described for Darcy"
+    ],
+    "emotional_state": "Amused and perceptive — Elizabeth is in high spirits from the journey, genuinely glad to see Charlotte, and thoroughly entertained by the absurdity of Collins's groveling and Lady Catherine's pomposity. She observes everything with her sharpest satirical eye, enjoying herself as a social anthropologist among specimens.",
+    "relationship_changes": {
+      "Charlotte": "Warmth restored; Elizabeth sees that Charlotte has made the best of her situation with quiet ingenuity, and genuine affection flows between them again. Elizabeth begins to understand Charlotte's pragmatic calculus even if she cannot fully endorse it",
+      "Mr. Collins": "Confirmed absurdity; his unchanged manners in marriage reinforce Elizabeth's original assessment — he is a buffoon, but a harmless one she can tolerate in small doses",
+      "Lady Catherine": "Instant, clear-eyed appraisal — Elizabeth registers her as overbearing and rude but refuses to be intimidated, smiling to herself at the contrast between Collins's reverence and the reality",
+      "Miss de Bourgh": "Quiet observation; Elizabeth notes that the supposed future Mrs. Darcy is sickly and unremarkable, which she files away without yet drawing conclusions"
+    },
+    "key_events": [
+      "Elizabeth travels to Hunsford with Sir William Lucas and Maria, spirits high from seeing Jane well in London",
+      "She arrives at the Parsonage and is warmly received by Charlotte",
+      "She observes that Charlotte has strategically organized her household to manage Collins",
+      "Mr. Collins gives an exhaustive tour emphasizing Rosings and Lady Catherine's patronage",
+      "Lady Catherine and Miss de Bourgh stop by in their carriage; an invitation to dine at Rosings is issued",
+      "Elizabeth forms her first direct impressions of Lady Catherine (domineering) and Miss de Bourgh (frail, unremarkable)"
+    ],
+    "character_development": "Elizabeth's powers of observation are on full display — she reads Charlotte's domestic strategy instantly, sees through Collins's posturing, and sizes up Lady Catherine without a flicker of deference. She is entering Darcy's world (his aunt, his intended bride, his sphere of influence) with all her prejudices intact but also with genuine openness to experience. Critically, she is beginning to reconcile with Charlotte's choice: seeing the practical wisdom of the arrangement firsthand nudges her toward a less absolute moral framework, even as she continues to prize romantic love above security."
+  },
+  {
+    "story_number": 29,
+    "story_title": "Chapter XXIX",
+    "knowledge_gained": [
+      "Direct experience of Rosings' grandeur and Lady Catherine's household",
+      "Lady Catherine is domineering in conversation, dictating opinions on all subjects",
+      "Miss de Bourgh is sickly and unremarkable in person",
+      "Mr. Collins's obsequiousness toward Lady Catherine is even more extreme than imagined"
+    ],
+    "emotional_state": "Amused composure — unimpressed by Rosings but diplomatically concealing her true opinion for Charlotte's sake",
+    "relationship_changes": {
+      "Lady Catherine": "Forms direct impression: overbearing and presumptuous, but not intimidating to Elizabeth",
+      "Charlotte": "Shows loyalty by giving a more favorable opinion of Rosings than she actually holds",
+      "Mr. Collins": "Deepened sense of his absurdity as he insists on supplementing her insufficiently rapturous praise"
+    },
+    "key_events": [
+      "Dines at Rosings for the first time",
+      "Observes Lady Catherine's domineering manner firsthand",
+      "Gives a diplomatically tempered opinion of the evening for Charlotte's benefit"
+    ],
+    "character_development": "Demonstrates social grace and quiet self-possession — neither overawed by grandeur nor openly contemptuous; prioritizes Charlotte's comfort over her own desire to be honest"
+  },
+  {
+    "story_number": 30,
+    "story_title": "Chapter XXX",
+    "knowledge_gained": [
+      "Charlotte deliberately arranged the house so Collins would stay in his own book room — confirms Charlotte's calculated domestic strategy",
+      "Darcy and Colonel Fitzwilliam have arrived at Rosings for Easter",
+      "Darcy looked confused when Elizabeth mentioned Jane being in London three months — suggests he knew of or was involved in keeping Bingley away",
+      "Colonel Fitzwilliam is pleasant and socially at ease, unlike his cousin"
+    ],
+    "emotional_state": "Quietly vindicated and watchful — her probe about Jane's London stay confirmed Darcy's guilty awareness of the Bingley separation",
+    "relationship_changes": {
+      "Charlotte": "Increased respect for her pragmatic domestic management of Collins",
+      "Darcy": "Reinforced antagonism; his confused reaction strengthens her belief he orchestrated Jane's heartbreak",
+      "Colonel Fitzwilliam": "Positive initial impression as agreeable and easy in manner"
+    },
+    "key_events": [
+      "Settles into comfortable routine at Hunsford after Sir William's departure",
+      "Encounters Darcy and Colonel Fitzwilliam during visits to the Parsonage",
+      "Deliberately tests Darcy by mentioning Jane's London presence and reads guilt in his reaction"
+    ],
+    "character_development": "Shows strategic social intelligence — uses conversation as a tool to confirm suspicions about Darcy's interference, demonstrating her active rather than passive engagement with injustice"
+  },
+  {
+    "story_number": 31,
+    "story_title": "Chapter XXXI",
+    "knowledge_gained": [
+      "Colonel Fitzwilliam is genuinely interested in her company and admires her",
+      "Darcy is drawn to stand near her when she plays piano, suggesting attentiveness she doesn't fully interpret",
+      "Darcy's behavior toward Miss de Bourgh is no more particular than toward anyone — the rumored engagement seems unlikely",
+      "Darcy admits he does not take the trouble to practice social conversation with strangers"
+    ],
+    "emotional_state": "Spirited and socially confident — energized by Fitzwilliam's agreeable company and emboldened to tease Darcy openly about his unsociable manner",
+    "relationship_changes": {
+      "Colonel Fitzwilliam": "Growing mutual enjoyment; he seeks her company and she finds him the pleasantest man present",
+      "Darcy": "Continued adversarial sparring, but with a playful, almost flirtatious edge as she challenges him publicly at the piano",
+      "Lady Catherine": "Tolerates her unsolicited criticism of Elizabeth's playing with civil forbearance"
+    },
+    "key_events": [
+      "Easter evening at Rosings; Colonel Fitzwilliam sits with her for extended agreeable conversation",
+      "Plays piano and boldly teases Darcy about his refusal to make social effort",
+      "Observes Darcy's lack of particular attention to Miss de Bourgh"
+    ],
+    "character_development": "Her wit and confidence are fully on display — she confronts Darcy directly and publicly with humor rather than hostility, showing she neither fears nor defers to his status; maintains dignity under Lady Catherine's condescension"
+  },
+  {
+    "story_number": 32,
+    "story_title": "Chapter XXXII",
+    "knowledge_gained": [
+      "Darcy visits the Parsonage alone and seems to seek her company specifically, though awkwardly",
+      "Darcy gives nothing away when she probes about Bingley's sudden departure from Netherfield",
+      "Charlotte believes Darcy may be in love with Elizabeth based on his repeated visits",
+      "Charlotte considers Colonel Fitzwilliam a suitable match for her but notes his lack of church patronage compared to Darcy"
+    ],
+    "emotional_state": "Puzzled and dismissive — cannot fathom why Darcy would visit alone or be attracted to her; finds the idea of his admiration incredible",
+    "relationship_changes": {
+      "Darcy": "Bewildered by his strange solo visit; her prejudice prevents her from recognizing what Charlotte sees as attraction",
+      "Charlotte": "Charlotte shifts into matchmaker mode, speculating about both Darcy and Fitzwilliam as prospects",
+      "Colonel Fitzwilliam": "Charlotte identifies him as an eligible match for Elizabeth"
+    },
+    "key_events": [
+      "Darcy visits the Parsonage alone and finds Elizabeth writing to Jane",
+      "Awkward, stilted conversation; Elizabeth probes about Netherfield without success",
+      "Charlotte theorizes that Darcy is falling in love with Elizabeth",
+      "Elizabeth dismisses the possibility entirely"
+    ],
+    "character_development": "Reveals her central blind spot — her prejudice against Darcy is so deep that she cannot process clear evidence of his interest; her fixed narrative (Darcy as villain) filters out contradictory information, setting up the coming shock of his proposal"
+  },
+  {
+    "story_number": 33,
+    "story_title": "Chapter XXXIII",
+    "knowledge_gained": [
+      "Darcy repeatedly seeks her out on her solitary walks despite her attempts to discourage him",
+      "Darcy asks odd, disconnected questions implying she might return to Kent and stay at Rosings",
+      "Colonel Fitzwilliam reveals Darcy recently saved a friend from an 'imprudent' marriage — Elizabeth identifies this as Bingley and Jane",
+      "Darcy apparently boasted of separating Bingley from Jane without feeling remorse"
+    ],
+    "emotional_state": "Intense agitation and vindicated anger — Fitzwilliam's revelation confirms her suspicion that Darcy deliberately ruined Jane's happiness, producing a headache severe enough to keep her from Rosings",
+    "relationship_changes": {
+      "Darcy": "Hostility hardens into definite resentment; his interference with Jane is now confirmed rather than suspected",
+      "Colonel Fitzwilliam": "Still agreeable but she now sees him primarily as an unwitting source of damning intelligence about Darcy",
+      "Jane": "Renewed protective anguish upon re-reading Jane's letters and connecting Darcy's boast to Jane's suffering"
+    },
+    "key_events": [
+      "Three unexpected encounters with Darcy on her park walks, each time he turns back to walk with her",
+      "Colonel Fitzwilliam inadvertently reveals Darcy's role in separating Bingley from Jane",
+      "Elizabeth develops a headache from emotional agitation and deliberately avoids the evening at Rosings"
+    ],
+    "character_development": "Elizabeth's suspicions crystallize into certainty. She shifts from puzzled irritation at Darcy's attentions to focused anger, now holding a concrete grievance she can articulate. Her decision to stay home marks a rare moment of emotional overwhelm — she needs space to process rather than perform composure."
+  },
+  {
+    "story_number": 34,
+    "story_title": "Chapter XXXIV",
+    "knowledge_gained": [
+      "Darcy is passionately in love with her and has struggled against the attachment for months",
+      "Darcy considers a connection with her family a degradation — his proposal dwells more on her inferiority than his affection",
+      "Darcy does not deny his role in separating Jane and Bingley, nor does he express regret for it",
+      "Darcy dismisses Wickham's claims with contempt rather than denial"
+    ],
+    "emotional_state": "Turbulent mixture of astonishment, indignation, and righteous fury — she refuses the proposal with pointed accusations, but afterward feels brief, quickly suppressed pity for Darcy's genuine pain before anger reasserts itself",
+    "relationship_changes": {
+      "Darcy": "Relationship reaches its lowest point — she rejects his proposal and delivers a devastating catalogue of his faults, calling him the 'last man in the world' she could marry",
+      "Jane": "Protective loyalty intensifies as Elizabeth weaponizes Jane's suffering in her rejection speech",
+      "Wickham": "Elizabeth invokes Wickham's mistreatment as a second major charge against Darcy, fully believing Wickham's account"
+    },
+    "key_events": [
+      "Elizabeth deliberately re-reads Jane's letters to fuel her resentment before Darcy arrives",
+      "Darcy proposes marriage, emphasizing the social obstacles he is overcoming",
+      "Elizabeth refuses him categorically, accusing him of ruining Jane's happiness and Wickham's prospects",
+      "A fierce argument ensues; Darcy departs in anger and Elizabeth is left in agitated solitude"
+    ],
+    "character_development": "Elizabeth acts with full moral conviction, articulating her values with courage and eloquence under pressure. However, her refusal is powered partly by prejudice — she has accepted Wickham's story uncritically and has not questioned her own assumptions. She is righteous but not yet self-aware."
+  },
+  {
+    "story_number": 35,
+    "story_title": "Chapter XXXV",
+    "knowledge_gained": [
+      "Darcy's letter provides his account of the Jane/Bingley separation: he genuinely believed Jane was indifferent",
+      "Wickham's true history: he refused the clergy living, demanded £3,000 instead, squandered it, then demanded more",
+      "Wickham attempted to elope with Darcy's fifteen-year-old sister Georgiana for her £30,000 fortune",
+      "Colonel Fitzwilliam can corroborate every detail of Darcy's account",
+      "Darcy acknowledges the family-manner objection but defends the sincerity of his belief that Jane did not love Bingley"
+    ],
+    "emotional_state": "Stunned and overwhelmed — the letter introduces information that threatens to overturn her entire framework of judgment, leaving her unable to settle into any single emotion",
+    "relationship_changes": {
+      "Darcy": "The dynamic shifts from adversarial certainty to unsettled ambiguity; his letter forces her to consider him as a more complex figure than the villain she constructed",
+      "Wickham": "Seeds of doubt planted — the letter's account is detailed, verifiable, and internally consistent",
+      "Colonel Fitzwilliam": "Named as an independent witness who could confirm Darcy's claims, adding credibility"
+    },
+    "key_events": [
+      "Elizabeth avoids her usual walk to prevent encountering Darcy, but he finds her anyway",
+      "Darcy silently hands her a letter and walks away",
+      "Elizabeth reads the letter, which addresses both the Jane/Bingley matter and the Wickham history in full"
+    ],
+    "character_development": "Elizabeth's carefully maintained certainties begin to fracture. The letter is an external challenge she cannot dismiss with a quip or a turned back — it demands she sit with uncomfortable evidence. Her avoidance of the park walk shows she is already less sure of herself than she was the night before."
+  },
+  {
+    "story_number": 36,
+    "story_title": "Chapter XXXVI",
+    "knowledge_gained": [
+      "She recognizes that Wickham never provided verifiable evidence for any of his claims",
+      "Wickham's impropriety is confirmed by pattern: his sudden attachment to Miss King's fortune, his willingness to broadcast private grievances to a stranger",
+      "Jane's reserved temperament could genuinely have been misread as indifference by an outside observer",
+      "Her own judgment has been fundamentally compromised by vanity — Wickham flattered her, Darcy wounded her pride, and she responded to both with bias rather than reason",
+      "Darcy and Colonel Fitzwilliam have departed Rosings"
+    ],
+    "emotional_state": "Profound humiliation and mortification — she is devastated by the recognition that she has been blind, partial, prejudiced, and absurd, a self-directed shame far more painful than any anger she felt toward Darcy",
+    "relationship_changes": {
+      "Darcy": "Radical reassessment — she now sees him as substantially wronged by her accusations; respect and something approaching guilt replace contempt",
+      "Wickham": "Complete reversal — she now views him as dishonest, mercenary, and manipulative; the former trust is replaced by abhorrence",
+      "Jane": "Acknowledges that Jane's habitual composure may have contributed to the misunderstanding, complicating the simple victim narrative",
+      "Colonel Fitzwilliam": "No longer an object of romantic or social interest; she 'really rejoiced' at missing him",
+      "Her own family": "Painful new awareness that Darcy's criticisms of her family's behavior, though hurtful, were not unfounded"
+    },
+    "key_events": [
+      "Elizabeth re-reads Darcy's letter repeatedly, each reading eroding her initial resistance",
+      "She walks for two hours in solitary, agonized self-examination",
+      "She arrives at the devastating self-judgment: 'How despicably have I acted! Till this moment I never knew myself'",
+      "She accepts the truth of Darcy's account of both Wickham and Jane/Bingley",
+      "She returns to learn both Darcy and Fitzwilliam have called and departed; she feels only relief"
+    ],
+    "character_development": "This is Elizabeth's central moral crisis and the pivot of the novel. She undergoes a genuine epistemic revolution — not merely learning new facts but recognizing that her entire method of judging character was corrupted by vanity and first impressions. The line 'Till this moment I never knew myself' marks the birth of genuine self-knowledge. She moves from confident moral authority to painful humility, which is the precondition for all her subsequent growth."
+  },
+  {
+    "story_number": 37,
+    "story_title": "Chapter XXXVII",
+    "knowledge_gained": [
+      "Darcy appeared to feel the departure from Rosings more acutely than usual, suggesting genuine emotional distress after the proposal",
+      "Lady Catherine interprets Darcy's low spirits as increased attachment to Rosings, not heartbreak — a comic misreading Elizabeth can now perceive"
+    ],
+    "emotional_state": "Wry, detached irony mixed with quiet relief. Elizabeth amuses herself imagining Lady Catherine's indignation had she accepted Darcy, treating the rejected proposal as a source of private comedy rather than anguish. The agony of self-discovery has cooled into composed self-possession.",
+    "relationship_changes": {
+      "Darcy": "Physical separation provides emotional distance; Elizabeth can now think of him without acute distress, though his departure registers as significant",
+      "Lady Catherine": "Elizabeth views her with newly ironic eyes — seeing herself as a potential niece she chose not to become, which reframes Lady Catherine from intimidating figure to comic object",
+      "Charlotte": "Preparing to leave; the visit that began as a social obligation has run its emotional course"
+    },
+    "key_events": [
+      "Darcy and Colonel Fitzwilliam depart Rosings",
+      "Elizabeth privately imagines Lady Catherine's reaction to a Darcy engagement with amusement",
+      "Lady Catherine unknowingly comments on Darcy's visible distress, attributing it to love of Rosings",
+      "Preparations begin for Elizabeth's own departure from Hunsford"
+    ],
+    "character_development": "Elizabeth has metabolized the worst of her self-recrimination and transitioned into a new equilibrium. Her ability to find private humor in what Lady Catherine's reaction 'would have been' shows she has regained her characteristic wit, but it now operates with fuller self-awareness. She is no longer defensive or anguished — she has accepted the truth and moved into a phase of composed reflection."
+  },
+  {
+    "story_number": 38,
+    "story_title": "Chapter XXXVIII",
+    "knowledge_gained": [
+      "She recognizes the depth of what she now knows about Wickham and Darcy creates a burden of secrecy she must carefully manage",
+      "She discovers her own indecision about how much truth to share with Jane — a new experience for someone who prided herself on quick judgment"
+    ],
+    "emotional_state": "Restless indecision layered over genuine warmth. Elizabeth is eager to leave Hunsford and genuinely grateful for Charlotte's company, but her dominant inner state is the tension between her desire to confide in Jane and her fear of revealing too much — particularly anything about Bingley that might reopen Jane's wound.",
+    "relationship_changes": {
+      "Charlotte": "Parting is warm and sincere; Elizabeth genuinely values the six weeks despite everything that happened",
+      "Mr. Collins": "Elizabeth endures his pompous farewell with polite patience — he remains oblivious comic furniture",
+      "Jane": "Anticipation builds; Jane is the person Elizabeth most needs to talk to, but the Bingley dimension makes full honesty dangerous",
+      "Darcy": "His story has become a secret Elizabeth carries — the knowledge reshapes her but she cannot freely share it"
+    },
+    "key_events": [
+      "Elizabeth departs Hunsford after six weeks",
+      "Mr. Collins delivers his parting civilities with characteristic self-importance",
+      "Elizabeth struggles with what and how much to tell Jane about Darcy's proposal and letter",
+      "She resolves to suppress any particulars concerning Jane and Bingley"
+    ],
+    "character_development": "Elizabeth confronts the practical consequences of her new self-knowledge: she must decide what truths to share and what to withhold. This is a maturation from her earlier instinct for blunt honesty. The woman who once spoke her mind freely now weighs the impact of her words on others — particularly on Jane. She is learning that knowing the truth and communicating it wisely are different skills."
+  },
+  {
+    "story_number": 39,
+    "story_title": "Chapter XXXIX",
+    "knowledge_gained": [
+      "Lydia's reckless flirtatiousness and obsession with officers is even worse than she remembered — now viewed through the lens of knowing Wickham's true character",
+      "The Brighton scheme is actively being discussed between her parents, with her mother pushing and her father passively resisting",
+      "Her father has no real intention of sending Lydia to Brighton but gives vague, equivocal answers rather than a firm refusal"
+    ],
+    "emotional_state": "Growing alarm and moral discomfort. Returning home forces Elizabeth to see her family's dysfunction with the sharpened vision Darcy's letter gave her. Lydia's wildness, once merely embarrassing, now feels dangerous. Her father's passive irony, once a source of shared amusement, now looks like negligence.",
+    "relationship_changes": {
+      "Lydia": "Elizabeth sees Lydia's behavior with newly critical and anxious eyes — frivolity that once seemed harmless now appears genuinely reckless given what she knows about men like Wickham",
+      "Mr. Bennet": "Elizabeth begins to perceive her father's detached amusement as a failure of parental responsibility — his vague answers about Brighton trouble her",
+      "Mrs. Bennet": "Her mother's relentless scheming about Brighton confirms Darcy's critique of the family's impropriety",
+      "Wickham": "Though not present, his shadow falls over every mention of officers and Brighton; Elizabeth hopes there will be 'nothing more to plague her on his account'"
+    },
+    "key_events": [
+      "Elizabeth, Jane, and Maria Lucas travel from London to Hertfordshire",
+      "Lydia and Kitty meet them at the inn, displaying characteristic frivolity",
+      "Lydia chatters about officers, purchases a bonnet she admits is ugly, and hints at the Brighton scheme",
+      "Elizabeth returns home to find the Brighton question unresolved between her parents"
+    ],
+    "character_development": "This is Elizabeth seeing her own world through Darcy's eyes for the first time and finding his criticisms painfully valid. Her family's behavior — Lydia's wildness, her mother's scheming, her father's passivity — now registers not as endearing eccentricity but as genuine social and moral liability. The self-knowledge gained from the letter has expanded into a broader, more uncomfortable awareness of her family's failings. She cannot unsee what Darcy showed her."
+  },
+  {
+    "story_number": 40,
+    "story_title": "Chapter XL",
+    "knowledge_gained": [
+      "Jane's reaction confirms that the Wickham revelations are genuinely shocking — not just Elizabeth's own misjudgment",
+      "Jane, despite her charitable nature, cannot find a way to exonerate Wickham once presented with the facts",
+      "The Lucases and neighbors treat Wickham's impending departure as ordinary news, unaware of his true character — public reputation and private truth are entirely disconnected"
+    ],
+    "emotional_state": "Settled moral clarity mixed with pragmatic resignation. Elizabeth has moved past self-flagellation into a mature acceptance of complexity. She feels 'heartily sorry' for Darcy but does not romanticize the feeling. She and Jane decide against publicly exposing Wickham — a decision born of practical wisdom rather than evasion.",
+    "relationship_changes": {
+      "Jane": "The sisters' bond deepens through shared confidence; Jane's gentle shock at the Wickham truth validates Elizabeth's revised judgment without making her feel worse",
+      "Darcy": "Elizabeth expresses genuine sympathy for him ('I am heartily sorry for him') — a radical shift from the woman who rejected him days ago. She acknowledges his pain while pragmatically noting he will recover",
+      "Wickham": "Fully reclassified as a villain in Elizabeth's moral framework; she and Jane decide his exposure would hurt Darcy more than it would serve justice",
+      "Bingley": "Elizabeth carefully suppresses all Bingley-related content from the letter, protecting Jane but also carrying the weight of knowing Darcy separated them"
+    },
+    "key_events": [
+      "Elizabeth tells Jane about Darcy's proposal, carefully omitting the Bingley material",
+      "She reveals the full contents of the letter regarding Wickham's history",
+      "Jane is shocked and struggles to reconcile her charitable instincts with the damning evidence",
+      "Elizabeth and Jane debate whether to expose Wickham publicly and decide against it",
+      "Elizabeth reflects on Darcy with genuine sympathy rather than antagonism"
+    ],
+    "character_development": "Elizabeth demonstrates her new maturity in three ways: she edits the truth to protect Jane (strategic restraint replacing impulsive honesty), she argues against exposing Wickham on practical grounds (judgment over righteousness), and she expresses unforced compassion for Darcy (empathy replacing prejudice). The woman who 'never knew herself' a few days ago is now making careful, considered moral choices. Her characteristic sharpness remains — she is not softened — but it is now directed by genuine understanding rather than confident misreading."
+  },
+  {
+    "story_number": 41,
+    "story_title": "Chapter XLI",
+    "knowledge_gained": [
+      "Realizes anew the justice of Darcy's objections about her family's behavior",
+      "Learns that Lydia has been specifically invited to Brighton by Mrs. Forster",
+      "Discovers her father will not be persuaded to restrain Lydia despite her reasoned arguments",
+      "Understands her father prioritizes his own comfort over parental duty"
+    ],
+    "emotional_state": "Shame and anxious foreboding — ashamed of her family's frivolity and deeply uneasy about Lydia going unsupervised to Brighton, compounded by frustration at her father's negligence",
+    "relationship_changes": {
+      "Mr. Darcy": "Now sees his criticisms of her family as justified rather than insulting; feels sympathy for the position he was in",
+      "Mr. Bennet": "Respect diminished — she confronted him directly about Lydia and saw him choose ease over responsibility",
+      "Lydia": "Increased anxiety and disapproval, viewing her as a source of potential family disgrace",
+      "Wickham": "Final farewell is cordial but emotionally neutral; she parts from him without regret, their acquaintance now meaningless to her"
+    },
+    "key_events": [
+      "Elizabeth feels renewed shame at her family as the regiment prepares to leave Meryton",
+      "Lydia receives Mrs. Forster's invitation to Brighton",
+      "Elizabeth privately appeals to her father to forbid Lydia's trip, arguing the risk of public disgrace",
+      "Mr. Bennet dismisses her concerns and permits Lydia to go",
+      "Lydia departs for Brighton in clamorous excitement"
+    ],
+    "character_development": "Elizabeth has internalized Darcy's perspective enough to act on it — she takes the unprecedented step of directly confronting her father with a reasoned argument about family propriety. Her failure to persuade him marks a painful recognition that she cannot control her family's trajectory, shifting her from indignation at Darcy's critique to genuine dread that he was right."
+  },
+  {
+    "story_number": 42,
+    "story_title": "Chapter XLII",
+    "knowledge_gained": [
+      "Gains deeper analytical understanding of her parents' marriage — her father married for surface attraction and has paid for it with permanent loss of respect and affection",
+      "Recognizes that her father's ironic detachment is itself a moral failing, not just a personality trait",
+      "Learns the Derbyshire tour will pass near Pemberley",
+      "Confirms that Darcy is NOT currently at Pemberley, removing her objection to visiting"
+    ],
+    "emotional_state": "Cautious anticipation mixed with reflective melancholy — sobered by her analysis of her parents' marriage, but quietly curious and excited about seeing Pemberley, adopting a studied air of indifference to mask her real interest",
+    "relationship_changes": {
+      "Mr. Bennet": "Views him with clearer, more critical eyes — recognizes his wit as a coping mechanism for a self-inflicted unhappy marriage, and his parenting failures as part of a broader character flaw",
+      "Mrs. Bennet": "Understands her mother not just as an embarrassment but as the consequence of her father's imprudent choice",
+      "Mr. Darcy": "Her willingness to visit Pemberley (once she knows he's absent) reveals lingering curiosity and softened feelings — she wants to see his world",
+      "The Gardiners": "Growing reliance on them as sensible, respectable family members; looks forward to traveling with them"
+    },
+    "key_events": [
+      "Elizabeth reflects extensively on the failure of her parents' marriage as a cautionary tale",
+      "Wickham's debts and disreputable departure from Meryton become known, vindicating Elizabeth and Jane's private judgment",
+      "The northern tour is curtailed from the Lakes to Derbyshire",
+      "Elizabeth inquires whether Darcy is at Pemberley and, reassured he is not, agrees to visit"
+    ],
+    "character_development": "Elizabeth's moral vision sharpens beyond personal grievance into structural analysis — she now sees patterns of imprudence and consequence in her own family that mirror Darcy's critique. Her decision to visit Pemberley, carefully rationalized as indifference, reveals that Darcy has become a figure of genuine fascination rather than antagonism. She is moving from reactive emotion toward deliberate self-examination."
+  },
+  {
+    "story_number": 43,
+    "story_title": "Chapter XLIII",
+    "knowledge_gained": [
+      "Sees Pemberley firsthand — its tasteful grandeur, natural beauty, and lack of artificial pretension",
+      "Learns from the housekeeper Mrs. Reynolds that Darcy is considered the best landlord and master, generous and kind-tempered",
+      "Hears that Darcy has been 'the sweetest-tempered, most generous-hearted boy in the world' since childhood",
+      "Discovers through Mrs. Reynolds that Darcy is incapable of the mean-spiritedness Wickham attributed to him",
+      "Learns that Darcy arrived unexpectedly a day early, explaining the encounter she didn't anticipate"
+    ],
+    "emotional_state": "Wonder and deepening regard — astonished by Darcy's transformed civility, grateful for his warmth toward her uncle and aunt, and overwhelmed by the accumulating evidence that he is a far better man than she once judged him to be",
+    "relationship_changes": {
+      "Mr. Darcy": "Dramatic positive shift — his estate reflects his character (tasteful, natural, unpretentious); the housekeeper's praise and his unexpectedly gentle, eager behavior upon meeting her again produce feelings she 'could not exactly define' but that include gratitude, respect, and something warmer",
+      "The Gardiners": "They witness Darcy's attentions and begin to suspect a partiality; Elizabeth's embarrassment before them reveals how much Darcy's regard matters to her",
+      "Georgiana Darcy": "Curiosity and anticipation — Darcy's wish to introduce his sister signals serious intent, which Elizabeth registers with both pleasure and anxiety"
+    },
+    "key_events": [
+      "Elizabeth tours Pemberley and is genuinely moved by its beauty and taste",
+      "Mrs. Reynolds gives an effusive, credible character reference for Darcy",
+      "Elizabeth encounters Darcy unexpectedly on the grounds — both are visibly flustered",
+      "Darcy is strikingly civil and warm, asks about her family, and walks with her",
+      "Darcy requests permission to introduce Georgiana to Elizabeth",
+      "Elizabeth spends the evening consumed with wonder at Darcy's changed behavior"
+    ],
+    "character_development": "Pemberley becomes the turning point where abstract reconsideration crystallizes into felt emotion. Elizabeth's earlier intellectual revision of Darcy ('he didn't deserve my contempt') now becomes visceral — she sees his world, hears testimony from those who know him best, and experiences his reformed manner firsthand. The famous moment of feeling 'that to be mistress of Pemberley might be something' is not materialism but recognition: this place reflects values she admires. She ends the chapter unable to stop thinking about him, marking the transition from grudging fairness to active emotional investment."
+  },
+  {
+    "story_number": 44,
+    "story_title": "Chapter XLIV",
+    "knowledge_gained": [
+      "Discovers Georgiana Darcy is shy and reserved rather than proud, contradicting Wickham's characterization",
+      "Observes that Bingley still asks warmly after Jane, suggesting his feelings persist",
+      "Recognizes that Darcy's eagerness to introduce Georgiana signals the seriousness of his regard for her",
+      "Notices Miss Bingley's jealous scrutiny, confirming that others perceive Darcy's partiality"
+    ],
+    "emotional_state": "Pleased agitation and growing attachment — amazed at her own discomposure, gratified by Darcy's and Georgiana's attentions, and experiencing feelings she cannot yet name but that pull her steadily toward Darcy",
+    "relationship_changes": {
+      "Mr. Darcy": "Deepening mutual warmth — his bringing Georgiana so quickly, his sustained attentiveness, and his reformed manner all confirm that his feelings remain strong; Elizabeth's pleasure at this is now undeniable to herself",
+      "Georgiana Darcy": "Warm first impression — Elizabeth sees a shy, sweet girl rather than the proud figure Wickham described; beginning of genuine affection",
+      "Bingley": "Renewed hope for Jane — his pointed inquiries about her sister suggest unresolved attachment",
+      "Miss Bingley": "Tension — Caroline's barbed references to Wickham and the militia are transparent attempts to embarrass Elizabeth, which Darcy conspicuously does not support",
+      "The Gardiners": "They are now clearly aware of the mutual attraction and supportive of it"
+    },
+    "key_events": [
+      "Darcy and Georgiana visit Elizabeth at the Lambton inn the morning after arrival — sooner than expected",
+      "Elizabeth meets Georgiana and finds her shy but amiable",
+      "Bingley accompanies them and asks after Jane with evident interest",
+      "Miss Bingley attempts to needle Elizabeth with references to Wickham and the militia",
+      "Elizabeth and the Gardiners are invited to dine at Pemberley",
+      "Elizabeth agrees to visit Pemberley again the next morning, pleased but unable to articulate why"
+    ],
+    "character_development": "Elizabeth's emotional defenses are now fully lowered. Where she once met Darcy with wit as armor, she now meets his sister with nervous hope. Her inability to explain her own pleasure at seeing him again — 'she had very little to say in reply' when she asked herself the reason — marks the moment where her feelings have outpaced her formidable capacity for self-analysis. She is falling in love and beginning to know it."
+  },
+  {
+    "story_number": 45,
+    "story_title": "Chapter XLV",
+    "knowledge_gained": [
+      "Miss Bingley's dislike of her stems from jealousy over Darcy",
+      "Georgiana's apparent pride is actually acute shyness and fear of doing wrong",
+      "Miss Bingley is willing to risk Darcy's displeasure by mentioning Wickham to wound Elizabeth",
+      "Darcy does not visibly resent the Wickham reference — his composure holds",
+      "Mrs. Gardiner is also closely observing Darcy's behavior toward Elizabeth"
+    ],
+    "emotional_state": "Guarded curiosity and deepening private attachment — Elizabeth is hyperaware of Darcy's every reaction, successfully deflects Miss Bingley's provocations with composure, yet cannot bring herself to openly discuss Darcy even with Mrs. Gardiner, revealing the depth of feeling she is not yet ready to name",
+    "relationship_changes": {
+      "Darcy": "Attachment deepens through indirect evidence — his civility, his sister's eagerness to please Elizabeth, and his restraint when Wickham is mentioned all confirm the sincerity of his changed behavior; Elizabeth longs to discuss him but cannot",
+      "Georgiana": "Warm initial connection established — Elizabeth sees past the shyness to genuine amiability; a mutual goodwill forms",
+      "Miss Bingley": "Relationship hardens into open rivalry — Miss Bingley's Wickham barb is a deliberate attempt to humiliate Elizabeth and expose her to Darcy's contempt; Elizabeth's calm response signals she will not be intimidated",
+      "Mrs. Gardiner": "A conspiratorial unspoken understanding — both women observe Darcy intently, both want to discuss him, neither will begin; their shared silence is itself a form of intimacy"
+    },
+    "key_events": [
+      "Elizabeth and the Gardiners visit Pemberley and are received by Georgiana, Miss Bingley, and Mrs. Hurst",
+      "Miss Bingley needles Elizabeth by bringing up Wickham and the militia in front of Darcy",
+      "Elizabeth maintains composure but is alarmed, watching Darcy's face for his reaction",
+      "On the return journey Elizabeth and Mrs. Gardiner discuss everything about the visit except Darcy himself"
+    ],
+    "character_development": "Elizabeth demonstrates significant emotional maturity — she absorbs Miss Bingley's malicious provocation without losing composure, prioritizing Darcy's feelings over her own instinct to react. Her inability to speak about Darcy even to her trusted aunt marks a shift from her earlier frankness; her feelings have grown beyond what her characteristic wit and directness can safely handle."
+  },
+  {
+    "story_number": 46,
+    "story_title": "Chapter XLVI",
+    "knowledge_gained": [
+      "Lydia has eloped with Wickham — they left Brighton together but did NOT go to Scotland as initially hoped",
+      "They were traced to London but then lost; there is no evidence of a marriage",
+      "Wickham has no intention of marrying Lydia — this is ruin, not an elopement",
+      "Colonel Forster is involved in the search; Wickham had gambling debts throughout Meryton",
+      "Her own earlier silence about Wickham's true character may have contributed to this disaster"
+    ],
+    "emotional_state": "Devastation and acute self-reproach — the crisis shatters the fragile happiness she had been building at Pemberley. She is overwhelmed by shame for her family, terror for Lydia's fate, and the agonizing conviction that she has lost Darcy permanently through this disgrace. Confiding in Darcy in a moment of raw distress strips away all her usual defenses.",
+    "relationship_changes": {
+      "Darcy": "A moment of involuntary vulnerability — Elizabeth confesses the crisis to him in an unguarded outpouring, then immediately assumes the scandal will repulse him forever; her certainty that she has lost him crystallizes how much she wanted him",
+      "Lydia": "Shifts from dismissive older-sister exasperation to genuine anguish and moral horror at Lydia's ruin",
+      "Wickham": "Final and complete disillusionment — Wickham is no longer merely dishonest but actively destructive; Elizabeth now sees him as the agent of her family's downfall",
+      "Jane": "Renewed sisterly bond through shared crisis — Jane's distressed letters pull Elizabeth back into family solidarity",
+      "The Gardiners": "Deep gratitude and reliance — their practical competence and emotional steadiness become Elizabeth's anchor as the crisis unfolds"
+    },
+    "key_events": [
+      "Elizabeth receives two letters from Jane revealing Lydia's elopement with Wickham",
+      "The second letter confirms they did not go to Scotland and cannot be found — implying disgrace, not marriage",
+      "Darcy arrives and finds Elizabeth in visible distress; she confides the entire situation to him",
+      "Elizabeth, consumed with self-blame for not exposing Wickham's character earlier, believes this scandal will end any possibility with Darcy",
+      "The Gardiners and Elizabeth depart Lambton urgently for Longbourn"
+    ],
+    "character_development": "The chapter is a hinge point in Elizabeth's arc. Her confession to Darcy is the most emotionally unguarded moment in the novel so far — she speaks without calculation, irony, or self-protection. The self-reproach she feels ('Had I but explained...') shows she has internalized a mature sense of moral responsibility that goes beyond personal pride. She now fully recognizes the cost of her earlier prejudice — both her initial trust in Wickham and her dismissal of Darcy's warnings."
+  },
+  {
+    "story_number": 47,
+    "story_title": "Chapter XLVII",
+    "knowledge_gained": [
+      "Wickham has left debts of honour and tradesmen's debts throughout Meryton and Brighton",
+      "Wickham's character was never what it appeared — he was universally condemned once the truth emerged",
+      "Her father had gone to London to search but has sent no encouraging news",
+      "Mr. Gardiner is actively investigating, tracing hackney coaches and lodging houses in London",
+      "The full scale of the family's social ruin is becoming clear — disgrace will touch all the Bennet sisters"
+    ],
+    "emotional_state": "A bitter convergence of love recognized and love believed lost — Elizabeth arrives at a full, conscious understanding that she loves Darcy precisely at the moment she is most convinced the connection is impossible. Beneath this runs anguish for Lydia, humiliation at her mother's theatrics, and a deepening dread that the situation cannot be salvaged.",
+    "relationship_changes": {
+      "Darcy": "Elizabeth now explicitly acknowledges to herself that she loves him and that he is 'exactly the man who, in disposition and talents, would most suit her' — but she considers him permanently lost due to the family disgrace",
+      "Wickham": "Contempt now fully solidified; she can no longer find any excuse for his conduct and recognizes the depth of his calculated predation",
+      "Mrs. Bennet": "Elizabeth's patience is strained by her mother's hysterical self-pity and blame-shifting, though she endures it with resignation",
+      "Jane": "Deepened solidarity — Jane and Elizabeth are united as the rational, suffering core of the family",
+      "Mr. Gardiner": "Elevated respect — his calm, methodical approach to the crisis contrasts sharply with Mr. Bennet's ineffectiveness"
+    },
+    "key_events": [
+      "On the journey home, Mr. Gardiner offers hope that Wickham may yet marry Lydia; Elizabeth briefly brightens but her knowledge of Wickham's character prevents sustained optimism",
+      "Elizabeth privately reflects that Darcy is lost to her — the family disgrace makes any union impossible",
+      "She arrives at Longbourn to find Jane distressed and Mrs. Bennet confined to her room in hysterics",
+      "Mr. Gardiner departs for London to join the search for Lydia and Wickham"
+    ],
+    "character_development": "Elizabeth reaches the most painful form of self-knowledge: she understands what she wants only after it seems unattainable. Her reflection on Darcy is free of pride, defensiveness, or rationalization — she simply acknowledges that she was wrong about him and that she loves him. This quiet, private reckoning marks the completion of the internal transformation that began with his letter. She also shoulders family responsibility without complaint, managing the crisis while her father flounders and her mother collapses."
+  },
+  {
+    "story_number": 48,
+    "story_title": "Chapter XLVIII",
+    "knowledge_gained": [
+      "Wickham's debts and dissolute behavior were far worse than publicly known — fresh revelations continue to surface",
+      "Mr. Bennet is an ineffective searcher; Mr. Gardiner is doing the real work in London",
+      "The whole of Meryton has turned against Wickham now that his true character is exposed",
+      "There is still no trace of Lydia and Wickham despite sustained searching",
+      "Her father, despite his dark humor, privately feels guilt for not restraining Lydia"
+    ],
+    "emotional_state": "Resigned despair settling into grim endurance — the initial shock has passed and is replaced by a grinding anxiety. Elizabeth is most pained not by the scandal itself but by her private conviction that Darcy would never now attach himself to her family. She clings to a thread of dark humor (shared with her father) as a coping mechanism, but underneath is a pervasive sadness.",
+    "relationship_changes": {
+      "Darcy": "Elizabeth's sense of loss solidifies into near-certainty — she replays his reaction at Lambton and convinces herself that whatever regard he had must now be extinguished by the disgrace; the relationship exists only as mourned possibility",
+      "Mr. Bennet": "A complicated mix of affection and clear-eyed recognition of his failures — Elizabeth understands that his neglectful parenting contributed to Lydia's ruin; his dark jokes about Kitty both amuse and sadden her",
+      "Mrs. Phillips": "Mild irritation — her aunt's visits to 'cheer them up' while reporting Wickham's latest scandals are counterproductive",
+      "Kitty": "Some protective concern — Elizabeth sees Kitty as salvageable if removed from Lydia's influence"
+    },
+    "key_events": [
+      "The family waits in agonizing suspense for news; Mr. Bennet sends no letters from London",
+      "Mr. Gardiner writes regularly but reports no progress in finding the couple",
+      "All Meryton turns against Wickham as his debts, lies, and misconduct become widely known",
+      "Mr. Bennet returns home, admits he was useless in London, and darkly jokes about restricting Kitty",
+      "Elizabeth privately grieves the loss of Darcy's regard as much as the family crisis itself"
+    ],
+    "character_development": "Elizabeth settles into the hardest phase of a crisis — the waiting. Her character shows its steel not in dramatic action but in quiet endurance. She manages the household's emotional temperature, tolerates her mother's histrionics and her aunt Phillips's tactless visits, and maintains her composure outwardly while privately processing dual grief: for her family's honor and for the relationship with Darcy she now believes is irretrievably lost. Notably, she does not indulge in self-pity — her pain is always directed outward toward consequences for others."
+  },
+  {
+    "story_number": 49,
+    "story_title": "Chapter XLIX",
+    "knowledge_gained": [
+      "Lydia and Wickham have been found and will marry — Mr. Gardiner has negotiated terms",
+      "Wickham's conditions: £100/year during Mr. Bennet's life, equal share of £5,000 after his death, plus debts paid and a commission purchased",
+      "The terms are suspiciously favorable — Wickham accepted far less than expected, implying Mr. Gardiner paid a large sum to secure the match"
+    ],
+    "emotional_state": "Relief tempered by sober realism — grateful the crisis is resolved but unable to expect genuine happiness for Lydia, and privately grieving that the confirmed family disgrace makes a future with Darcy impossible",
+    "relationship_changes": {
+      "Mr. Gardiner": "Deepened gratitude and respect; Elizabeth recognizes his enormous financial sacrifice on the family's behalf",
+      "Lydia": "Resigned acceptance — Lydia is saved from ruin but Elizabeth holds no illusion about her sister's future happiness",
+      "Darcy": "Internalized loss; Elizabeth now believes the Wickham connection as brother-in-law makes any union with Darcy permanently impossible",
+      "Mrs. Bennet": "Quiet exasperation at her mother's immediate pivot to wedding raptures without moral reflection"
+    },
+    "key_events": [
+      "Express letter arrives from Mr. Gardiner announcing Lydia and Wickham will marry",
+      "Elizabeth runs ahead of Jane to find her father and learn the news",
+      "Elizabeth privately calculates that Mr. Gardiner must have paid thousands to arrange the match",
+      "Elizabeth retreats to her room to reflect — relieved compared to fears of two hours ago, but seeing no prospect of happiness for Lydia or herself"
+    ],
+    "character_development": "Elizabeth demonstrates her characteristic analytical clarity even in a moment of relief. While the rest of the family reacts emotionally — Mrs. Bennet with ecstasy, Mr. Bennet with grim acceptance — Elizabeth immediately grasps the financial reality behind the settlement and feels the moral weight of her uncle's generosity. Her private grief over Darcy reveals how fully her feelings have matured: the family crisis hurts not only for Lydia's sake but because it seals the loss of the man she now loves."
+  },
+  {
+    "story_number": 50,
+    "story_title": "Chapter L",
+    "knowledge_gained": [
+      "Mr. Bennet estimates Mr. Gardiner paid at least £10,000 beyond the settlement terms to buy Wickham's compliance — debts, commission, and inducement",
+      "Mr. Bennet acknowledges his own financial irresponsibility over a lifetime of failing to save",
+      "Lydia and Wickham are to visit Longbourn after the ceremony before Wickham takes up his commission in the north",
+      "Wickham has agreed to the Longbourn visit — surprising Elizabeth, who expected his pride or guilt would prevent it"
+    ],
+    "emotional_state": "A settled, quiet despair beneath practical composure — Elizabeth is convinced Darcy would never willingly become brother-in-law to Wickham, and she now regards that loss as final rather than merely feared",
+    "relationship_changes": {
+      "Mr. Bennet": "Complicated sympathy; Elizabeth sees her father acknowledge failure for the first time, yet she also recognizes his helplessness has always been a form of self-indulgence",
+      "Darcy": "The conviction of loss hardens from fear into certainty — she explicitly reasons that no man of Darcy's pride and judgment would connect himself to a family containing Wickham",
+      "Wickham": "Deepened dread and aversion; Elizabeth wishes never to see him again and is alarmed he has agreed to visit",
+      "Mrs. Bennet": "Increased frustration — her mother's obsession with wedding clothes and carriages while the family faces financial ruin underscores the gap between them"
+    },
+    "key_events": [
+      "Mr. Bennet calculates the true cost of the arrangement and feels the weight of his debt to Mr. Gardiner",
+      "Elizabeth reflects that Darcy is now permanently lost — Wickham as a brother-in-law is an insurmountable barrier",
+      "Permission is given for Lydia and Wickham to visit Longbourn after the wedding",
+      "Elizabeth dreads the upcoming encounter with Wickham"
+    ],
+    "character_development": "Elizabeth's understanding of consequences deepens. She now sees her father's lifelong avoidance of responsibility not as charming detachment but as a genuine failure with real costs. Her grief over Darcy shifts from acute anguish to a resigned, almost philosophical acceptance — she understands exactly what she has lost and why, and she does not indulge in self-pity but faces it with painful clarity."
+  },
+  {
+    "story_number": 51,
+    "story_title": "Chapter LI",
+    "knowledge_gained": [
+      "Lydia is entirely unrepentant and unchanged — the elopement has taught her nothing",
+      "Lydia accidentally reveals that MR. DARCY was present at her wedding, contradicting everything Elizabeth assumed about his desire for distance",
+      "Darcy's presence at the wedding implies a far deeper involvement in arranging the marriage than anyone in the family knew",
+      "Elizabeth realizes she must write to Mrs. Gardiner to learn the full truth of Darcy's role"
+    ],
+    "emotional_state": "Shock and urgent, consuming curiosity — Lydia's careless mention of Darcy at the wedding shatters Elizabeth's settled despair and replaces it with desperate need to understand what Darcy has done and why",
+    "relationship_changes": {
+      "Lydia": "Disgust crystallizes — Elizabeth is appalled by Lydia's brazenness, her insistence on being called 'Mrs. Wickham,' and her complete lack of shame or gratitude",
+      "Wickham": "Cold, controlled civility; Elizabeth manages politeness but finds his easy assurance insufferable",
+      "Darcy": "Everything is thrown into uncertainty — his presence at the wedding suggests involvement, sacrifice, and possibly continued attachment, overturning Elizabeth's conviction that he had withdrawn",
+      "Jane": "Appreciates Jane's delicacy in not repeating Lydia's slip, though Elizabeth would have welcomed the confidence"
+    },
+    "key_events": [
+      "Lydia and Wickham arrive at Longbourn as a married couple",
+      "Elizabeth is disgusted by Lydia's shameless triumph and Wickham's composure",
+      "Lydia carelessly reveals Darcy was at the wedding ceremony",
+      "Elizabeth, stunned, writes immediately to Mrs. Gardiner demanding the full account of Darcy's involvement"
+    ],
+    "character_development": "Elizabeth's emotional landscape undergoes a sudden tectonic shift. The resigned grief she had carefully constructed is blown apart by a single careless sentence from Lydia. Her immediate impulse — to seek the truth through Mrs. Gardiner rather than speculate — shows her growth: the Elizabeth of earlier chapters might have leapt to conclusions, but this Elizabeth insists on evidence before allowing herself to hope. The scene also tests her self-command; she maintains composure in front of Lydia and Wickham despite inner turmoil."
+  },
+  {
+    "story_number": 52,
+    "story_title": "Chapter LII",
+    "knowledge_gained": [
+      "Darcy personally tracked down Lydia and Wickham in London",
+      "Darcy paid all of Wickham's debts, purchased his commission, and provided the financial inducement for the marriage — the Gardiners contributed nothing",
+      "Darcy insisted on secrecy, wanting no credit; he told Mr. Gardiner he blamed himself for not publicly exposing Wickham's character after the Ramsgate incident",
+      "Mrs. Gardiner hints strongly that Darcy's true motive was his love for Elizabeth, not merely guilt or duty",
+      "Darcy struggled to negotiate with Lydia, who was uninterested in leaving Wickham regardless of marriage",
+      "Mr. Gardiner only agreed to appear as the benefactor because Darcy insisted Elizabeth's family not know his role"
+    ],
+    "emotional_state": "Overwhelming gratitude, humility, and rekindled love — Elizabeth is deeply moved by the magnitude of Darcy's sacrifice, ashamed of having believed he would abandon her, and stirred by the realization that his feelings for her endured through everything",
+    "relationship_changes": {
+      "Darcy": "Profound transformation — Elizabeth now understands Darcy saved her family at enormous personal cost and without seeking recognition; her love, respect, and sense of indebtedness reach their highest point, though she is uncertain whether hope is warranted",
+      "Mr. Gardiner": "Recontextualized — Elizabeth learns her uncle served as Darcy's willing front, not as the principal benefactor; her gratitude shifts to include admiration for his discretion",
+      "Mrs. Gardiner": "Deepened trust and affection — her aunt's perceptive, gently teasing letter becomes Elizabeth's most valued confidence",
+      "Wickham": "Settled contempt managed with diplomatic grace — in their final encounter before his departure, Elizabeth refuses to be provoked and offers a composed, even generous farewell: 'we are brother and sister now'",
+      "Lydia": "Resigned tolerance; the full revelation of Darcy's sacrifice makes Lydia's ingratitude even more stark but Elizabeth has moved past anger"
+    },
+    "key_events": [
+      "Elizabeth receives Mrs. Gardiner's letter revealing the full extent of Darcy's role in saving the family",
+      "She reads it in the copse, 'prepared to be happy,' and discovers Darcy did everything",
+      "Elizabeth rereads the letter repeatedly, overcome with emotion — gratitude, shame, and love",
+      "Wickham attempts a private conversation fishing for information about Darcy; Elizabeth deflects with poise",
+      "Elizabeth bids Wickham farewell with composure: 'Do not let us quarrel about the past. In future, I hope we shall be always of one mind'"
+    ],
+    "character_development": "This chapter marks the completion of Elizabeth's inner revolution. The woman who once declared she could more easily forgive Darcy's pride than Wickham's absence of it now comprehends the full depth of Darcy's character — his willingness to act selflessly, to endure contact with the man he most despises, and to refuse credit. Her handling of Wickham in their final scene shows a new maturity: she neither attacks nor retreats but offers a genuinely gracious dismissal that closes the chapter on her past misjudgments. Elizabeth emerges from this chapter with full self-knowledge, full knowledge of Darcy, and the emotional honesty to feel both love and the fear that she may not deserve what he has given."
+  },
+  {
+    "story_number": 53,
+    "story_title": "Chapter LIII — Wickham's Departure and Darcy's Return to Longbourn",
+    "knowledge_gained": [
+      "Her deflection worked — Wickham will no longer probe about Darcy",
+      "Darcy has returned to the neighborhood with Bingley, confirming he has not withdrawn",
+      "Her mother's open rudeness toward Darcy and fawning over Bingley remains as mortifying as ever"
+    ],
+    "emotional_state": "Acute self-consciousness and frustrated hope — relieved to see Wickham gone, but agonized during Darcy's visit by her inability to reach him through the barriers of her mother's incivility and the room's social choreography",
+    "relationship_changes": {
+      "Wickham": "Definitively closed; she has silenced him and watches his departure with detached irony",
+      "Darcy": "Intensely uncertain — she longs to connect but he is grave and reserved; she cannot tell if his restraint is indifference or caution",
+      "Mrs. Bennet": "Deepened embarrassment; her mother's pointed rudeness toward Darcy ('that disagreeable Mr. Darcy') sharpens Elizabeth's shame at the family she now desperately wishes Darcy could overlook",
+      "Mr. Bennet": "Aligned in sardonic humor — she echoes his ironic wit about Wickham's departure"
+    },
+    "key_events": [
+      "Wickham and Lydia depart Longbourn, ending that chapter of family disgrace",
+      "Bingley and Darcy call at Longbourn together — the first meeting since Elizabeth learned of Darcy's role in saving her family",
+      "Elizabeth watches Darcy intently but is physically separated from him; he is grave and barely speaks to her",
+      "Mrs. Bennet is openly hostile to Darcy while lavishing attention on Bingley"
+    ],
+    "character_development": "Elizabeth has moved from reactive shame to controlled composure — she handled Wickham's fishing expedition, endured his departure with poise, and now faces the far harder test of Darcy's physical presence while unable to act on her feelings. Her suffering is no longer about wounded pride but about love obstructed by circumstance."
+  },
+  {
+    "story_number": 54,
+    "story_title": "Chapter LIV — The Teasing, Teasing Man",
+    "knowledge_gained": [
+      "Darcy's behavior is contradictory — he came to Longbourn yet remained silent and grave, offering no warmth",
+      "Bingley is clearly renewing his attachment to Jane with growing confidence",
+      "Jane believes herself safe from emotional danger with Bingley — Elizabeth sees otherwise"
+    ],
+    "emotional_state": "Vexation spiraling into anxious overthinking — she oscillates between hope ('if he fears me, why come?') and despair ('if he no longer cares, why silent?'), unable to settle on any reading that gives her pleasure. The frustration is the frustration of someone deeply in love who cannot decode the beloved's signals.",
+    "relationship_changes": {
+      "Darcy": "Agonizing ambiguity deepens; she resolves to think no more of him but immediately fails — her inability to stop analyzing him proves the depth of her attachment",
+      "Jane": "Growing intimacy as confidante; Elizabeth teases Jane about Bingley with affectionate sharpness, but Jane turns the mirror back, sensing Elizabeth's own unacknowledged feelings for Darcy",
+      "Bingley": "Warmly approving; she sees him making Jane happy and champions the match"
+    },
+    "key_events": [
+      "Elizabeth walks out alone to dwell on Darcy's confusing behavior — the classic Austen 'solitary walk as emotional processing'",
+      "She delivers the internally famous line: 'Teasing, teasing man! I will think no more about him'",
+      "Jane tells Elizabeth she is 'perfectly easy' about Bingley; Elizabeth warns her she is 'in very great danger of making him as much in love with you as ever'",
+      "Jane perceptively challenges Elizabeth's own 'indifference,' hinting she sees through Elizabeth's deflections about Darcy"
+    ],
+    "character_development": "Elizabeth's self-command is fracturing under emotional pressure. She who once prided herself on reading people clearly is now unable to read the one person who matters most. Her irony and wit — usually weapons of control — become instruments of self-torment. Jane's quiet challenge ('do not make me your confidante') marks the moment Elizabeth's emotional concealment becomes visible to others."
+  },
+  {
+    "story_number": 55,
+    "story_title": "Chapter LV — Jane's Engagement and Elizabeth's Solitary Hope",
+    "knowledge_gained": [
+      "Darcy has left for London — his departure could mean withdrawal or preparation",
+      "Bingley has proposed and Jane has accepted",
+      "Mr. Bennet consents and genuinely esteems Bingley's character"
+    ],
+    "emotional_state": "Genuine, unselfish joy for Jane interlaced with a sharp private longing — she is 'really and truly happy' for her sister, but Jane's fulfillment throws her own suspended hopes into relief. She is the one who privately thinks she could be 'the luckiest creature in the world' if only her own love could be answered.",
+    "relationship_changes": {
+      "Jane": "Peak closeness — Elizabeth shares fully in Jane's happiness with no jealousy, only love; their sisterly bond reaches its highest expression",
+      "Bingley": "Accepted warmly as brother-in-law; Elizabeth's earlier doubts about his constancy are resolved by his return",
+      "Darcy": "His absence is felt as a wound; Elizabeth connects Darcy's departure with uncertainty about her own future, but Bingley's return gives her a template for hope — what happened for Jane might happen for her",
+      "Mr. Bennet": "Deepened mutual respect; his dry consent to Jane's match and genuine praise of Bingley align with Elizabeth's own judgment"
+    },
+    "key_events": [
+      "Darcy departs for London, leaving Bingley to call alone",
+      "Bingley visits daily with increasing warmth; the family conspires to leave him alone with Jane",
+      "Bingley proposes to Jane; she accepts",
+      "Elizabeth and Jane share a private, emotional exchange about the engagement",
+      "News spreads through Meryton — the Bennets' reputation reverses from 'marked for misfortune' to 'luckiest family'"
+    ],
+    "character_development": "Elizabeth demonstrates the maturity of her moral growth: she is capable of pure, generous happiness for someone else even when her own heart is unresolved. This is the Elizabeth who has fully shed the early novel's competitive edge and defensive pride. Her private yearning for Darcy — unspoken, patient, without schemes — marks the completion of her transformation from witty judge to vulnerable lover."
+  },
+  {
+    "story_number": 56,
+    "story_title": "Chapter LVI — Lady Catherine's Confrontation",
+    "knowledge_gained": [
+      "A rumor of her engagement to Darcy has reached Lady Catherine — meaning someone (likely the Lucases via Collins) believes it plausible or imminent",
+      "Lady Catherine considers the match a degradation and has come expressly to extort a promise that Elizabeth will refuse Darcy",
+      "Darcy's family actively opposes the match, invoking duty, honor, and Anne de Bourgh's prior claim",
+      "The very existence of the rumor implies Darcy's intentions may be more active than his recent silence suggested"
+    ],
+    "emotional_state": "Defiant composure hardening into quiet, rekindled hope — initially alarmed by Lady Catherine's intrusion, Elizabeth rapidly finds her footing and refuses to be intimidated. By the end, beneath her disturbance at the confrontation, a new signal has emerged: if Lady Catherine felt threatened enough to come, Darcy's attachment may still be alive.",
+    "relationship_changes": {
+      "Lady Catherine": "Open adversarial rupture — Elizabeth refuses every demand with controlled but unyielding dignity, asserting her equal right to choose",
+      "Darcy": "Paradoxical clarification through Lady Catherine's hostility — the confrontation functions as indirect evidence that Darcy has not abandoned his feelings, renewing Elizabeth's hope",
+      "Mrs. Bennet": "Elizabeth must deceive her mother about the visit's true purpose, maintaining the pattern of carrying serious matters alone",
+      "Collins/Charlotte": "Implicit distance; the rumor likely traveled through Collins, further marking that social world as adversarial"
+    },
+    "key_events": [
+      "Lady Catherine de Bourgh arrives unannounced at Longbourn",
+      "She demands a private audience with Elizabeth in the garden",
+      "Lady Catherine insists Elizabeth promise never to accept Darcy; Elizabeth flatly refuses: 'I am only resolved to act in that manner which will, in my own opinion, constitute my happiness'",
+      "Elizabeth withstands sustained pressure, insult, and social intimidation without yielding an inch",
+      "Lady Catherine departs furious and unsatisfied; Elizabeth conceals the substance of the conversation from her mother"
+    ],
+    "character_development": "This is Elizabeth's finest hour of moral courage. She faces the full weight of aristocratic authority — rank, wealth, family obligation — and refuses to surrender her autonomy or deny her feelings. Her defiance is not reckless but principled: she does not claim an engagement exists, only that she will not be bullied out of her right to choose. The confrontation crystallizes everything she has become — a woman who has shed prejudice and false pride but retained the fierce independence that was always her core strength. She now carries her love for Darcy not as a secret shame but as a right she will defend."
+  },
+  {
+    "story_number": 57,
+    "story_title": "Chapter LVII — The Aftermath of Lady Catherine's Visit",
+    "knowledge_gained": [
+      "The rumor of her engagement to Darcy originated from the Lucas Lodge connection to the Collinses, fueled by Bingley and Jane's match",
+      "Lady Catherine may apply directly to Darcy to prevent the match, which could either dissuade him or — if he is truly committed — reveal his intentions",
+      "Her father views Darcy's supposed attachment as absurd and impossible, exposing how thoroughly she has concealed her feelings",
+      "She cannot be certain whether her father's reading of Darcy's indifference is accurate or whether she has imagined too much"
+    ],
+    "emotional_state": "Anxious uncertainty layered over suppressed hope — she oscillates between dread that Lady Catherine will succeed in turning Darcy against her and a tentative hope that the interference might actually prompt him to act; her father's mocking of Darcy's supposed indifference cruelly sharpens the doubt",
+    "relationship_changes": {
+      "Darcy": "Relationship hangs in suspended, agonizing ambiguity — she privately hopes Lady Catherine's confrontation may force his hand, but fears it could equally extinguish any remaining attachment",
+      "Mr. Bennet": "Feels a painful new distance; his satirical dismissal of Darcy's interest wounds her deeply, and she must silently endure his unknowing cruelty",
+      "Lady Catherine": "Now a direct antagonist whose threats Elizabeth has survived but whose future actions remain unpredictable",
+      "Jane": "Implicitly closer as Jane's engagement is the catalyst for the rumor, binding Elizabeth's romantic fate to her sister's happiness"
+    },
+    "key_events": [
+      "Elizabeth processes the emotional aftermath of Lady Catherine's confrontation in private",
+      "She deduces the rumor chain: Lucas Lodge → Collinses → Lady Catherine",
+      "She realizes Lady Catherine may go directly to Darcy, and weighs whether this helps or harms her",
+      "Mr. Bennet reads Darcy's letter to Mr. Collins aloud, mocking the idea of Darcy's attachment; Elizabeth must hide her true feelings and laugh when she wants to cry"
+    ],
+    "character_development": "Elizabeth is forced into a painful posture of concealment — she who values honesty and directness must now perform indifference before her own father. The chapter marks her deepest experience of emotional isolation: she cannot share her anxiety with anyone, and for the first time she seriously doubts her own judgment about Darcy's feelings. Her resilience is tested not by external confrontation (as with Lady Catherine) but by internal uncertainty and loneliness."
+  },
+  {
+    "story_number": 58,
+    "story_title": "Chapter LVIII — The Walk and the Second Proposal",
+    "knowledge_gained": [
+      "Darcy's feelings not only survived Lady Catherine's interference but were encouraged by it — Lady Catherine's report of Elizabeth's refusal to promise gave him hope",
+      "Darcy's affections and wishes are unchanged since his first proposal at Hunsford, confirming the constancy she had hoped for",
+      "Her own letter at Hunsford had caused him genuine, deserved anguish and prompted real self-examination and change",
+      "Darcy acknowledges that her reproofs were well-applied and taught him to think justly — he credits her with his moral reformation",
+      "Bingley was not merely Darcy's friend but someone Darcy had actively guided, confirming the depth of Darcy's influence in her sister's affairs"
+    ],
+    "emotional_state": "Overwhelming, almost disorienting happiness mixed with gratitude and humility — she moves from desperate courage (initiating the thanking speech) through astonishment at his renewed declaration, to deep mutual joy during their long walk together",
+    "relationship_changes": {
+      "Darcy": "Transformed from uncertain object of hope to accepted lover and future husband — they achieve full emotional transparency and mutual understanding for the first time, walking and talking for hours",
+      "Lady Catherine": "Ironically recast as an unwitting benefactress — her meddling gave Darcy the hope he needed to return",
+      "Bingley": "Elizabeth sees him anew through Darcy's affectionate description, and checks her impulse to tease Darcy about Bingley's pliability, showing new tenderness",
+      "Jane": "Their parallel engagements now mirror each other, deepening the sisterly bond"
+    },
+    "key_events": [
+      "Darcy returns to Longbourn with Bingley, disproving Elizabeth's fear that Lady Catherine had succeeded",
+      "Elizabeth forms a 'desperate resolution' and initiates conversation by thanking Darcy for saving Lydia",
+      "Darcy renews his proposal; Elizabeth accepts",
+      "They walk for hours, reconstructing their entire relationship history — each confession and mutual accounting",
+      "Darcy reveals that Lady Catherine's account of Elizabeth's defiance actually gave him hope to try again"
+    ],
+    "character_development": "Elizabeth demonstrates her fullest moral courage: not defiance against an enemy (as with Lady Catherine) but vulnerability before someone she loves. By initiating the conversation that leads to the proposal, she reverses the passivity expected of women in her era and takes authorship of her own happiness. She also shows mature self-awareness — reflecting honestly on her past rudeness, acknowledging how her prejudice shaped her behavior, and restraining her wit (not teasing Darcy about Bingley) out of emotional intelligence rather than suppression."
+  },
+  {
+    "story_number": 59,
+    "story_title": "Chapter LIX — The Family Learns the Truth",
+    "knowledge_gained": [
+      "Jane's initial disbelief confirms how thoroughly Elizabeth had concealed her changing feelings — even her closest confidante had no idea",
+      "Mr. Bennet's reaction reveals genuine parental concern beneath his satirical exterior: he fears she is marrying without affection",
+      "Her mother's instant reversal from despising Darcy to ecstatic admiration exposes the purely mercenary basis of Mrs. Bennet's judgments",
+      "Darcy is 'rising every hour' in Mr. Bennet's esteem, proving that genuine acquaintance dissolves even longstanding prejudice"
+    ],
+    "emotional_state": "A complex mixture — she 'rather knew that she was happy than felt herself to be so,' overwhelmed by the gap between private joy and the public ordeal of disclosure; relief and satisfaction grow as each family member is won over, but the process is emotionally exhausting",
+    "relationship_changes": {
+      "Jane": "Deepened to its most intimate point — Elizabeth opens her heart completely, and Jane moves from incredulity to tearful joy; they achieve full mutual happiness",
+      "Mr. Bennet": "A pivotal emotional exchange — his grave concern ('I know your disposition, Lizzy') forces Elizabeth to prove the sincerity of her love, and his blessing ('I could not have parted with you to anyone less worthy') is the deepest expression of paternal love in the novel",
+      "Mrs. Bennet": "Elizabeth witnesses her mother's absurd reversal with a mixture of amusement and discomfort; the relationship remains fundamentally unchanged",
+      "Darcy": "Elizabeth watches him earn her father's respect through direct acquaintance, validating her own judgment and deepening her satisfaction in the match"
+    },
+    "key_events": [
+      "Elizabeth returns from the walk and deflects questions about where she has been",
+      "She opens her heart to Jane that evening; Jane is incredulous then overjoyed",
+      "She asks Mr. Bennet's consent; he is alarmed she does not truly love Darcy, and she must convince him with full honesty",
+      "Mr. Bennet gives his blessing with genuine emotion",
+      "Mrs. Bennet's reaction is explosive, comic delight — Darcy is instantly her favorite son-in-law",
+      "Mr. Bennet grows to admire Darcy through personal acquaintance"
+    ],
+    "character_development": "Elizabeth completes the journey from concealment to full transparency. The conversation with Mr. Bennet is the emotional climax of her arc — she must articulate, for the first time out loud, the depth and sincerity of her love for Darcy, and in doing so she confronts the legacy of her own past prejudice (her father's disbelief is based on her own earlier mockery of Darcy). She takes responsibility for the misimpressions she created and demonstrates that her growth is not merely internal but now expressed openly to those she loves most."
+  },
+  {
+    "story_number": 60,
+    "story_title": "Chapter LX — Retrospection and Resolution",
+    "knowledge_gained": [
+      "Darcy fell in love with her for 'the liveliness of her mind' — her impertinence was the quality that distinguished her from the sycophantic women of his circle",
+      "She understands that her unconventionality, which she sometimes feared was a liability, was precisely what attracted a man of genuine worth",
+      "The discomfort of the courtship period — managing Mrs. Bennet's embarrassing behavior, Lady Catherine's hostility, Miss Bingley's jealousy — is temporary and will be resolved by the removal to Pemberley",
+      "She and Darcy can now laugh together about their past errors, achieving the playful intimacy she values most"
+    ],
+    "emotional_state": "Playful, reflective contentment — her spirits rise 'to playfulness again,' and she engages Darcy in witty, affectionate retrospection; beneath the lightness is deep satisfaction and confident forward-looking happiness",
+    "relationship_changes": {
+      "Darcy": "The relationship reaches its mature, settled form — they achieve the balance Elizabeth always needed: mutual respect, intellectual equality, and shared humor; she can tease him and he welcomes it",
+      "Georgiana Darcy": "Elizabeth's warmth and liveliness astonish Georgiana, who has never seen anyone address Darcy with such freedom; a new sisterly bond begins",
+      "Lady Catherine": "Remains hostile; the breach is complete but Elizabeth views it with equanimity, knowing it will eventually heal",
+      "Mrs. Bennet": "Elizabeth must actively manage her mother's vulgarity during the courtship, shielding Darcy from mortification — she accepts this burden with patient resignation",
+      "Miss Bingley": "Elizabeth's victory is complete but she extends no malice; the relationship settles into civil distance"
+    },
+    "key_events": [
+      "Elizabeth and Darcy engage in extended, playful dialogue reconstructing how they fell in love — she supplies his account for him with characteristic wit",
+      "Letters are written: Elizabeth to Mrs. Gardiner (joyful), Darcy to Lady Catherine (formal)",
+      "Georgiana is astonished by Elizabeth's easy, teasing manner with Darcy",
+      "Elizabeth endures Mrs. Bennet's embarrassing attentions to Darcy during the courtship period with quiet management",
+      "She looks forward to Pemberley as the space where she and Darcy will finally be free from social friction"
+    ],
+    "character_development": "Elizabeth achieves the final synthesis of her character arc. Her wit, which began the novel as a defensive weapon and at times a vehicle for prejudice, is now fully integrated with love and self-knowledge — she teases Darcy not to wound but to connect. Her famous self-analysis ('You were disgusted with the women who were always speaking and looking for your approbation alone. I roused and interested you because I was so unlike them') shows she now understands both herself and Darcy with clear-eyed accuracy. She has not been tamed or diminished by love; rather, she has found the partner who values exactly what makes her extraordinary."
+  },
+  {
+    "story_number": 61,
+    "story_title": "Chapter LXI",
+    "knowledge_gained": [
+      "Learns that domestic happiness at Pemberley fulfills her deepest hopes — the marriage proves as rich in companionship as she anticipated",
+      "Discovers that Georgiana, once shy and reserved, can be drawn into the easy, teasing family dynamic Elizabeth cultivates with Darcy",
+      "Recognizes that the Gardiners' seemingly casual trip to Derbyshire was the pivotal event that reunited her with Darcy — contingency, not design, shaped her happiness",
+      "Understands that Kitty can be materially improved by sustained exposure to better society, vindicating her belief in environment over fixed character",
+      "Learns that Lydia and Wickham remain fundamentally unchanged — their letters arrive only when money is needed, confirming Elizabeth's settled judgment of them",
+      "Sees that Lady Catherine eventually relents and resumes contact, proving that even entrenched pride can yield to self-interest and the desire for connection"
+    ],
+    "emotional_state": "Settled, expansive contentment — not the giddy elation of the engagement chapters but a mature, earned happiness. Elizabeth has passed through self-deception, humiliation, moral recalibration, and anxiety, and arrived at a life that rewards both her intellect and her heart. The dominant feeling is gratitude without complacency: she is fully aware of how narrowly she almost missed this outcome.",
+    "relationship_changes": {
+      "Darcy": "The marriage has deepened into genuine mutual devotion; Elizabeth's teasing wit, far from being suppressed, is the quality Darcy most values — she has taught him to be laughed at, and their dynamic is one of equals who sharpen each other",
+      "Jane": "Proximity is restored — within thirty miles in Derbyshire, the sisterly bond that was Elizabeth's emotional anchor throughout the novel is preserved and strengthened by shared happiness",
+      "Mr. Bennet": "His affection draws him frequently to Pemberley, especially unannounced; Elizabeth has become the family member whose company he most seeks, and their intellectual rapport now operates on terms of mutual adult respect",
+      "Mrs. Bennet": "Elizabeth endures her mother's unchanged silliness with patient good humor; the relationship has not deepened but Elizabeth no longer suffers from it — distance and status provide a buffer",
+      "Georgiana": "Elizabeth has become a sister and model; Georgiana is 'astonished' by Elizabeth's freedom with Darcy, then gradually learns from it — Elizabeth has expanded the emotional register of the Darcy household",
+      "The Gardiners": "Elevated to the most intimate terms — Elizabeth and Darcy both feel lasting gratitude toward them as the instruments of their reunion; the Gardiners represent the kind of sensible, warm, unpretentious goodness Elizabeth most values",
+      "Kitty": "Elizabeth acts as a stabilizing older sister; Kitty's improvement under her and Jane's influence confirms Elizabeth's nurturing capacity beyond the romantic sphere",
+      "Lydia and Wickham": "Managed at arm's length with financial generosity but no illusions — Elizabeth helps them materially while maintaining clear-eyed detachment about their characters",
+      "Lady Catherine": "A grudging reconciliation mediated by Elizabeth's willingness to let pride soften on its own schedule; the relationship settles into civil if never warm terms",
+      "Miss Bingley": "Elizabeth tolerates her with amused composure; Miss Bingley must now court Elizabeth's good opinion rather than the reverse — a complete inversion of their original power dynamic"
+    },
+    "key_events": [
+      "Elizabeth and Darcy marry (double wedding with Jane and Bingley implied by the chapter's opening)",
+      "Elizabeth takes up residence at Pemberley, becoming its mistress",
+      "Jane and Bingley relocate from Netherfield to an estate in a neighbouring county to Derbyshire, restoring Elizabeth's closest sisterly bond",
+      "Elizabeth and Darcy provide ongoing financial assistance to Lydia and Wickham",
+      "Lady Catherine eventually condescends to visit Pemberley, reconciling with the couple",
+      "The Gardiners become intimate family friends, acknowledged by both Elizabeth and Darcy as the catalysts of their union"
+    ],
+    "character_development": "Elizabeth's arc reaches its final resolution. The woman who began the novel with brilliant but sometimes reckless judgment — quick to laugh, quick to categorize, quick to mistake prejudice for perception — has become someone whose wit is tempered by self-knowledge and whose pride is grounded in genuine moral discernment rather than defensive cleverness. She does not lose her sharpness; she redirects it. Her teasing of Darcy is not diminished but transformed into the animating principle of their marriage. The chapter reveals Elizabeth as someone who can hold complexity without anxiety: she loves her father while seeing his limitations, manages her mother without resentment, helps Lydia without expecting reform, and embraces Pemberley without becoming its prisoner. Her deepest growth is visible in what the chapter does NOT show — no defensiveness, no mortification, no need to prove herself. She has arrived at the rarest form of confidence: comfort with being fully known."
+  }
+]
