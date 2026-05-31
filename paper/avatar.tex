@@ -25,8 +25,8 @@
 
 \title{Can Literary Character Agents Remain Temporally Faithful?\\Explicit Future-Unknown Constraints for Narrative-Grounded Dialogue}
 
-% For arXiv preprint (switch to Anonymous for double-blind submission)
-\author{JiMyung Lee}
+% Double-blind submission
+\author{Anonymous}
 \date{}
 
 \begin{document}
@@ -288,7 +288,7 @@ We introduce \textsc{LitTimeQA}, a diagnostic suite for temporal faithfulness wi
 \item \textbf{Reader spoiler}: test whether the system avoids spoiling events beyond the reader's progress
 \end{enumerate}
 
-We construct 21 queries for Holmes (across 12 story positions) and 8 for Elizabeth (across key chapter milestones), evaluated with 6 metrics:
+We construct 58 queries for Holmes (across 12 story positions) and 45 for Elizabeth (across key chapter milestones), totaling 103 queries evaluated with 6 metrics:
 \textbf{Future Leakage Rate}, \textbf{Correct Ignorance Rate}, \textbf{False Ignorance Rate}, \textbf{Recall Accuracy}, \textbf{Ignorance Naturalness} (1--5), and \textbf{Fidelity under Constraint} (1--5).
 
 \subsection{Baselines}
@@ -363,7 +363,7 @@ A3: $-$Logic & .091 & .909 & 1.0 & 4.95 \\
 A4: $-$ToM & .182 & .818 & 1.0 & 4.95 \\
 \bottomrule
 \end{tabular}
-\caption{\textsc{LitTimeQA} results for \textbf{Sherlock Holmes} (21 total queries). Leak.\ and Ign.\ are computed over the 11 future-unknown queries only; Rec.\ over 4 past-recall queries. Nat.=Naturalness (1--5) over all queries.}
+\caption{\textsc{LitTimeQA} results for \textbf{Sherlock Holmes} (58 total queries). Leak.\ and Ign.\ computed over 27 future-unknown queries; Rec.\ over 10 past-recall queries. Nat.=Naturalness (1--5) over all queries. Results pending re-run with expanded query set.}
 \label{tab:results-holmes}
 \end{table}
 
@@ -385,7 +385,7 @@ A3: $-$Logic & .000 & 1.00 & 1.0 & 5.00 \\
 A4: $-$ToM & .000 & 1.00 & 1.0 & 5.00 \\
 \bottomrule
 \end{tabular}
-\caption{\textsc{LitTimeQA} results for \textbf{Elizabeth Bennet} (8 total queries). Leak.\ and Ign.\ computed over 4 future-unknown queries; Rec.\ over 2 past-recall queries.}
+\caption{\textsc{LitTimeQA} results for \textbf{Elizabeth Bennet} (45 total queries). Leak.\ and Ign.\ computed over 16 future-unknown queries; Rec.\ over 8 past-recall queries. Results pending re-run with expanded query set.}
 \label{tab:results-elizabeth}
 \end{table}
 
