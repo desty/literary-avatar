@@ -55,13 +55,23 @@ def get_engine() -> CharacterEngine:
     return st.session_state[key]
 
 
+def close_engine(character_id: str) -> None:
+    """Persist the active session and remove its cached engine."""
+    key = f"engine_{character_id}"
+    engine = st.session_state.get(key)
+    if engine is None:
+        return
+
+    if engine.persistent_memory:
+        engine.persistent_memory.end_session()
+    engine.reset()
+    del st.session_state[key]
+
+
 def reset_engine():
     """Reset the current character engine."""
     char_id = st.session_state.get("character_id", "sherlock_holmes")
-    key = f"engine_{char_id}"
-    if key in st.session_state:
-        st.session_state[key].reset()
-        del st.session_state[key]
+    close_engine(char_id)
     st.session_state["messages"] = []
 
 
@@ -95,6 +105,7 @@ with st.sidebar:
     new_char_id = char_options[selected_name]
 
     if new_char_id != st.session_state.character_id:
+        close_engine(st.session_state.character_id)
         st.session_state.character_id = new_char_id
         st.session_state.messages = []
         st.session_state.timeline_pos = -1
@@ -172,6 +183,32 @@ with st.sidebar:
             by_cat = logic.get("by_category", {})
             for cat, count in by_cat.items():
                 st.caption(f"• {cat}: {count} rules")
+
+    st.divider()
+
+    # Local memory controls
+    st.subheader("Local Memory")
+    memory = engine.persistent_memory
+    if memory and memory.episodes:
+        for episode in memory.episodes[-3:]:
+            st.caption(
+                f"{episode.get('date', '?')} — {episode.get('summary', 'No summary')}"
+            )
+    else:
+        st.caption("No saved memories.")
+
+    confirm_key = f"confirm_forget_{st.session_state.character_id}"
+    confirm_forget = st.checkbox("Confirm memory deletion", key=confirm_key)
+    if st.button(
+        "🗑️ Delete Local Memories",
+        disabled=not confirm_forget,
+        use_container_width=True,
+    ):
+        if memory:
+            memory.clear_all()
+        engine.reset()
+        st.session_state.messages = []
+        st.rerun()
 
     st.divider()
 

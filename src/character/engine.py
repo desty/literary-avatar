@@ -1,7 +1,6 @@
 """캐릭터 인지 엔진: 프로필 + RAG + 메모리 + BDI + 아크 추적을 조합하여 캐릭터 응답 생성."""
 
-import subprocess
-
+from src.claude_cli import call_claude
 from src.character.profile import load_profile
 from src.character.prompt_builder import build_system_prompt
 from src.character.arc_tracker import load_arc, get_state_at_position, format_arc_for_prompt
@@ -36,7 +35,7 @@ class CharacterEngine:
         self._tom_turn_count = 0
         self.character_logic = load_logic(character_id)
 
-        # Feature flags for baseline/ablation experiments
+        # Feature flags for demos and diagnostics.
         cfg = config or {}
         self.use_rag = cfg.get("use_rag", True)
         self.use_temporal_filter = cfg.get("use_temporal_filter", True)
@@ -47,30 +46,44 @@ class CharacterEngine:
 
     def set_narrative_position(self, position):
         """캐릭터의 서사 시점을 설정. None이면 전체 지식."""
+        self._validate_position(position, "narrative")
         self.narrative_position = position
 
     def set_reader_position(self, position):
         """독자의 진행도를 설정. 시스템이 이 시점 이후를 스포하지 않음."""
+        self._validate_position(position, "reader")
         self.reader_position = position
+
+    def _validate_position(self, position, label: str) -> None:
+        if position is None:
+            return
+        if not isinstance(position, int) or isinstance(position, bool) or position < 0:
+            raise ValueError(f"{label} position must be a non-negative integer or None")
+        if self.arc_snapshots and position > len(self.arc_snapshots):
+            raise ValueError(
+                f"{label} position must be between 0 and {len(self.arc_snapshots)}"
+            )
 
     def respond(self, user_input: str) -> str:
         """사용자 입력에 대해 캐릭터로서 응답."""
         # 1. RAG 검색
         rag_context = "(No specific story context retrieved)"
         if self.use_rag:
-            rag_results = search(user_input, book_id=self.book_id, n_results=5)
-            # 캐릭터 시점 필터
-            if self.use_temporal_filter and self.narrative_position is not None:
-                rag_results = [
-                    r for r in rag_results
-                    if r["metadata"].get("story_number", 0) <= self.narrative_position
-                ]
-            # 독자 시점 필터
-            if self.use_temporal_filter and self.reader_position is not None:
-                rag_results = [
-                    r for r in rag_results
-                    if r["metadata"].get("story_number", 0) <= self.reader_position
-                ]
+            timeline_limits = [
+                position for position in (self.narrative_position, self.reader_position)
+                if position is not None
+            ]
+            max_story_number = (
+                min(timeline_limits)
+                if self.use_temporal_filter and timeline_limits
+                else None
+            )
+            rag_results = search(
+                user_input,
+                book_id=self.book_id,
+                n_results=3,
+                max_story_number=max_story_number,
+            )
             rag_results = rag_results[:3]
             rag_context = self._format_rag_context(rag_results)
 
@@ -131,7 +144,10 @@ class CharacterEngine:
         )
 
         # 6. Claude CLI 호출
-        response = self._call_claude(system_prompt, user_input)
+        try:
+            response = self._call_claude(system_prompt, user_input)
+        except RuntimeError as exc:
+            return f"[Unable to generate a response: {exc}]"
 
         # 7. 메모리 업데이트
         self.memory.add("user", user_input)
@@ -185,28 +201,17 @@ Return JSON only:
 "intentions": ["what {self.character_name} plans to do next"]}}"""
 
         try:
-            result = subprocess.run(
-                ["claude", "-p", "--output-format", "text", prompt],
-                capture_output=True, text=True, timeout=60,
-            )
-            if result.returncode == 0:
-                import json
-                text = result.stdout.strip()
-                if "```" in text:
-                    text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
-                self.bdi_state = json.loads(text.strip())
+            text = call_claude(prompt, timeout=60)
+            import json
+            if "```" in text:
+                text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
+            self.bdi_state = json.loads(text.strip())
         except Exception:
             pass  # BDI 업데이트 실패는 무시
 
     def _call_claude(self, system_prompt: str, user_input: str) -> str:
-        full_prompt = f"{system_prompt}\n\n---\n\nUser says: {user_input}\n\nRespond as {self.character_name}:"
-        result = subprocess.run(
-            ["claude", "-p", "--output-format", "text", full_prompt],
-            capture_output=True, text=True, timeout=180,
-        )
-        if result.returncode != 0:
-            return f"[Error: {result.stderr[:200]}]"
-        return result.stdout.strip()
+        prompt = f"User says: {user_input}\n\nRespond as {self.character_name}:"
+        return call_claude(prompt, timeout=180, system_prompt=system_prompt)
 
     def reset(self):
         self.memory.clear()

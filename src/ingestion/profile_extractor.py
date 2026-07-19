@@ -1,23 +1,16 @@
 """Claude CLI를 사용하여 소설에서 캐릭터 프로필을 자동 추출."""
 
 import json
-import subprocess
 from pathlib import Path
+
+from src.claude_cli import call_claude as run_claude
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 
 def call_claude(prompt: str) -> str:
     """Claude Code CLI를 호출."""
-    result = subprocess.run(
-        ["claude", "-p", "--output-format", "text", prompt],
-        capture_output=True,
-        text=True,
-        timeout=180,
-    )
-    if result.returncode != 0:
-        raise RuntimeError(f"Claude CLI error: {result.stderr}")
-    return result.stdout.strip()
+    return run_claude(prompt, timeout=180)
 
 
 def parse_json_response(response: str) -> dict:

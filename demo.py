@@ -1,4 +1,4 @@
-"""Avatar Demo — 전체 기능 쇼케이스 자동 실행."""
+"""Avatar Demo — 제품 기능 쇼케이스 자동 실행."""
 
 import sys
 import time
@@ -33,7 +33,7 @@ def ask(engine: CharacterEngine, question: str, label: str = ""):
 def main():
     console.print(Panel(
         "[bold]Avatar — Literary Character AI Agent[/bold]\n"
-        "Full Feature Showcase Demo",
+        "Timeline-aware character chat demo",
         border_style="bold cyan",
     ))
 
@@ -58,8 +58,8 @@ def main():
     holmes.reset()
     ask(holmes, "홈즈 씨, 범죄자를 추적할 때 가장 중요한 것은 무엇인가요?", "Korean")
 
-    # === 4. 캐릭터 아크 추적 (핵심 기여) ===
-    demo_section("4. ⭐ Narrative Arc Tracking (Novel Contribution)")
+    # === 4. 타임라인 제어 ===
+    demo_section("4. Timeline Control")
 
     console.print("[dim]Setting timeline to position 0 (before any story)...[/dim]")
     holmes.reset()
@@ -87,8 +87,8 @@ def main():
         console.print(table)
         console.print(f"\n[dim]Categories: {logic.get('by_category', {})}[/dim]")
 
-    # === 6. 평가 ===
-    demo_section("6. Multi-Axis Evaluation")
+    # === 6. 타임라인 스냅샷 ===
+    demo_section("6. Timeline Snapshots")
 
     arc = load_arc("sherlock_holmes")
     if arc:
@@ -117,12 +117,11 @@ def main():
         ("Novel Ingestion", "✅", "2 novels, 3,918 dialogues, 73 chapters"),
         ("Character Profiles", "✅", "Big Five, speech patterns, relationships"),
         ("RAG Search", "✅", "747 chunks across 2 novels (ChromaDB)"),
-        ("Narrative Arc Tracking", "⭐ Novel", "12 snapshots, timeline-aware responses"),
-        ("Behavioral Logic", "⭐ Novel", "49 auto-extracted rules from text"),
-        ("Theory of Mind", "⭐ Novel", "2nd-order user perspective inference"),
+        ("Timeline Control", "Ready", "Story-position-aware responses"),
+        ("Behavioral Guidance", "Ready", "Auto-extracted rules from text"),
+        ("Theory of Mind", "Ready", "User perspective inference"),
         ("BDI Module", "✅", "Belief-Desire-Intention tracking"),
         ("Persistent Memory", "✅", "Cross-session recall + user profiling"),
-        ("Multi-Axis Evaluation", "✅", "5-axis, avg 4.0/5.0 fidelity"),
         ("Multilingual", "✅", "Korean + English character voice"),
         ("Zero API Cost", "✅", "Claude Code CLI backend"),
     ]

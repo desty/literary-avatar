@@ -1,12 +1,12 @@
-"""챕터별 캐릭터 아크 추적 — Novel Contribution #1.
+"""챕터별 캐릭터 아크 추적.
 
-기존 연구: 캐릭터를 정적 프로필로만 취급.
-본 모듈: 소설의 타임라인에 따라 캐릭터의 지식/감정/관계가 진화.
+소설의 타임라인에 따라 캐릭터의 지식, 감정, 관계 상태를 저장한다.
 """
 
 import json
-import subprocess
 from pathlib import Path
+
+from src.claude_cli import ClaudeCLIError, call_claude
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
@@ -65,15 +65,10 @@ Return JSON array only:
   }}
 ]"""
 
-        result = subprocess.run(
-            ["claude", "-p", "--output-format", "text", prompt],
-            capture_output=True, text=True, timeout=180,
-        )
-
-        if result.returncode != 0:
+        try:
+            text = call_claude(prompt, timeout=180)
+        except ClaudeCLIError:
             continue
-
-        text = result.stdout.strip()
         if "```" in text:
             text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
 

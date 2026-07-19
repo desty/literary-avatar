@@ -71,7 +71,9 @@ def main():
     console.print()
     console.print(Panel(
         f"[character]{char_name}[/character] is ready.\n"
-        "Commands: [dim]/reset[/dim] | [dim]/switch[/dim] | [dim]/memory[/dim] | [dim]/bdi[/dim] | [dim]/quit[/dim]",
+        "Commands: [dim]/reset[/dim] | [dim]/switch[/dim] | "
+        "[dim]/memory[/dim] | [dim]/forget[/dim] | [dim]/bdi[/dim] | "
+        "[dim]/quit[/dim]",
         title="Ready",
         border_style="cyan",
     ))
@@ -128,6 +130,20 @@ def main():
                 console.print(f"  [dim]Known about you: {', '.join(user_facts[:5])}[/dim]")
             continue
 
+        if user_input.lower() == "/forget":
+            confirm = Prompt.ask(
+                "  Delete all local memories for this character?",
+                choices=["y", "n"],
+                default="n",
+            )
+            if confirm == "y":
+                persistent.clear_all()
+                engine.reset()
+                console.print("[system]Local memories deleted.[/system]")
+            else:
+                console.print("[system]Memory deletion cancelled.[/system]")
+            continue
+
         if user_input.lower() == "/bdi":
             bdi = engine.bdi_state
             console.print(Panel(
@@ -167,6 +183,7 @@ def main():
                 "/reset    — Start new conversation (saves memories)\n"
                 "/switch   — Switch character\n"
                 "/memory   — Show past session memories\n"
+                "/forget   — Delete local memories after confirmation\n"
                 "/bdi      — Show character's mental state\n"
                 "/timeline — Set narrative position (spoiler control)\n"
                 "/quit     — Exit (saves memories)",

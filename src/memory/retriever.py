@@ -1,11 +1,12 @@
 """RAG 검색 시스템: 소설 텍스트를 임베딩하고 검색."""
 
+import hashlib
 import json
 import re
 from pathlib import Path
+from typing import Optional
 
 import chromadb
-from chromadb.config import Settings
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 DB_DIR = DATA_DIR / "vectordb"
@@ -33,19 +34,26 @@ def chunk_text(text: str, chunk_size: int = 500, overlap: int = 100) -> list[dic
     return chunks
 
 
-def build_index(book_id: str = "sherlock_holmes") -> chromadb.Collection:
+def build_index(book_id: str = "sherlock_holmes", force: bool = False) -> chromadb.Collection:
     """소설 텍스트를 청크로 분할하고 ChromaDB에 색인."""
     DB_DIR.mkdir(parents=True, exist_ok=True)
 
     client = chromadb.PersistentClient(path=str(DB_DIR))
+    processed = DATA_DIR / "processed" / f"{book_id}.json"
+    source_hash = hashlib.sha256(processed.read_bytes()).hexdigest()
 
-    # 이미 존재하면 반환
+    # 원본이 동일한 인덱스만 재사용한다.
     existing = client.list_collections()
     if book_id in [c.name for c in existing]:
-        print(f"[skip] Collection '{book_id}' already exists")
-        return client.get_collection(book_id)
+        collection = client.get_collection(book_id)
+        indexed_hash = (collection.metadata or {}).get("source_sha256")
+        if not force and indexed_hash == source_hash:
+            print(f"[skip] Collection '{book_id}' is up to date")
+            return collection
+        reason = "forced" if force else "source changed"
+        print(f"[rebuild] Collection '{book_id}' ({reason})")
+        client.delete_collection(book_id)
 
-    processed = DATA_DIR / "processed" / f"{book_id}.json"
     data = json.loads(processed.read_text(encoding="utf-8"))
 
     all_docs = []
@@ -77,7 +85,7 @@ def build_index(book_id: str = "sherlock_holmes") -> chromadb.Collection:
     # ChromaDB 기본 임베딩 함수 사용 (onnxruntime all-MiniLM-L6-v2)
     collection = client.create_collection(
         name=book_id,
-        metadata={"hnsw:space": "cosine"},
+        metadata={"hnsw:space": "cosine", "source_sha256": source_hash},
     )
 
     # 배치로 추가 (ChromaDB 제한: 한번에 ~5000개)
@@ -94,14 +102,25 @@ def build_index(book_id: str = "sherlock_holmes") -> chromadb.Collection:
     return collection
 
 
-def search(query: str, book_id: str = "sherlock_holmes", n_results: int = 5) -> list[dict]:
+def search(
+    query: str,
+    book_id: str = "sherlock_holmes",
+    n_results: int = 5,
+    max_story_number: Optional[int] = None,
+) -> list[dict]:
     """쿼리와 관련된 소설 텍스트 청크를 검색."""
     client = chromadb.PersistentClient(path=str(DB_DIR))
     collection = client.get_collection(book_id)
 
+    query_args = {
+        "query_texts": [query],
+        "n_results": n_results,
+    }
+    if max_story_number is not None:
+        query_args["where"] = {"story_number": {"$lte": max_story_number}}
+
     results = collection.query(
-        query_texts=[query],
-        n_results=n_results,
+        **query_args,
     )
 
     output = []

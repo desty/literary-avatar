@@ -1,7 +1,6 @@
-"""2차 Theory of Mind — Novel Contribution #2.
+"""사용자 관점 추론.
 
-기존 연구: 캐릭터 자신의 관점만 모델링.
-본 모듈: 캐릭터가 다른 캐릭터/사용자의 믿음을 추론.
+캐릭터가 다른 캐릭터/사용자의 믿음을 추론해 응답 깊이를 조절한다.
 
 예시:
 - 홈즈가 "왓슨이라면 이렇게 생각했을 것이다"라고 추론
@@ -9,7 +8,8 @@
 """
 
 import json
-import subprocess
+
+from src.claude_cli import ClaudeCLIError, call_claude
 
 
 def infer_other_perspective(
@@ -39,15 +39,10 @@ Return JSON only:
 "communication_adjustment": "how {character_name} should adjust their response",
 "internal_reasoning": "{character_name}'s private reasoning about {other_name}'s mental state"}}"""
 
-    result = subprocess.run(
-        ["claude", "-p", "--output-format", "text", prompt],
-        capture_output=True, text=True, timeout=60,
-    )
-
-    if result.returncode != 0:
+    try:
+        text = call_claude(prompt, timeout=60)
+    except ClaudeCLIError:
         return {}
-
-    text = result.stdout.strip()
     if "```" in text:
         text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
 

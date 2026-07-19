@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 *.pyo
+.venv/
 .DS_Store
 
 # Data (regenerable via ingestion pipeline)
@@ -9,8 +10,8 @@ data/processed/
 data/vectordb/
 data/memory/
 
-# Evaluation results (regenerable)
-results/
+# Archived research outputs (kept out of the product surface)
+archive/research/results/
 
 # Build & packaging
 *.egg-info/
@@ -29,3 +30,11 @@ paper/*.out
 paper/*.fdb_latexmk
 paper/*.fls
 paper/*.synctex.gz
+archive/research/paper/*.aux
+archive/research/paper/*.log
+archive/research/paper/*.bbl
+archive/research/paper/*.blg
+archive/research/paper/*.out
+archive/research/paper/*.fdb_latexmk
+archive/research/paper/*.fls
+archive/research/paper/*.synctex.gz

@@ -6,9 +6,10 @@ MemGPT 영감의 2-tier 메모리:
 """
 
 import json
-import subprocess
 from datetime import datetime
 from pathlib import Path
+
+from src.claude_cli import call_claude
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
@@ -24,7 +25,8 @@ class PersistentMemory:
 
         self.episodes_file = self.memory_dir / "episodes.json"
         self.user_profile_file = self.memory_dir / "user_profile.json"
-        self.session_buffer: list[dict] = []
+        self.active_session_file = self.memory_dir / "active_session.json"
+        self.session_buffer: list[dict] = self._load_json(self.active_session_file, [])
 
         self.episodes = self._load_json(self.episodes_file, [])
         self.user_profile = self._load_json(self.user_profile_file, {
@@ -48,6 +50,7 @@ class PersistentMemory:
             "character": response,
             "timestamp": datetime.now().isoformat(),
         })
+        self._save_json(self.active_session_file, self.session_buffer)
 
     def recall(self, query: str) -> str:
         """과거 에피소드에서 관련 기억을 검색."""
@@ -84,6 +87,19 @@ class PersistentMemory:
 
         return "\n".join(lines)
 
+    def clear_all(self) -> None:
+        """Delete all persisted and active memory for this character/user pair."""
+        self.episodes = []
+        self.user_profile = {
+            "known_facts": [],
+            "preferences": [],
+            "relationship_notes": [],
+        }
+        self.session_buffer = []
+        self._save_json(self.episodes_file, self.episodes)
+        self._save_json(self.user_profile_file, self.user_profile)
+        self._save_json(self.active_session_file, self.session_buffer)
+
     def end_session(self):
         """세션 종료 시 대화를 요약하여 에피소드 메모리에 저장."""
         if not self.session_buffer:
@@ -104,45 +120,47 @@ Return JSON only:
 "user_facts": ["any new facts learned about the user"],
 "topics": ["key topics discussed"]}}"""
 
+        summary_data = None
+        used_fallback = False
         try:
-            result = subprocess.run(
-                ["claude", "-p", "--output-format", "text", prompt],
-                capture_output=True, text=True, timeout=60,
-            )
-            if result.returncode == 0:
-                text = result.stdout.strip()
-                if "```" in text:
-                    text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
-                data = json.loads(text.strip())
-
-                # 에피소드 저장
-                episode = {
-                    "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
-                    "summary": data.get("summary", ""),
-                    "topics": data.get("topics", []),
-                    "turn_count": len(self.session_buffer),
-                }
-                self.episodes.append(episode)
-                self._save_json(self.episodes_file, self.episodes)
-
-                # 사용자 프로필 업데이트
-                new_facts = data.get("user_facts", [])
-                existing = set(self.user_profile.get("known_facts", []))
-                for fact in new_facts:
-                    if fact and fact not in existing:
-                        self.user_profile["known_facts"].append(fact)
-                self._save_json(self.user_profile_file, self.user_profile)
-
-                print(f"[memory] Session saved: {episode['summary'][:80]}...")
-        except Exception as e:
-            # 요약 실패 시 원본 저장
-            episode = {
-                "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            text = call_claude(prompt, timeout=60)
+            if "```" in text:
+                text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
+            summary_data = json.loads(text.strip())
+            if not isinstance(summary_data, dict):
+                raise ValueError("Claude summary must be a JSON object")
+        except Exception:
+            used_fallback = True
+            summary_data = {
                 "summary": f"Conversation with {len(self.session_buffer)} turns",
                 "topics": [],
-                "turn_count": len(self.session_buffer),
+                "user_facts": [],
             }
-            self.episodes.append(episode)
-            self._save_json(self.episodes_file, self.episodes)
 
+        episode = {
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "summary": summary_data.get("summary", ""),
+            "topics": summary_data.get("topics", []),
+            "turn_count": len(self.session_buffer),
+        }
+        if not summary_data.get("summary"):
+            episode["summary"] = f"Conversation with {len(self.session_buffer)} turns"
+
+        # LLM 요약을 얻지 못한 경우에도 원본 턴을 보존한다.
+        if used_fallback:
+            episode["turns"] = list(self.session_buffer)
+
+        self.episodes.append(episode)
+        self._save_json(self.episodes_file, self.episodes)
+
+        new_facts = summary_data.get("user_facts", [])
+        existing = set(self.user_profile.get("known_facts", []))
+        for fact in new_facts:
+            if fact and fact not in existing:
+                self.user_profile["known_facts"].append(fact)
+                existing.add(fact)
+        self._save_json(self.user_profile_file, self.user_profile)
+
+        print(f"[memory] Session saved: {episode['summary'][:80]}...")
         self.session_buffer.clear()
+        self._save_json(self.active_session_file, self.session_buffer)
