@@ -19,16 +19,25 @@ Processed story units
   -> behavioral guidance extractor
 
 User message
-  -> retrieval
-  -> timeline filtering
+  -> timeline-filtered retrieval
   -> prompt builder
-  -> Claude CLI
+  -> isolated Claude CLI adapter
   -> character response
 ```
 
+Built-in character metadata lives in `src/characters.py`. Runtime entry points
+and asset-generation modules use this shared registry instead of maintaining
+separate character-to-book mappings.
+
+All LLM calls go through `src/claude_cli.py`, which disables coding tools and
+session persistence and centralizes JSON response parsing.
+
 ## Timeline Control
 
-When a timeline position is set, Avatar filters retrieved passages to chapters or stories at or before that position. It also injects a future-unknown list derived from later timeline snapshots. This is the main product feature: a user can talk to a character as they were at a particular point in the story.
+When a timeline position is set, Avatar applies the chapter/story boundary
+inside the ChromaDB query. It also injects a future-unknown list derived from
+later timeline snapshots. This is the main product feature: a user can talk to
+a character as they were at a particular point in the story.
 
 ## Memory
 
@@ -43,4 +52,5 @@ it is easy to inspect or delete.
 
 ## Product Boundary
 
-Research artifacts have been moved to `archive/research/`. Runtime code lives in `src/`, product scripts live in `scripts/`, and user-facing docs live in `docs/`.
+Research artifacts live in `archive/research/`. Runtime code lives in `src/`,
+product scripts live in `scripts/`, and user-facing docs live in `docs/`.

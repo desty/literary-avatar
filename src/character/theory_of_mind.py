@@ -7,9 +7,7 @@
 - 홈즈가 사용자의 지식 수준을 파악하여 설명 깊이 조절
 """
 
-import json
-
-from src.claude_cli import ClaudeCLIError, call_claude
+from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
 
 
 def infer_other_perspective(
@@ -43,12 +41,9 @@ Return JSON only:
         text = call_claude(prompt, timeout=60)
     except ClaudeCLIError:
         return {}
-    if "```" in text:
-        text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
-
     try:
-        return json.loads(text.strip())
-    except json.JSONDecodeError:
+        return parse_json_response(text, expected_type=dict)
+    except ValueError:
         return {}
 
 

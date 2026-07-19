@@ -5,9 +5,10 @@ from pathlib import Path
 
 import requests
 
+from src.characters import CHARACTERS
+
 GUTENBERG_URLS = {
-    "sherlock_holmes": "https://www.gutenberg.org/cache/epub/1661/pg1661.txt",
-    "pride_and_prejudice": "https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
+    spec.book_id: spec.gutenberg_url for spec in CHARACTERS.values()
 }
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"

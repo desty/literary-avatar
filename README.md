@@ -41,7 +41,8 @@ pip install -r requirements.txt
 
 ### Prepare Built-In Characters
 
-The repository includes prepared character assets for the two built-in characters. To rebuild them from source text:
+The repository includes profile, timeline, and behavior assets for the two
+built-in characters. Build the local source text and vector indexes with:
 
 ```bash
 python3 scripts/prepare_character.py --all
@@ -121,13 +122,17 @@ avatar/
 ├── demo.py                        # CLI feature demo
 ├── scripts/
 │   ├── prepare_character.py       # Rebuild character assets
+│   ├── quality_check.py           # Optional live character checks
 │   └── smoke_check.py             # Verify local assets
+├── tests/                          # Offline regression and UI tests
 ├── docs/
 │   ├── architecture.md            # Runtime architecture
 │   ├── character-builder.md       # Character asset pipeline
 │   └── product-roadmap.md         # MVP-oriented roadmap
 ├── src/
 │   ├── main.py                    # CLI chat app
+│   ├── characters.py              # Shared built-in character registry
+│   ├── claude_cli.py              # Isolated Claude CLI adapter
 │   ├── ingestion/                 # Downloading and parsing novels
 │   ├── character/                 # Character engine and prompt context
 │   └── memory/                    # Session, persistent, and RAG memory
@@ -144,6 +149,7 @@ avatar/
 - Avatar uses local files for generated memories under `data/memory/`.
 - The app is best with public-domain novels because the pipeline stores parsed text locally.
 - Timeline control is a guardrail, not a formal guarantee. The character may still occasionally leak future knowledge, especially for very famous stories.
+- See [Character Builder](docs/character-builder.md) to add another character.
 
 ## License
 

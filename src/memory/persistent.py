@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from src.claude_cli import call_claude
+from src.claude_cli import call_claude, parse_json_response
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
@@ -124,11 +124,7 @@ Return JSON only:
         used_fallback = False
         try:
             text = call_claude(prompt, timeout=60)
-            if "```" in text:
-                text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
-            summary_data = json.loads(text.strip())
-            if not isinstance(summary_data, dict):
-                raise ValueError("Claude summary must be a JSON object")
+            summary_data = parse_json_response(text, expected_type=dict)
         except Exception:
             used_fallback = True
             summary_data = {

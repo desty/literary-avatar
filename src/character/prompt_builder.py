@@ -1,7 +1,12 @@
 """시스템 프롬프트를 구성 — 캐릭터 독립적."""
 
 
-def build_system_prompt(profile: dict, rag_context: str, conversation_history: str, bdi_state: str = "") -> str:
+def build_system_prompt(
+    profile: dict,
+    rag_context: str,
+    conversation_history: str,
+    bdi_state: str = "",
+) -> str:
     """캐릭터 프로필 + RAG 컨텍스트 + 대화 히스토리로 시스템 프롬프트 구성."""
     name = profile.get("name", "Character")
 

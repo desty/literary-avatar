@@ -3,7 +3,8 @@
 import json
 from pathlib import Path
 
-from src.claude_cli import ClaudeCLIError, call_claude
+from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
+from src.characters import get_character
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
@@ -55,14 +56,11 @@ Return JSON only:
             text = call_claude(prompt, timeout=180)
         except ClaudeCLIError:
             continue
-        if "```" in text:
-            text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
-
         try:
-            batch_rules = json.loads(text.strip())
+            batch_rules = parse_json_response(text, expected_type=dict)
             all_rules.extend(batch_rules.get("rules", []))
             print(f"  [logic] Batch {i // batch_size + 1}: {len(batch_rules.get('rules', []))} rules")
-        except json.JSONDecodeError:
+        except ValueError:
             print(f"  [warn] Failed to parse batch {i // batch_size + 1}")
 
     # 중복 제거 및 정리
@@ -137,15 +135,10 @@ def format_logic_for_prompt(logic: dict, max_rules: int = 15) -> str:
 if __name__ == "__main__":
     import sys
     char_id = sys.argv[1] if len(sys.argv) > 1 else "sherlock_holmes"
+    spec = get_character(char_id)
 
-    configs = {
-        "sherlock_holmes": ("sherlock_holmes", "Sherlock Holmes"),
-        "elizabeth_bennet": ("pride_and_prejudice", "Elizabeth Bennet"),
-    }
-    book_id, char_name = configs[char_id]
-
-    print(f"[logic] Extracting behavioral rules for {char_name}...")
-    logic = extract_character_logic(book_id, char_name)
+    print(f"[logic] Extracting behavioral rules for {spec.name}...")
+    logic = extract_character_logic(spec.book_id, spec.name)
     save_logic(logic, char_id)
 
     print(f"\nTotal rules: {logic['total_rules']}")
