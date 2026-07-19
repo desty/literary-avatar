@@ -2,27 +2,10 @@
 
 import json
 import re
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
-
-# 12개 단편 제목 (정확한 매칭용)
-SHERLOCK_STORIES = [
-    "A SCANDAL IN BOHEMIA",
-    "THE RED-HEADED LEAGUE",
-    "A CASE OF IDENTITY",
-    "THE BOSCOMBE VALLEY MYSTERY",
-    "THE FIVE ORANGE PIPS",
-    "THE MAN WITH THE TWISTED LIP",
-    "THE ADVENTURE OF THE BLUE CARBUNCLE",
-    "THE ADVENTURE OF THE SPECKLED BAND",
-    "THE ADVENTURE OF THE ENGINEER\u2019S THUMB",
-    "THE ADVENTURE OF THE NOBLE BACHELOR",
-    "THE ADVENTURE OF THE BERYL CORONET",
-    "THE ADVENTURE OF THE COPPER BEECHES",
-]
-
 
 @dataclass
 class Dialogue:
@@ -126,9 +109,6 @@ def guess_speaker(before: str, after: str) -> str:
         "as", "at", "to", "in", "on", "of", "for", "no", "so", "up",
         "an", "or", "if", "do", "be", "by", "is", "was", "had", "has",
     }
-
-    # 대명사 → 이름 매핑 (홈즈 단편에서)
-    pronoun_map = {"he": None, "she": None}
 
     # Pattern 1: "said Holmes" / "cried Watson" (바로 뒤에)
     after_clean = re.sub(r'\s+', ' ', after[:100])

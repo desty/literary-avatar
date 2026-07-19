@@ -9,9 +9,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from src.character.engine import CharacterEngine
+from src.characters import CHARACTERS
 from src.memory.retriever import search
-
-CHARACTERS = ("sherlock_holmes", "elizabeth_bennet")
 
 
 def check_character(character_id: str) -> None:
@@ -44,7 +43,7 @@ def check_character(character_id: str) -> None:
 
 
 def main() -> None:
-    for character_id in CHARACTERS:
+    for character_id in sorted(CHARACTERS):
         check_character(character_id)
     print("[ok] Avatar assets are ready.")
 

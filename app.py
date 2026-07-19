@@ -2,31 +2,11 @@
 
 import streamlit as st
 
-import sys
-sys.path.insert(0, ".")
-
 from src.character.engine import CharacterEngine
 from src.character.arc_tracker import load_arc
 from src.character.logic_extractor import load_logic
+from src.characters import CHARACTERS, DEFAULT_CHARACTER_ID
 from src.memory.persistent import PersistentMemory
-
-# --- Character registry ---
-CHARACTERS = {
-    "sherlock_holmes": {
-        "name": "Sherlock Holmes",
-        "novel": "The Adventures of Sherlock Holmes (1892)",
-        "author": "Arthur Conan Doyle",
-        "avatar": "🔍",
-        "color": "#4FC3F7",
-    },
-    "elizabeth_bennet": {
-        "name": "Elizabeth Bennet",
-        "novel": "Pride and Prejudice (1813)",
-        "author": "Jane Austen",
-        "avatar": "📖",
-        "color": "#F48FB1",
-    },
-}
 
 # --- Page config ---
 st.set_page_config(
@@ -38,7 +18,7 @@ st.set_page_config(
 
 
 def init_engine(character_id: str) -> CharacterEngine:
-    """Initialize or retrieve cached character engine."""
+    """Initialize a character engine with local persistent memory."""
     persistent = PersistentMemory(character_id)
     engine = CharacterEngine(character_id, persistent_memory=persistent)
     return engine
@@ -46,7 +26,7 @@ def init_engine(character_id: str) -> CharacterEngine:
 
 def get_engine() -> CharacterEngine:
     """Get the current character engine from session state."""
-    char_id = st.session_state.get("character_id", "sherlock_holmes")
+    char_id = st.session_state.get("character_id", DEFAULT_CHARACTER_ID)
     key = f"engine_{char_id}"
 
     if key not in st.session_state:
@@ -70,14 +50,14 @@ def close_engine(character_id: str) -> None:
 
 def reset_engine():
     """Reset the current character engine."""
-    char_id = st.session_state.get("character_id", "sherlock_holmes")
+    char_id = st.session_state.get("character_id", DEFAULT_CHARACTER_ID)
     close_engine(char_id)
     st.session_state["messages"] = []
 
 
 # --- Session state defaults ---
 if "character_id" not in st.session_state:
-    st.session_state.character_id = "sherlock_holmes"
+    st.session_state.character_id = DEFAULT_CHARACTER_ID
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "timeline_pos" not in st.session_state:
@@ -93,8 +73,11 @@ with st.sidebar:
 
     # Character selector
     st.subheader("Character")
-    char_options = {v["name"]: k for k, v in CHARACTERS.items()}
-    current_name = CHARACTERS[st.session_state.character_id]["name"]
+    char_options = {
+        spec.name: character_id
+        for character_id, spec in CHARACTERS.items()
+    }
+    current_name = CHARACTERS[st.session_state.character_id].name
 
     selected_name = st.selectbox(
         "Choose character",
@@ -112,7 +95,7 @@ with st.sidebar:
         st.rerun()
 
     char_info = CHARACTERS[st.session_state.character_id]
-    st.caption(f"*{char_info['novel']}* by {char_info['author']}")
+    st.caption(f"*{char_info.novel_label}* by {char_info.author}")
 
     st.divider()
 
@@ -134,7 +117,11 @@ with st.sidebar:
                 "Story position",
                 min_value=0,
                 max_value=max_pos,
-                value=max_pos if st.session_state.timeline_pos == -1 else st.session_state.timeline_pos,
+                value=(
+                    max_pos
+                    if st.session_state.timeline_pos == -1
+                    else st.session_state.timeline_pos
+                ),
                 help="Character only knows events up to this position",
             )
             st.session_state.timeline_pos = pos
@@ -220,8 +207,8 @@ with st.sidebar:
 
 # --- Main chat area ---
 char_info = CHARACTERS[st.session_state.character_id]
-st.header(f"{char_info['avatar']} {char_info['name']}")
-st.caption(f"{char_info['novel']} — {char_info['author']}")
+st.header(f"{char_info.avatar} {char_info.name}")
+st.caption(f"{char_info.novel_label} — {char_info.author}")
 
 # Display message history
 for msg in st.session_state.messages:
@@ -230,11 +217,11 @@ for msg in st.session_state.messages:
         with st.chat_message("user"):
             st.write(msg["content"])
     else:
-        with st.chat_message("assistant", avatar=char_info["avatar"]):
+        with st.chat_message("assistant", avatar=char_info.avatar):
             st.write(msg["content"])
 
 # Chat input
-if prompt := st.chat_input(f"Talk to {char_info['name']}..."):
+if prompt := st.chat_input(f"Talk to {char_info.name}..."):
     # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
@@ -242,7 +229,7 @@ if prompt := st.chat_input(f"Talk to {char_info['name']}..."):
 
     # Get character response
     engine = get_engine()
-    with st.chat_message("assistant", avatar=char_info["avatar"]):
+    with st.chat_message("assistant", avatar=char_info.avatar):
         with st.spinner("Thinking..."):
             response = engine.respond(prompt)
         st.write(response)

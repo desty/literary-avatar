@@ -3,32 +3,10 @@
 import json
 from pathlib import Path
 
-from src.claude_cli import call_claude as run_claude
+from src.claude_cli import call_claude, parse_json_response
+from src.characters import get_character
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
-
-
-def call_claude(prompt: str) -> str:
-    """Claude Code CLI를 호출."""
-    return run_claude(prompt, timeout=180)
-
-
-def parse_json_response(response: str) -> dict:
-    """Claude 응답에서 JSON을 추출."""
-    json_text = response
-    if "```json" in response:
-        json_text = response.split("```json")[1].split("```")[0]
-    elif "```" in response:
-        json_text = response.split("```")[1].split("```")[0]
-
-    try:
-        return json.loads(json_text.strip())
-    except json.JSONDecodeError:
-        start = json_text.find("{")
-        end = json_text.rfind("}") + 1
-        if start >= 0 and end > start:
-            return json.loads(json_text[start:end])
-        raise ValueError(f"Could not parse JSON:\n{response[:500]}")
 
 
 def extract_character_profile(
@@ -107,8 +85,8 @@ Return ONLY valid JSON, no other text:
 Be specific and evidence-based. Use the actual text to support each trait."""
 
     print(f"[extracting] Analyzing {character_name} with Claude...")
-    response = call_claude(prompt)
-    return parse_json_response(response)
+    response = call_claude(prompt, timeout=180)
+    return parse_json_response(response, expected_type=dict)
 
 
 def save_profile(profile: dict, character_id: str) -> Path:
@@ -122,29 +100,16 @@ def save_profile(profile: dict, character_id: str) -> Path:
     return output_path
 
 
-# 캐릭터 설정 레지스트리
-CHARACTER_CONFIGS = {
-    "sherlock_holmes": {
-        "book_id": "sherlock_holmes",
-        "character_name": "Sherlock Holmes",
-        "speaker_tag": "Holmes",
-        "novel_title": "The Adventures of Sherlock Holmes",
-        "author": "Arthur Conan Doyle",
-    },
-    "elizabeth_bennet": {
-        "book_id": "pride_and_prejudice",
-        "character_name": "Elizabeth Bennet",
-        "speaker_tag": "Elizabeth",
-        "novel_title": "Pride and Prejudice",
-        "author": "Jane Austen",
-    },
-}
-
-
 def extract_and_save(character_id: str) -> dict:
     """캐릭터 프로필을 추출하고 저장."""
-    config = CHARACTER_CONFIGS[character_id]
-    profile = extract_character_profile(**config)
+    spec = get_character(character_id)
+    profile = extract_character_profile(
+        book_id=spec.book_id,
+        character_name=spec.name,
+        speaker_tag=spec.speaker_tag,
+        novel_title=spec.novel_title,
+        author=spec.author,
+    )
     save_profile(profile, character_id)
     return profile
 

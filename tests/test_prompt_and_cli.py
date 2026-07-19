@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from src.character.prompt_builder import build_system_prompt
-from src.claude_cli import call_claude
+from src.claude_cli import call_claude, parse_json_response
 
 
 class PromptTests(unittest.TestCase):
@@ -36,6 +36,16 @@ class ClaudeCLITests(unittest.TestCase):
         self.assertIn("--no-session-persistence", command)
         self.assertEqual(command[command.index("--tools") + 1], "")
         self.assertEqual(command[command.index("--system-prompt") + 1], "system")
+
+    def test_json_parser_accepts_fenced_objects_and_arrays(self):
+        self.assertEqual(
+            parse_json_response('```json\n{"ok": true}\n```', expected_type=dict),
+            {"ok": True},
+        )
+        self.assertEqual(
+            parse_json_response("Result: [1, 2, 3]", expected_type=list),
+            [1, 2, 3],
+        )
 
 
 if __name__ == "__main__":

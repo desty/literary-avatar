@@ -11,18 +11,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL")
 
-DATA_DIR = ROOT / "data"
+from src.characters import CHARACTERS
 
-CHARACTERS = {
-    "sherlock_holmes": {
-        "book_id": "sherlock_holmes",
-        "character_name": "Sherlock Holmes",
-    },
-    "elizabeth_bennet": {
-        "book_id": "pride_and_prejudice",
-        "character_name": "Elizabeth Bennet",
-    },
-}
+DATA_DIR = ROOT / "data"
 
 
 def asset_exists(kind: str, character_id: str) -> bool:
@@ -40,12 +31,12 @@ def prepare_character(
     from src.character.logic_extractor import extract_character_logic, save_logic
     from src.ingestion.downloader import download_text
     from src.ingestion.parser import parse_novel, save_parsed_novel
-    from src.ingestion.profile_extractor import CHARACTER_CONFIGS, extract_and_save
+    from src.ingestion.profile_extractor import extract_and_save
     from src.memory.retriever import build_index
 
     spec = CHARACTERS[character_id]
-    book_id = spec["book_id"]
-    character_name = spec["character_name"]
+    book_id = spec.book_id
+    character_name = spec.name
 
     print(f"\n=== Preparing {character_name} ({character_id}) ===")
 
@@ -59,8 +50,6 @@ def prepare_character(
         return
 
     if force_llm or not asset_exists("profiles", character_id):
-        if character_id not in CHARACTER_CONFIGS:
-            raise KeyError(f"No profile extractor config for {character_id}")
         extract_and_save(character_id)
     else:
         print(f"[skip] Profile already exists for {character_id}")

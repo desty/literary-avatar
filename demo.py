@@ -1,7 +1,7 @@
 """Avatar Demo — 제품 기능 쇼케이스 자동 실행."""
 
 import sys
-import time
+
 sys.path.insert(0, ".")
 
 from rich.console import Console
@@ -25,7 +25,12 @@ def ask(engine: CharacterEngine, question: str, label: str = ""):
     info = f" [dim]({label})[/dim]" if label else ""
     console.print(f"[green]You:[/green] {question}{info}")
     response = engine.respond(question)
-    console.print(Panel(response, title=f"[cyan]{engine.character_name}[/cyan]", border_style="cyan", padding=(0, 2)))
+    console.print(Panel(
+        response,
+        title=f"[cyan]{engine.character_name}[/cyan]",
+        border_style="cyan",
+        padding=(0, 2),
+    ))
     console.print()
     return response
 

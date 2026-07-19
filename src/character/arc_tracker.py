@@ -6,7 +6,8 @@
 import json
 from pathlib import Path
 
-from src.claude_cli import ClaudeCLIError, call_claude
+from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
+from src.characters import get_character
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
@@ -69,11 +70,8 @@ Return JSON array only:
             text = call_claude(prompt, timeout=180)
         except ClaudeCLIError:
             continue
-        if "```" in text:
-            text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
-
         try:
-            batch_snapshots = json.loads(text.strip())
+            batch_snapshots = parse_json_response(text, expected_type=list)
             snapshots.extend(batch_snapshots)
 
             # 누적 이벤트 업데이트
@@ -84,7 +82,7 @@ Return JSON array only:
             nums = [s.get("story_number", "?") for s in batch_snapshots]
             print(f"  [arc] Processed stories {nums}")
 
-        except json.JSONDecodeError:
+        except ValueError:
             print(f"  [warn] Failed to parse batch starting at {batch_start}")
 
     return snapshots
@@ -196,18 +194,11 @@ def format_arc_for_prompt(state: dict, max_position: int, snapshots: list[dict] 
     return "\n\n".join(parts)
 
 
-# 캐릭터별 설정
-ARC_CONFIGS = {
-    "sherlock_holmes": ("sherlock_holmes", "Sherlock Holmes"),
-    "elizabeth_bennet": ("pride_and_prejudice", "Elizabeth Bennet"),
-}
-
-
 if __name__ == "__main__":
     import sys
     char_id = sys.argv[1] if len(sys.argv) > 1 else "sherlock_holmes"
-    book_id, char_name = ARC_CONFIGS[char_id]
+    spec = get_character(char_id)
 
-    print(f"[arc] Generating arc snapshots for {char_name}...")
-    snapshots = generate_arc_snapshots(book_id, char_name)
+    print(f"[arc] Generating arc snapshots for {spec.name}...")
+    snapshots = generate_arc_snapshots(spec.book_id, spec.name)
     save_arc(snapshots, char_id)

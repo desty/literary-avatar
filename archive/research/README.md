@@ -7,6 +7,8 @@ The active product surface is:
 - `README.md`
 - `docs/`
 - `scripts/`
+- `src/characters.py`
+- `src/claude_cli.py`
 - `src/character/`
 - `src/ingestion/`
 - `src/memory/`

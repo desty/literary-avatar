@@ -8,6 +8,7 @@ from rich.prompt import Prompt
 from rich.theme import Theme
 
 from src.character.engine import CharacterEngine
+from src.characters import CHARACTERS
 from src.memory.persistent import PersistentMemory
 
 theme = Theme({
@@ -16,11 +17,6 @@ theme = Theme({
     "system": "dim yellow",
 })
 console = Console(theme=theme)
-
-CHARACTERS = {
-    "1": ("sherlock_holmes", "Sherlock Holmes", "The Adventures of Sherlock Holmes"),
-    "2": ("elizabeth_bennet", "Elizabeth Bennet", "Pride and Prejudice"),
-}
 
 BANNER = """
     ╔═══════════════════════════════════════════════════════════╗
@@ -33,15 +29,20 @@ BANNER = """
 
 def select_character() -> str:
     """캐릭터 선택 메뉴."""
+    choices = {
+        str(index): character_id
+        for index, character_id in enumerate(CHARACTERS, start=1)
+    }
     console.print()
     console.print("  Choose a character:", style="system")
     console.print()
-    for key, (_, name, novel) in CHARACTERS.items():
-        console.print(f"    [{key}] {name}  —  {novel}")
+    for key, character_id in choices.items():
+        spec = CHARACTERS[character_id]
+        console.print(f"    [{key}] {spec.name}  —  {spec.novel_title}")
     console.print()
 
-    choice = Prompt.ask("  Select", choices=list(CHARACTERS.keys()), default="1")
-    return CHARACTERS[choice][0]
+    choice = Prompt.ask("  Select", choices=list(choices), default="1")
+    return choices[choice]
 
 
 def main():
@@ -49,8 +50,7 @@ def main():
 
     # 캐릭터 선택
     character_id = select_character()
-    char_info = next(v for v in CHARACTERS.values() if v[0] == character_id)
-    char_name = char_info[1]
+    char_name = CHARACTERS[character_id].name
 
     console.print(f"\nLoading {char_name}...", style="system")
 
@@ -105,8 +105,7 @@ def main():
         if user_input.lower() == "/switch":
             persistent.end_session()
             character_id = select_character()
-            char_info = next(v for v in CHARACTERS.values() if v[0] == character_id)
-            char_name = char_info[1]
+            char_name = CHARACTERS[character_id].name
             console.print(f"\nLoading {char_name}...", style="system")
             persistent = PersistentMemory(character_id)
             engine = CharacterEngine(character_id, persistent_memory=persistent)
@@ -161,7 +160,10 @@ def main():
                 pos = engine.narrative_position
                 total = len(engine.arc_snapshots)
                 if pos is None:
-                    console.print(f"[system]Timeline: full knowledge ({total} snapshots available)[/system]")
+                    console.print(
+                        f"[system]Timeline: full knowledge "
+                        f"({total} snapshots available)[/system]"
+                    )
                 else:
                     console.print(f"[system]Timeline: chapter/story {pos} of {total}[/system]")
                 console.print("  [dim]Usage: /timeline 3  (set to chapter 3)[/dim]")
@@ -173,7 +175,10 @@ def main():
                 try:
                     n = int(parts[1])
                     engine.set_narrative_position(n)
-                    console.print(f"[system]Timeline set to chapter/story {n}. Character only knows events up to this point.[/system]")
+                    console.print(
+                        f"[system]Timeline set to chapter/story {n}. "
+                        "Character only knows events up to this point.[/system]"
+                    )
                 except ValueError:
                     console.print("[system]Usage: /timeline <number> or /timeline all[/system]")
             continue
