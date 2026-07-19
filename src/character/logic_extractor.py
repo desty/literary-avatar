@@ -1,12 +1,9 @@
-"""텍스트→캐릭터 로직 자동 추출 — Novel Contribution #3.
-
-기존 연구: Codified Character Logic (2025)은 수동으로 행동 규칙 명세.
-본 모듈: 소설 텍스트에서 "if-then" 행동 패턴을 자동으로 추출하여 코드화.
-"""
+"""소설 텍스트에서 캐릭터 행동 지침을 자동 추출."""
 
 import json
-import subprocess
 from pathlib import Path
+
+from src.claude_cli import ClaudeCLIError, call_claude
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
@@ -54,15 +51,10 @@ Return JSON only:
   }}
 ]}}"""
 
-        result = subprocess.run(
-            ["claude", "-p", "--output-format", "text", prompt],
-            capture_output=True, text=True, timeout=180,
-        )
-
-        if result.returncode != 0:
+        try:
+            text = call_claude(prompt, timeout=180)
+        except ClaudeCLIError:
             continue
-
-        text = result.stdout.strip()
         if "```" in text:
             text = text.split("```json")[-1].split("```")[0] if "```json" in text else text.split("```")[1].split("```")[0]
 
