@@ -34,10 +34,22 @@ session persistence and centralizes JSON response parsing.
 
 ## Timeline Control
 
-When a timeline position is set, Avatar applies the chapter/story boundary
-inside the ChromaDB query. It also injects a future-unknown list derived from
-later timeline snapshots. This is the main product feature: a user can talk to
-a character as they were at a particular point in the story.
+Avatar computes one effective knowledge boundary from the character's narrative
+position and the reader's progress, using whichever is earlier. The same
+boundary now controls:
+
+- ChromaDB retrieval.
+- Cumulative character state and the future-unknown list.
+- The system prompt's hard knowledge constraint.
+- A timeline-safe projection of the full-book character profile.
+- Conversation, BDI, theory-of-mind, behavioral-rule, and persistent-memory
+  context that could otherwise reintroduce later plot facts.
+
+Moving to an earlier boundary clears the active conversation and derived mental
+state, because those turns may have been generated with broader knowledge.
+Full-book behavioral rules and persistent episode summaries are used only when
+no timeline boundary is active. This is the main product feature: a user can
+talk to a character as they were at a particular point in the story.
 
 ## Memory
 

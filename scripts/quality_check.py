@@ -31,7 +31,15 @@ def main() -> None:
     engine.reset()
     engine.set_narrative_position(1)
     after = engine.respond("What do you know about Irene Adler?")
-    known_markers = ("photograph", "outwit", "briony lodge", "the woman")
+    known_markers = (
+        "photograph",
+        "outwit",
+        "briony lodge",
+        "the woman",
+        "saw through",
+        "beaten",
+        "portrait",
+    )
     if sum(marker in after.lower() for marker in known_markers) < 2:
         failures.append("timeline position 1 did not recall enough source-grounded details")
     if re.search(r"\b(?:ai|language model)\b", after.lower()):

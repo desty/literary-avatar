@@ -3,7 +3,10 @@
 import unittest
 from unittest.mock import patch
 
-from src.character.prompt_builder import build_system_prompt
+from src.character.prompt_builder import (
+    build_system_prompt,
+    build_timeline_safe_profile,
+)
 from src.claude_cli import call_claude, parse_json_response
 
 
@@ -18,6 +21,38 @@ class PromptTests(unittest.TestCase):
         self.assertIn("modern technology", prompt)
         self.assertIn("Do NOT mention being an AI", prompt)
         self.assertIn("same language the user uses", prompt)
+
+    def test_timeline_safe_profile_omits_plot_outcomes_and_blocked_people(self):
+        profile = {
+            "name": "Test Character",
+            "full_description": "Eventually learns the final secret.",
+            "big_five": {"openness": 0.8},
+            "speech_patterns": [
+                "Uses dry wit",
+                "Always jokes with Future Person",
+            ],
+            "values": ["Truth"],
+            "relationships": {
+                "Future Person": "Becomes their closest ally",
+            },
+            "sample_expressions": ["I know the final secret."],
+            "reasoning_style": "Reasoning changed after the final revelation.",
+        }
+
+        safe = build_timeline_safe_profile(profile, ["Future Person"])
+        prompt = build_system_prompt(
+            safe,
+            "bounded story context",
+            "(No conversation history yet)",
+            timeline_position=2,
+        )
+
+        self.assertIn("Uses dry wit", prompt)
+        self.assertIn("Your knowledge ends at story/chapter 2", prompt)
+        self.assertNotIn("Eventually learns the final secret", prompt)
+        self.assertNotIn("Future Person", prompt)
+        self.assertNotIn("closest ally", prompt)
+        self.assertNotIn("final revelation", prompt)
 
 
 class ClaudeCLITests(unittest.TestCase):
