@@ -18,6 +18,9 @@ archive/research/results/
 dist/
 build/
 
+# Web product (maintained as an independent repository)
+/web/
+
 # Secrets
 .env
 
