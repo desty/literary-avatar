@@ -3,8 +3,13 @@
 from src.claude_cli import call_claude, parse_json_response
 from src.characters import CHARACTERS
 from src.character.profile import load_profile
-from src.character.prompt_builder import build_system_prompt
-from src.character.arc_tracker import load_arc, get_state_at_position, format_arc_for_prompt
+from src.character.prompt_builder import build_system_prompt, build_timeline_safe_profile
+from src.character.arc_tracker import (
+    format_arc_for_prompt,
+    get_future_only_entities,
+    get_state_at_position,
+    load_arc,
+)
 from src.character.theory_of_mind import infer_other_perspective, format_tom_for_prompt
 from src.character.logic_extractor import load_logic, format_logic_for_prompt
 from src.memory.conversation import ConversationMemory
@@ -39,14 +44,18 @@ class CharacterEngine:
         self.use_tom = cfg.get("use_tom", True)
 
     def set_narrative_position(self, position):
-        """캐릭터의 서사 시점을 설정. None이면 전체 지식."""
+        """캐릭터의 서사 시점을 설정. 더 이른 시점으로 이동하면 대화를 초기화."""
         self._validate_position(position, "narrative")
+        previous_boundary = self._effective_position()
         self.narrative_position = position
+        self._clear_state_for_stricter_boundary(previous_boundary)
 
     def set_reader_position(self, position):
-        """독자의 진행도를 설정. 시스템이 이 시점 이후를 스포하지 않음."""
+        """독자의 진행도를 설정. 더 이른 시점으로 이동하면 대화를 초기화."""
         self._validate_position(position, "reader")
+        previous_boundary = self._effective_position()
         self.reader_position = position
+        self._clear_state_for_stricter_boundary(previous_boundary)
 
     def _validate_position(self, position, label: str) -> None:
         if position is None:
@@ -58,18 +67,45 @@ class CharacterEngine:
                 f"{label} position must be between 0 and {len(self.arc_snapshots)}"
             )
 
+    def _effective_position(self):
+        """Return the strictest active story boundary, or None for full knowledge."""
+        positions = [
+            position
+            for position in (self.narrative_position, self.reader_position)
+            if position is not None
+        ]
+        return min(positions) if positions else None
+
+    def _clear_state_for_stricter_boundary(self, previous_boundary) -> None:
+        current_boundary = self._effective_position()
+        became_stricter = (
+            current_boundary is not None
+            and (
+                previous_boundary is None
+                or current_boundary < previous_boundary
+            )
+        )
+        if not became_stricter:
+            return
+
+        # Prior character replies, BDI, and theory-of-mind state may have been
+        # generated with broader story knowledge. Reusing them would bypass the
+        # new retrieval boundary.
+        self.memory.clear()
+        self.bdi_state = {"beliefs": [], "desires": [], "intentions": []}
+        self.tom_state = {}
+        self._tom_turn_count = 0
+
     def respond(self, user_input: str) -> str:
         """사용자 입력에 대해 캐릭터로서 응답."""
+        effective_position = self._effective_position()
+
         # Retrieve story context inside the active timeline boundary.
         rag_context = "(No specific story context retrieved)"
         if self.use_rag:
-            timeline_limits = [
-                position for position in (self.narrative_position, self.reader_position)
-                if position is not None
-            ]
             max_story_number = (
-                min(timeline_limits)
-                if self.use_temporal_filter and timeline_limits
+                effective_position
+                if self.use_temporal_filter and effective_position is not None
                 else None
             )
             rag_results = search(
@@ -82,9 +118,9 @@ class CharacterEngine:
 
         # Assemble conversation, mental-state, and persistent-memory context.
         conversation_history = self.memory.format_for_prompt(self.character_name)
-        bdi_text = self._format_bdi()
+        bdi_text = self._format_bdi() if effective_position is None else ""
         persistent_context = ""
-        if self.persistent_memory:
+        if self.persistent_memory and effective_position is None:
             persistent_context = self.persistent_memory.recall(user_input)
 
         if persistent_context:
@@ -92,17 +128,19 @@ class CharacterEngine:
 
         # Add the character's cumulative state and future-unknown list.
         arc_context = ""
-        if self.narrative_position is not None and self.arc_snapshots:
-            if self.use_arc_state:
-                state = get_state_at_position(self.arc_snapshots, self.narrative_position)
-                arc_context = format_arc_for_prompt(
-                    state, self.narrative_position,
-                    self.arc_snapshots if self.use_unknown_list else None,
-                )
-            elif self.use_unknown_list:
-                arc_context = format_arc_for_prompt(
-                    {}, self.narrative_position, self.arc_snapshots,
-                )
+        if effective_position is not None:
+            state = {}
+            if self.use_arc_state and self.arc_snapshots:
+                state = get_state_at_position(self.arc_snapshots, effective_position)
+            arc_context = format_arc_for_prompt(
+                state,
+                effective_position,
+                (
+                    self.arc_snapshots
+                    if self.use_unknown_list and self.arc_snapshots
+                    else None
+                ),
+            )
 
         if arc_context:
             rag_context = f"{arc_context}\n\n{rag_context}"
@@ -112,6 +150,7 @@ class CharacterEngine:
         self._tom_turn_count += 1
         should_refresh_tom = (
             self.use_tom
+            and effective_position is None
             and self._tom_turn_count % 3 == 0
             and len(self.memory.messages) >= 4
         )
@@ -125,14 +164,30 @@ class CharacterEngine:
         if tom_text:
             bdi_text = f"{bdi_text}\n\n{tom_text}" if bdi_text else tom_text
 
-        # Add extracted behavioral guidance.
-        if self.use_logic:
+        # Full-book behavioral rules are not timeline-tagged yet, so they are
+        # unsafe inside a bounded conversation.
+        if self.use_logic and effective_position is None:
             logic_text = format_logic_for_prompt(self.character_logic)
             if logic_text:
                 bdi_text = f"{bdi_text}\n\n{logic_text}" if bdi_text else logic_text
 
+        prompt_profile = self.profile
+        if effective_position is not None:
+            blocked_entities = get_future_only_entities(
+                self.arc_snapshots,
+                effective_position,
+            )
+            prompt_profile = build_timeline_safe_profile(
+                self.profile,
+                blocked_entities,
+            )
+
         system_prompt = build_system_prompt(
-            self.profile, rag_context, conversation_history, bdi_text,
+            prompt_profile,
+            rag_context,
+            conversation_history,
+            bdi_text,
+            timeline_position=effective_position,
         )
 
         try:
@@ -147,7 +202,8 @@ class CharacterEngine:
         if self.persistent_memory:
             self.persistent_memory.save_turn(user_input, response)
 
-        self._update_bdi()
+        if effective_position is None:
+            self._update_bdi()
 
         return response
 

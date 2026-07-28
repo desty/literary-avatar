@@ -4,6 +4,7 @@
 """
 
 import json
+import re
 from pathlib import Path
 
 from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
@@ -139,16 +140,68 @@ def get_state_at_position(snapshots: list[dict], position: int) -> dict:
 
 
 def get_unknown_at_position(snapshots: list[dict], position: int) -> list[str]:
-    """현재 시점 이후에 알게 될 인물/사건을 추출."""
-    unknown = []
+    """현재 시점 이후에 처음 알게 될 인물과 사실을 중복 없이 추출."""
+    unknown = [
+        f"the person named {name}"
+        for name in get_future_only_entities(snapshots, position)
+    ]
+
     for snap in snapshots:
         if snap.get("story_number", 0) <= position:
             continue
         for k in snap.get("knowledge_gained", []):
             unknown.append(k)
-        for char in snap.get("relationship_changes", {}):
-            unknown.append(f"the person named {char}")
-    return unknown
+        for event in snap.get("key_events", []):
+            unknown.append(event)
+
+    # Preserve narrative order while preventing repeated facts from crowding out
+    # future-only names in the bounded prompt.
+    return list(dict.fromkeys(item for item in unknown if item))
+
+
+def get_future_only_entities(snapshots: list[dict], position: int) -> list[str]:
+    """Return relationship entities first introduced after ``position``.
+
+    A character already present before the boundary is not unknown merely
+    because that relationship changes again later.
+    """
+    known = set()
+    future = []
+
+    for snap in snapshots:
+        story_number = snap.get("story_number", 0)
+        relationships = snap.get("relationship_changes", {})
+        if story_number <= position:
+            known.update(relationships)
+            continue
+        for name in relationships:
+            if name not in known and name not in future:
+                future.append(name)
+
+    return future
+
+
+def find_future_only_entities(
+    text: str,
+    snapshots: list[dict],
+    position: int,
+) -> list[str]:
+    """Find explicit mentions of future-only relationship entities in text."""
+    normalized_text = _normalize_for_match(text)
+    matches = []
+    for name in get_future_only_entities(snapshots, position):
+        normalized_name = _normalize_for_match(name)
+        if normalized_name and _contains_phrase(normalized_text, normalized_name):
+            matches.append(name)
+    return matches
+
+
+def _normalize_for_match(text: str) -> str:
+    return " ".join(re.findall(r"[0-9a-z가-힣]+", text.casefold()))
+
+
+def _contains_phrase(text: str, phrase: str) -> bool:
+    return f" {phrase} " in f" {text} "
 
 
 def format_arc_for_prompt(state: dict, max_position: int, snapshots: list[dict] = None) -> str:
@@ -181,14 +234,16 @@ def format_arc_for_prompt(state: dict, max_position: int, snapshots: list[dict] 
             )
 
     parts.append(
-        f"\n## CRITICAL TIMELINE CONSTRAINT — OVERRIDE ALL OTHER KNOWLEDGE ##\n"
+        f"\n## CRITICAL KNOWLEDGE BOUNDARY — OVERRIDE ALL OTHER CONTEXT ##\n"
         f"You exist at story/chapter {max_position}. This is a HARD constraint.\n"
-        f"You must ROLEPLAY as if you truly have not experienced anything beyond this point.\n"
-        f"When someone mentions a name, case, or event from your 'do NOT know' list above:\n"
-        f"  → You MUST say you do not recognize the name or know of such a matter.\n"
-        f"  → Do NOT describe, discuss, or reference anything about them.\n"
-        f"  → Respond with genuine unfamiliarity: 'That name means nothing to me.'\n"
-        f"This constraint OVERRIDES your general knowledge. Act as if those events have not happened."
+        f"Only facts established at or before this point are true from your perspective.\n"
+        f"Treat the character profile as style guidance, never as permission to use later plot facts.\n"
+        f"When someone mentions a future name, case, relationship, or event:\n"
+        f"  → Do not confirm, deny, summarize, correct, or repeat its details.\n"
+        f"  → Say naturally, in character, that the name or matter is unknown to you.\n"
+        f"  → Never reveal that it happens later or call it a spoiler.\n"
+        f"Do not use famous-story knowledge, model memory, conversation memory, or user claims "
+        f"to cross this boundary."
     )
 
     return "\n\n".join(parts)
