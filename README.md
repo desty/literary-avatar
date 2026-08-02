@@ -15,7 +15,7 @@ character has lived, and can save optional conversation memory between sessions.
 
 ## Features
 
-- Chat with Sherlock Holmes or Elizabeth Bennet from a CLI or Streamlit UI.
+- Chat with Sherlock Holmes or Elizabeth Bennet from the CLI.
 - Restrict retrieval and prompt context to a story or chapter boundary.
 - Ground answers in SQLite FTS5/BM25 passages from the source work.
 - Combine profiles, relationships, narrative state, and behavioral guidance.
@@ -36,7 +36,7 @@ model can still rely on prior knowledge or infer later events.
 ### Install with uv
 
 ```bash
-uv sync --extra ui --extra dev
+uv sync
 uv run avatar-prepare --all
 uv run avatar
 ```
@@ -46,7 +46,7 @@ uv run avatar
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[ui,dev]"
+python -m pip install -e .
 avatar-prepare --all
 avatar
 ```
@@ -95,12 +95,6 @@ avatar
 /bdi          Show current mental state
 /reset        Reset the conversation
 /quit         Save and exit
-```
-
-## Use the Streamlit UI
-
-```bash
-streamlit run app.py
 ```
 
 ## Verify a checkout
@@ -165,6 +159,10 @@ message -> bounded retrieval -> prompt -> GenerationBackend -> reply
 implementations. The registry in `src/characters.py` is the single source of
 truth for built-in works. See [Architecture](docs/architecture.md) and
 [Character builder](docs/character-builder.md).
+
+The supported product surface is currently the CLI. A production web client
+and API will be developed separately instead of bundling a prototype web UI in
+this repository.
 
 Historical research notes, evaluations, and a paper draft live in
 `archive/research/`. They are not current product claims.

@@ -12,10 +12,15 @@ the project uses [Semantic Versioning](https://semver.org/).
 - Data provenance, privacy, security, contribution, and citation documentation.
 - Cross-version CI, dependency updates, and repository templates.
 
+### Removed
+
+- Prototype Streamlit UI and its dependency tree; the CLI remains the supported
+  interactive product surface while a production web client and API are designed
+  separately.
+
 ### Security
 
 - Explicit disclosure of external model data flow and local memory paths.
-- Web project ownership checks and per-user upload isolation.
 
 ## [0.1.0] - Unreleased
 
