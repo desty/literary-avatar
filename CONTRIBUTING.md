@@ -8,7 +8,7 @@ reuse. Small, reviewable pull requests are preferred.
 Avatar supports Python 3.11–3.13. With `uv`:
 
 ```bash
-uv sync --extra ui --extra dev
+uv sync --extra dev
 uv run avatar --backend mock
 ```
 
@@ -17,7 +17,7 @@ With `pip`:
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[ui,dev]"
+python -m pip install -e ".[dev]"
 avatar --backend mock
 ```
 
@@ -28,7 +28,7 @@ Code CLI.
 ## Before opening a pull request
 
 ```bash
-python -m compileall -q src app.py demo.py scripts tests
+python -m compileall -q src demo.py scripts tests
 python -m unittest discover -s tests -v
 python scripts/smoke_check.py
 python scripts/check_provenance.py

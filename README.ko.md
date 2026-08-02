@@ -15,7 +15,7 @@ Avatar는 합법적으로 이용할 수 있는 소설을 로컬 중심의 캐릭
 
 ## 주요 기능
 
-- CLI 또는 Streamlit UI에서 셜록 홈즈, 엘리자베스 베넷과 대화합니다.
+- CLI에서 셜록 홈즈, 엘리자베스 베넷과 대화합니다.
 - 검색과 프롬프트 문맥을 특정 단편 또는 장까지로 제한합니다.
 - SQLite FTS5/BM25로 원문 구절을 검색해 답변의 근거로 사용합니다.
 - 인물 프로필, 관계, 서사 상태, 행동 지침을 함께 반영합니다.
@@ -37,7 +37,7 @@ Avatar는 합법적으로 이용할 수 있는 소설을 로컬 중심의 캐릭
 ### uv로 설치
 
 ```bash
-uv sync --extra ui --extra dev
+uv sync
 uv run avatar-prepare --all
 uv run avatar
 ```
@@ -47,7 +47,7 @@ uv run avatar
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[ui,dev]"
+python -m pip install -e .
 avatar-prepare --all
 avatar
 ```
@@ -96,12 +96,6 @@ avatar
 /bdi          현재 심리 상태 표시
 /reset        대화 초기화
 /quit         저장 후 종료
-```
-
-## Streamlit UI 사용
-
-```bash
-streamlit run app.py
 ```
 
 ## 체크아웃 검증
@@ -168,6 +162,9 @@ data/memory/    평문 대화, 요약, 추론된 사용자 정보
 `src/characters.py`의 레지스트리가 기본 제공 작품 정보의 단일 기준입니다.
 자세한 내용은 [아키텍처](docs/architecture.md)와
 [캐릭터 빌더](docs/character-builder.md)를 확인하세요.
+
+현재 지원하는 제품 인터페이스는 CLI입니다. 이 저장소에 프로토타입 웹 UI를
+포함하는 대신, 실제 서비스용 웹 클라이언트와 API를 별도로 개발할 예정입니다.
 
 과거 연구 기록, 평가, 논문 초안은 `archive/research/`에 보관합니다. 이 자료들은
 현재 제품 성능에 대한 주장으로 간주하지 않습니다.

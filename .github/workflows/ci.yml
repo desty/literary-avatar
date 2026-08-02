@@ -27,7 +27,7 @@ jobs:
       - name: Update packaging tools
         run: python -m pip install --upgrade "setuptools>=83"
       - name: Install dependencies
-        run: python -m pip install -e ".[ui,dev]"
+        run: python -m pip install -e ".[dev]"
       - name: Check dependencies
         run: python -m pip check
       - name: Audit Python dependencies
@@ -37,7 +37,7 @@ jobs:
           avatar --version
           avatar-prepare --help
       - name: Compile
-        run: python -m compileall -q src app.py demo.py scripts tests
+        run: python -m compileall -q src demo.py scripts tests
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
       - name: Run offline smoke check

@@ -72,9 +72,9 @@ Avatar has two memory layers:
 - **ConversationMemory** keeps recent turns inside the active session.
 - **PersistentMemory** stores optional local summaries and user facts under `data/memory/`.
 
-Active turns are journaled locally before session summarization so an interrupted CLI or
-web session can be recovered. Persistent memory is intentionally local and file-based so
-it is easy to inspect or delete.
+Active turns are journaled locally before session summarization so an interrupted CLI
+session can be recovered. Persistent memory is intentionally local and file-based so it
+is easy to inspect or delete.
 
 The default backend still sends prompt content to an external model. Local
 storage does not imply local inference; see `docs/privacy.md`.
@@ -83,3 +83,6 @@ storage does not imply local inference; see `docs/privacy.md`.
 
 Research artifacts live in `archive/research/`. Runtime code lives in `src/`,
 product scripts live in `scripts/`, and user-facing docs live in `docs/`.
+The current interactive product surface is the CLI. A production web client and
+API are intentionally kept out of this repository until their integration and
+deployment boundaries are defined.

@@ -3,7 +3,7 @@
 ## MVP
 
 - Reliable setup for the built-in characters.
-- CLI and Streamlit chat paths.
+- Reliable CLI chat path.
 - Timeline position control with named story/chapter labels.
 - Local smoke checks for profiles, arcs, behavior rules, and search indexes.
 - Clear memory controls for viewing and deleting local memories.
@@ -13,10 +13,12 @@
 
 - Optional multilingual semantic retrieval behind the existing bounded-search
   contract, with no remotely exposed vector database and a reviewed model license.
-- Improve timeline UI from numeric sliders to readable story/chapter selectors.
+- Improve timeline selection from numeric positions to readable story/chapter selectors.
 - Add era grounding for historical technologies, etiquette, and social norms.
 - Add a guided character builder for new public-domain novels.
 - Add broader first-run setup coverage across supported platforms.
+- Define a production web architecture with a versioned API, streaming responses,
+  background ingestion jobs, and explicit deployment and privacy boundaries.
 
 ## Later
 
