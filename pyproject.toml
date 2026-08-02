@@ -25,7 +25,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-ui = ["streamlit>=1.50,<2"]
 dev = [
   "build>=1.4,<2",
   "pip-audit>=2.9,<3",
