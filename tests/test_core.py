@@ -96,9 +96,9 @@ class CharacterEngineTests(unittest.TestCase):
         self.assertIn("early state", prompt)
         self.assertNotIn("Your current emotional state: late state", prompt)
 
-    def test_bounded_prompt_omits_full_book_profile_logic_and_persistent_memory(self):
+    def test_bounded_prompt_omits_full_book_context_and_uses_safe_memory(self):
         persistent = Mock()
-        persistent.recall.return_value = "FUTURE MEMORY LEAK"
+        persistent.recall.return_value = "SAFE EARLY MEMORY"
         engine = CharacterEngine(
             "elizabeth_bennet",
             persistent_memory=persistent,
@@ -123,10 +123,18 @@ class CharacterEngineTests(unittest.TestCase):
         prompt = captured["system_prompt"]
         self.assertNotIn("Complex antagonist-to-lover dynamic", prompt)
         self.assertNotIn("FULL BOOK LOGIC LEAK", prompt)
-        self.assertNotIn("FUTURE MEMORY LEAK", prompt)
+        self.assertIn("SAFE EARLY MEMORY", prompt)
+        self.assertIn("untrusted conversational recollections", prompt)
         mock_logic.assert_not_called()
-        persistent.recall.assert_not_called()
-        persistent.save_turn.assert_called_once()
+        persistent.recall.assert_called_once_with(
+            "Tell me about yourself",
+            max_story_number=10,
+        )
+        persistent.save_turn.assert_called_once_with(
+            "Tell me about yourself",
+            "A response",
+            knowledge_boundary=10,
+        )
 
     def test_moving_to_an_earlier_boundary_clears_contaminated_state(self):
         engine = self.make_engine(use_rag=False)
@@ -178,6 +186,109 @@ class CharacterEngineTests(unittest.TestCase):
 
         self.assertIn("Offline mock response", response)
         run.assert_not_called()
+
+    def test_cross_language_miss_rewrites_query_without_broadening_boundary(self):
+        class RewriteBackend:
+            name = "rewrite-test"
+
+            def generate(self, prompt, timeout=180, system_prompt=None):
+                del timeout
+                if system_prompt:
+                    return "I must examine the evidence."
+                self.rewrite_prompt = prompt
+                return '{"query":"Irene Adler photograph"}'
+
+        backend = RewriteBackend()
+        engine = CharacterEngine(
+            "sherlock_holmes",
+            generation_backend=backend,
+            config={"use_logic": False, "use_tom": False},
+        )
+        engine.set_narrative_position(1)
+        result = {
+            "id": "s01_c0001",
+            "text": "Irene Adler keeps a photograph.",
+            "metadata": {"story_number": 1, "story_title": "A Scandal"},
+            "distance": -2.0,
+        }
+
+        with patch("src.character.engine.search", side_effect=[[], [result]]) as search_mock:
+            response = engine.respond("아이린 애들러의 사진은?")
+
+        self.assertEqual(response, "I must examine the evidence.")
+        self.assertEqual(search_mock.call_count, 2)
+        self.assertEqual(
+            search_mock.call_args_list[1].args[0],
+            "Irene Adler photograph",
+        )
+        self.assertEqual(
+            search_mock.call_args_list[1].kwargs["max_story_number"],
+            1,
+        )
+        self.assertTrue(engine.last_retrieval["rewritten"])
+        self.assertIn("s01_c0001", engine.format_last_sources())
+
+    def test_timeline_guard_repairs_future_entity_reference(self):
+        class SequenceBackend:
+            name = "sequence-test"
+
+            def __init__(self):
+                self.responses = iter([
+                    "Future Person revealed the secret.",
+                    "That person is unknown to me.",
+                ])
+
+            def generate(self, prompt, timeout=180, system_prompt=None):
+                del prompt, timeout, system_prompt
+                return next(self.responses)
+
+        engine = CharacterEngine(
+            "sherlock_holmes",
+            generation_backend=SequenceBackend(),
+            config={"use_rag": False, "use_logic": False, "use_tom": False},
+        )
+        engine.arc_snapshots = [
+            {"story_number": 1, "relationship_changes": {}},
+            {
+                "story_number": 2,
+                "relationship_changes": {"Future Person": "first appears"},
+            },
+        ]
+        engine.set_narrative_position(1)
+
+        response = engine.respond("Who is that person?")
+
+        self.assertEqual(response, "That person is unknown to me.")
+        self.assertEqual(engine.last_response_guard["status"], "repaired")
+        self.assertNotIn("Future Person", response)
+
+    def test_timeline_guard_uses_safe_fallback_after_failed_repair(self):
+        class LeakyBackend:
+            name = "leaky-test"
+
+            def generate(self, prompt, timeout=180, system_prompt=None):
+                del prompt, timeout, system_prompt
+                return "Future Person knows everything."
+
+        engine = CharacterEngine(
+            "sherlock_holmes",
+            generation_backend=LeakyBackend(),
+            config={"use_rag": False, "use_logic": False, "use_tom": False},
+        )
+        engine.arc_snapshots = [
+            {"story_number": 1, "relationship_changes": {}},
+            {
+                "story_number": 2,
+                "relationship_changes": {"Future Person": "first appears"},
+            },
+        ]
+        engine.set_narrative_position(1)
+
+        response = engine.respond("미래 인물은 누구야?")
+
+        self.assertNotIn("Future Person", response)
+        self.assertIn("낯섭니다", response)
+        self.assertEqual(engine.last_response_guard["status"], "blocked")
 
 
 class ArcBoundaryTests(unittest.TestCase):
@@ -251,19 +362,60 @@ class LocalRetrieverTests(unittest.TestCase):
                 )
 
             self.assertEqual(full[0]["metadata"]["story_number"], 2)
-            self.assertTrue(bounded)
-            self.assertTrue(
-                all(item["metadata"]["story_number"] <= 1 for item in bounded)
-            )
-            self.assertNotIn("final secret", bounded[0]["text"])
+            self.assertEqual(bounded, [])
 
     def test_fts_query_treats_user_input_as_terms_not_sql(self):
         query = retriever._fts_query('\" OR 1=1 --')
         self.assertNotIn("=", query)
-        self.assertEqual(query, '"or"')
+        self.assertEqual(query, "")
 
 
 class PersistentMemoryTests(unittest.TestCase):
+    def test_bounded_recall_filters_unscoped_and_later_episodes(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with patch("src.memory.persistent.DATA_DIR", Path(temp_dir)):
+                memory = PersistentMemory("test_character")
+                memory.episodes = [
+                    {"date": "legacy", "summary": "legacy clue"},
+                    {
+                        "date": "full",
+                        "summary": "full clue",
+                        "knowledge_boundary": None,
+                    },
+                    {
+                        "date": "early",
+                        "summary": "early clue",
+                        "knowledge_boundary": 2,
+                    },
+                    {
+                        "date": "late",
+                        "summary": "late clue",
+                        "knowledge_boundary": 5,
+                    },
+                ]
+                memory.user_profile["known_facts"] = ["private profile fact"]
+
+                recalled = memory.recall("clue", max_story_number=3)
+
+        self.assertIn("early clue", recalled)
+        self.assertNotIn("legacy clue", recalled)
+        self.assertNotIn("full clue", recalled)
+        self.assertNotIn("late clue", recalled)
+        self.assertNotIn("private profile fact", recalled)
+
+    def test_episode_records_least_restrictive_session_boundary(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with patch("src.memory.persistent.DATA_DIR", Path(temp_dir)):
+                memory = PersistentMemory(
+                    "test_character",
+                    generation_backend=MockBackend(),
+                )
+                memory.save_turn("First", "Reply", knowledge_boundary=2)
+                memory.save_turn("Second", "Reply", knowledge_boundary=4)
+                memory.end_session()
+
+                self.assertEqual(memory.episodes[0]["knowledge_boundary"], 4)
+
     def test_nonzero_claude_exit_preserves_fallback_episode(self):
         class FailedResult:
             returncode = 1

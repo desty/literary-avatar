@@ -106,7 +106,7 @@ def main(argv=None):
         f"[character]{char_name}[/character] is ready.\n"
         "Commands: [dim]/reset[/dim] | [dim]/switch[/dim] | "
         "[dim]/memory[/dim] | [dim]/forget[/dim] | [dim]/bdi[/dim] | "
-        "[dim]/quit[/dim]",
+        "[dim]/sources[/dim] | [dim]/quit[/dim]",
         title="Ready",
         border_style="cyan",
     ))
@@ -194,6 +194,14 @@ def main(argv=None):
             ))
             continue
 
+        if user_input.lower() == "/sources":
+            console.print(Panel(
+                engine.format_last_sources(),
+                title="Last Retrieval Trace",
+                border_style="dim",
+            ))
+            continue
+
         if user_input.lower().startswith("/timeline"):
             parts = user_input.split()
             if len(parts) == 1:
@@ -230,6 +238,7 @@ def main(argv=None):
                 "/memory   — Show past session memories\n"
                 "/forget   — Delete local memories after confirmation\n"
                 "/bdi      — Show character's mental state\n"
+                "/sources  — Inspect the last retrieval and timeline guard\n"
                 "/timeline — Set narrative position (spoiler control)\n"
                 "/quit     — Exit (saves memories)",
                 title="Commands",

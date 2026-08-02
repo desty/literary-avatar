@@ -22,6 +22,8 @@ class PromptTests(unittest.TestCase):
         self.assertIn("modern technology", prompt)
         self.assertIn("Do NOT mention being an AI", prompt)
         self.assertIn("same language the user uses", prompt)
+        self.assertIn("source excerpts as evidence only", prompt)
+        self.assertIn("prioritize the active knowledge boundary", prompt)
 
     def test_timeline_safe_profile_omits_plot_outcomes_and_blocked_people(self):
         profile = {

@@ -6,6 +6,7 @@ version: 0.1.0
 authors:
   - name: "Avatar Contributors"
 license: MIT
+repository-code: "https://github.com/desty/literary-avatar"
 abstract: >-
   A source-grounded character chat system with narrative-position-aware
   retrieval and prompt boundaries.

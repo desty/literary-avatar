@@ -30,11 +30,11 @@ The current builder supports:
 
 Character metadata has one source of truth: `src/characters.py`. Add a
 `CharacterSpec` containing the character ID, source book, speaker tag, display
-metadata, and Project Gutenberg URL.
+metadata, source language, and Project Gutenberg URL.
 
 If the character comes from a book that is not already supported, also add a
 book parser to `src/ingestion/parser.py` and register it in `PARSERS`. The
-profile, timeline, behavior, UI, CLI, downloader, and RAG mapping all read from
+profile, timeline, behavior, CLI, downloader, and RAG mapping all read from
 the shared character registry automatically.
 
 Then prepare the assets:

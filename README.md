@@ -18,6 +18,9 @@ character has lived, and can save optional conversation memory between sessions.
 - Chat with Sherlock Holmes or Elizabeth Bennet from the CLI.
 - Restrict retrieval and prompt context to a story or chapter boundary.
 - Ground answers in SQLite FTS5/BM25 passages from the source work.
+- Reuse only conversation memories compatible with the active story boundary.
+- Retry cross-language retrieval with a source-language query after a lexical miss.
+- Inspect the last retrieval and response guard with `/sources`.
 - Combine profiles, relationships, narrative state, and behavioral guidance.
 - Inspect and delete optional plaintext local conversation memory.
 - Run the plumbing without an account using a deterministic mock backend.
@@ -93,6 +96,7 @@ avatar
 /memory       Show recent local memories
 /forget       Delete local memories after confirmation
 /bdi          Show current mental state
+/sources      Inspect the last retrieval and timeline guard
 /reset        Reset the conversation
 /quit         Save and exit
 ```
@@ -152,13 +156,15 @@ generation backend may receive.
 source -> parser -> timeline-tagged units -> SQLite FTS5 index
                   -> prepared profile / arc / behavior assets
 
-message -> bounded retrieval -> prompt -> GenerationBackend -> reply
+message -> bounded retrieval -> optional query rewrite -> prompt
+        -> GenerationBackend -> timeline response guard -> reply
 ```
 
 `GenerationBackend` currently has Claude CLI and deterministic mock
 implementations. The registry in `src/characters.py` is the single source of
 truth for built-in works. See [Architecture](docs/architecture.md) and
-[Character builder](docs/character-builder.md).
+[Character builder](docs/character-builder.md). The design rationale and recent
+primary references are summarized in [Research-informed design](docs/research-foundations.md).
 
 The supported product surface is currently the CLI. A production web client
 and API will be developed separately instead of bundling a prototype web UI in

@@ -12,6 +12,7 @@ class CharacterSpec:
     novel_title: str
     author: str
     year: int
+    source_language: str
     speaker_tag: str
     gutenberg_url: str
     avatar: str
@@ -29,6 +30,7 @@ CHARACTERS: Dict[str, CharacterSpec] = {
         novel_title="The Adventures of Sherlock Holmes",
         author="Arthur Conan Doyle",
         year=1892,
+        source_language="English",
         speaker_tag="Holmes",
         gutenberg_url="https://www.gutenberg.org/cache/epub/1661/pg1661.txt",
         avatar="🔍",
@@ -40,6 +42,7 @@ CHARACTERS: Dict[str, CharacterSpec] = {
         novel_title="Pride and Prejudice",
         author="Jane Austen",
         year=1813,
+        source_language="English",
         speaker_tag="Elizabeth",
         gutenberg_url="https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
         avatar="📖",
