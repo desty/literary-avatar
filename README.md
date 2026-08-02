@@ -1,5 +1,7 @@
 # Avatar
 
+**English** | [한국어](README.ko.md)
+
 Timeline-aware, source-grounded chat with literary characters.
 
 Avatar turns legally usable novels into local-first character chatbots. It
