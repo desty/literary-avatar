@@ -11,6 +11,13 @@ the project uses [Semantic Versioning](https://semver.org/).
 - Deterministic offline mock backend and pluggable generation interface.
 - Data provenance, privacy, security, contribution, and citation documentation.
 - Cross-version CI, dependency updates, and repository templates.
+- Boundary-tagged episodic recall, cross-language query rewriting after lexical
+  misses, `/sources` retrieval traces, and a future-entity response guard.
+
+### Changed
+
+- Retrieval misses now remain empty instead of substituting unrelated early-book
+  chunks as evidence.
 
 ### Removed
 
@@ -21,6 +28,8 @@ the project uses [Semantic Versioning](https://semver.org/).
 ### Security
 
 - Explicit disclosure of external model data flow and local memory paths.
+- Bounded responses now receive deterministic tagged-entity verification with a
+  single repair attempt and safe fallback.
 
 ## [0.1.0] - Unreleased
 

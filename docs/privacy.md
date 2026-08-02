@@ -29,6 +29,13 @@ Claude Code CLI. Depending on the operation, a prompt can contain:
 - locally stored conversation summaries and inferred user facts;
 - excerpts used to build profiles, timelines, and behavioral guidance.
 
+If a non-ASCII question has no lexical source match, Avatar may make an
+additional backend call to rewrite that question as a short query in the source
+language. If a bounded draft names a future-only entity, Avatar may make one
+additional backend call to repair the draft. Both calls can include the current
+user message; the repair call can also include the rejected draft and blocked
+entity names.
+
 The repository disables Claude coding tools and session persistence for each
 call, but transport, retention, account, and service behavior remain governed
 by the installed CLI and provider terms.

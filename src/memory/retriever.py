@@ -15,6 +15,15 @@ from src.paths import DATA_DIR
 DB_DIR = DATA_DIR / "vectordb"
 DB_PATH = DB_DIR / "avatar-search.sqlite3"
 
+_ENGLISH_STOPWORDS = {
+    "a", "about", "an", "and", "are", "as", "at", "be", "but", "by",
+    "do", "does", "for", "from", "had", "has", "have", "he", "her", "him",
+    "his", "how", "i", "in", "is", "it", "me", "my", "of", "on", "or",
+    "she", "tell", "that", "the", "their", "them", "they", "this", "to",
+    "was", "were", "what", "when", "where", "which", "who", "why", "with",
+    "you", "your",
+}
+
 
 def chunk_text(text: str, chunk_size: int = 500, overlap: int = 100) -> list[dict]:
     """Split text into overlapping word chunks."""
@@ -141,7 +150,7 @@ def _fts_query(query: str) -> str:
     tokens = list(dict.fromkeys(
         token.lower()
         for token in re.findall(r"[^\W_]+", query, flags=re.UNICODE)
-        if len(token) > 1
+        if len(token) > 1 and token.lower() not in _ENGLISH_STOPWORDS
     ))
     return " OR ".join(f'"{token.replace(chr(34), chr(34) * 2)}"' for token in tokens[:20])
 
@@ -187,19 +196,8 @@ def search(
                 (match_query, book_id, *timeline_params, n_results),
             ).fetchall()
 
-        # A query in another language or with no lexical overlap should still
-        # receive bounded source context rather than silently broadening scope.
-        if not rows:
-            rows = connection.execute(
-                f"""
-                SELECT doc_id, story_number, story_title, text, NULL AS score
-                FROM chunks
-                WHERE book_id = ?{timeline_sql}
-                ORDER BY CAST(story_number AS INTEGER), doc_id
-                LIMIT ?
-                """,
-                (book_id, *timeline_params, n_results),
-            ).fetchall()
+        # An empty result is meaningful. Returning the first bounded chunks
+        # would hide retrieval failure and present irrelevant text as evidence.
 
     return [
         {

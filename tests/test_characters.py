@@ -11,6 +11,7 @@ class CharacterRegistryTests(unittest.TestCase):
         for character_id, spec in CHARACTERS.items():
             self.assertEqual(character_id, spec.character_id)
             self.assertEqual(GUTENBERG_URLS[spec.book_id], spec.gutenberg_url)
+            self.assertTrue(spec.source_language)
 
     def test_default_character_exists(self):
         self.assertIs(get_character(DEFAULT_CHARACTER_ID), CHARACTERS[DEFAULT_CHARACTER_ID])

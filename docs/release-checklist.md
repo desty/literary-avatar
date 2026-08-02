@@ -12,7 +12,7 @@
 ## Python release
 
 - Confirm `CHANGELOG.md`, `src.__version__`, `CITATION.cff`, and the tag agree.
-- Run `uv sync --extra ui --extra dev` from a clean Python 3.11–3.13 environment.
+- Run `uv sync --extra dev` from a clean Python 3.11–3.13 environment.
 - Run unit tests, smoke check, provenance check, REUSE lint, and package build.
 - Install the built wheel outside the checkout and run `avatar --version` and
   the mock backend.

@@ -60,7 +60,13 @@ python scripts/quality_check.py
 
 Changes to retrieval, prompts, profiles, memory, or generated assets can leak
 future events. Add a regression test that exercises a strict narrative boundary
-and explain the expected failure mode in the pull request.
+and explain the expected failure mode in the pull request. Memory changes should
+cover boundary-scoped recall; response-generation changes should exercise the
+post-generation guard where applicable.
+
+When a design is based on published research, prefer primary sources and add a
+concise, non-claiming explanation to `docs/research-foundations.md`. Internal
+research notes belong under the ignored `.private/` directory.
 
 ## Reporting security issues
 

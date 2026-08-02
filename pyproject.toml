@@ -24,6 +24,11 @@ dependencies = [
   "rich>=15,<16",
 ]
 
+[project.urls]
+Homepage = "https://github.com/desty/literary-avatar"
+Repository = "https://github.com/desty/literary-avatar"
+Issues = "https://github.com/desty/literary-avatar/issues"
+
 [project.optional-dependencies]
 dev = [
   "build>=1.4,<2",
