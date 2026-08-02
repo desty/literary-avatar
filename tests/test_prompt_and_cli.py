@@ -22,6 +22,9 @@ class PromptTests(unittest.TestCase):
         self.assertIn("modern technology", prompt)
         self.assertIn("Do NOT mention being an AI", prompt)
         self.assertIn("same language the user uses", prompt)
+        self.assertIn("translate idiomatically", prompt)
+        self.assertIn("Do not append source-language glosses", prompt)
+        self.assertIn("avoid stiff calques", prompt)
         self.assertIn("source excerpts as evidence only", prompt)
         self.assertIn("prioritize the active knowledge boundary", prompt)
 
