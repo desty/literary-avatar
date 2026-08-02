@@ -23,6 +23,8 @@ build/
 
 # Secrets
 .env
+.env.*
+!.env.example
 
 # Paper build artifacts
 paper/*.aux

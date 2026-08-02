@@ -1,6 +1,7 @@
 """Core engine combining character, retrieval, timeline, and memory context."""
 
-from src.claude_cli import call_claude, parse_json_response
+from src.claude_cli import parse_json_response
+from src.generation import GenerationBackend, get_generation_backend
 from src.characters import CHARACTERS
 from src.character.profile import load_profile
 from src.character.prompt_builder import build_system_prompt, build_timeline_safe_profile
@@ -18,7 +19,13 @@ from src.memory.retriever import search
 class CharacterEngine:
     """캐릭터 에이전트의 핵심 엔진."""
 
-    def __init__(self, character_id: str, persistent_memory=None, config: dict = None):
+    def __init__(
+        self,
+        character_id: str,
+        persistent_memory=None,
+        config: dict = None,
+        generation_backend: GenerationBackend = None,
+    ):
         self.character_id = character_id
         self.profile = load_profile(character_id)
         self.character_name = self.profile.get("name", character_id)
@@ -33,6 +40,7 @@ class CharacterEngine:
         self.tom_state = {}
         self._tom_turn_count = 0
         self.character_logic = load_logic(character_id)
+        self.generation_backend = generation_backend or get_generation_backend()
 
         # Feature flags for demos and diagnostics.
         cfg = config or {}
@@ -158,6 +166,7 @@ class CharacterEngine:
             self.tom_state = infer_other_perspective(
                 self.character_name, "the user", user_input,
                 self.profile, conversation_history,
+                generation_backend=self.generation_backend,
             )
             tom_text = format_tom_for_prompt(self.tom_state)
 
@@ -246,14 +255,18 @@ Return JSON only:
 "intentions": ["what {self.character_name} plans to do next"]}}"""
 
         try:
-            text = call_claude(prompt, timeout=60)
+            text = self.generation_backend.generate(prompt, timeout=60)
             self.bdi_state = parse_json_response(text, expected_type=dict)
         except Exception:
             pass  # BDI 업데이트 실패는 무시
 
     def _call_claude(self, system_prompt: str, user_input: str) -> str:
         prompt = f"User says: {user_input}\n\nRespond as {self.character_name}:"
-        return call_claude(prompt, timeout=180, system_prompt=system_prompt)
+        return self.generation_backend.generate(
+            prompt,
+            timeout=180,
+            system_prompt=system_prompt,
+        )
 
     def reset(self):
         self.memory.clear()

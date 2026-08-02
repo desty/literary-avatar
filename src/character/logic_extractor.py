@@ -2,14 +2,16 @@
 
 import json
 from pathlib import Path
-
-from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
+from src.claude_cli import parse_json_response
 from src.characters import get_character
+from src.generation import GenerationBackend, get_generation_backend
+from src.paths import DATA_DIR
 
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
-
-
-def extract_character_logic(book_id: str, character_name: str) -> dict:
+def extract_character_logic(
+    book_id: str,
+    character_name: str,
+    generation_backend: GenerationBackend = None,
+) -> dict:
     """소설에서 캐릭터의 행동 규칙을 자동 추출."""
 
     processed = DATA_DIR / "processed" / f"{book_id}.json"
@@ -26,6 +28,7 @@ def extract_character_logic(book_id: str, character_name: str) -> dict:
     # 3배치로 나눠서 처리
     batch_size = len(scenes) // 3 + 1
     all_rules = []
+    backend = generation_backend or get_generation_backend()
 
     for i in range(0, len(scenes), batch_size):
         batch = scenes[i:i + batch_size]
@@ -53,8 +56,8 @@ Return JSON only:
 ]}}"""
 
         try:
-            text = call_claude(prompt, timeout=180)
-        except ClaudeCLIError:
+            text = backend.generate(prompt, timeout=180)
+        except RuntimeError:
             continue
         try:
             batch_rules = parse_json_response(text, expected_type=dict)

@@ -1,5 +1,6 @@
 """Avatar — Literary Character AI Agent CLI."""
 
+import argparse
 import sys
 
 from rich.console import Console
@@ -9,7 +10,9 @@ from rich.theme import Theme
 
 from src.character.engine import CharacterEngine
 from src.characters import CHARACTERS
+from src.generation import get_generation_backend
 from src.memory.persistent import PersistentMemory
+from src import __version__
 
 theme = Theme({
     "character": "bold cyan",
@@ -45,7 +48,30 @@ def select_character() -> str:
     return choices[choice]
 
 
-def main():
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(
+        prog="avatar",
+        description="Timeline-aware chat with literary characters.",
+    )
+    parser.add_argument(
+        "--backend",
+        choices=("claude", "mock"),
+        help=(
+            "Text-generation backend. Defaults to "
+            "AVATAR_GENERATION_BACKEND or claude."
+        ),
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"Avatar {__version__}",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv=None):
+    args = parse_args(argv)
+    generation_backend = get_generation_backend(args.backend)
     console.print(BANNER, style="bold cyan")
 
     # 캐릭터 선택
@@ -55,8 +81,15 @@ def main():
     console.print(f"\nLoading {char_name}...", style="system")
 
     try:
-        persistent = PersistentMemory(character_id)
-        engine = CharacterEngine(character_id, persistent_memory=persistent)
+        persistent = PersistentMemory(
+            character_id,
+            generation_backend=generation_backend,
+        )
+        engine = CharacterEngine(
+            character_id,
+            persistent_memory=persistent,
+            generation_backend=generation_backend,
+        )
     except Exception as e:
         console.print(f"[red]Error: {e}[/red]")
         sys.exit(1)
@@ -107,8 +140,15 @@ def main():
             character_id = select_character()
             char_name = CHARACTERS[character_id].name
             console.print(f"\nLoading {char_name}...", style="system")
-            persistent = PersistentMemory(character_id)
-            engine = CharacterEngine(character_id, persistent_memory=persistent)
+            persistent = PersistentMemory(
+                character_id,
+                generation_backend=generation_backend,
+            )
+            engine = CharacterEngine(
+                character_id,
+                persistent_memory=persistent,
+                generation_backend=generation_backend,
+            )
             console.print(f"[character]{char_name}[/character] is ready.\n")
             continue
 

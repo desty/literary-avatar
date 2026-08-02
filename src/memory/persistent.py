@@ -8,18 +8,22 @@ MemGPT 영감의 2-tier 메모리:
 import json
 from datetime import datetime
 from pathlib import Path
-
-from src.claude_cli import call_claude, parse_json_response
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
-
+from src.claude_cli import parse_json_response
+from src.generation import GenerationBackend, get_generation_backend
+from src.paths import DATA_DIR
 
 class PersistentMemory:
     """세션 간 지속되는 장기 메모리."""
 
-    def __init__(self, character_id: str, user_id: str = "default"):
+    def __init__(
+        self,
+        character_id: str,
+        user_id: str = "default",
+        generation_backend: GenerationBackend = None,
+    ):
         self.character_id = character_id
         self.user_id = user_id
+        self.generation_backend = generation_backend or get_generation_backend()
         self.memory_dir = DATA_DIR / "memory" / character_id / user_id
         self.memory_dir.mkdir(parents=True, exist_ok=True)
 
@@ -123,7 +127,7 @@ Return JSON only:
         summary_data = None
         used_fallback = False
         try:
-            text = call_claude(prompt, timeout=60)
+            text = self.generation_backend.generate(prompt, timeout=60)
             summary_data = parse_json_response(text, expected_type=dict)
         except Exception:
             used_fallback = True

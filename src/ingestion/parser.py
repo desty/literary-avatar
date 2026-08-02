@@ -5,7 +5,7 @@ import re
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
+from src.paths import DATA_DIR
 
 @dataclass
 class Dialogue:

@@ -1,9 +1,7 @@
 """캐릭터 프로필 데이터 로딩."""
 
 import json
-from pathlib import Path
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
+from src.paths import DATA_DIR
 
 
 def load_profile(character_id: str = "sherlock_holmes") -> dict:

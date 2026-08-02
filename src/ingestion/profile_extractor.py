@@ -2,12 +2,10 @@
 
 import json
 from pathlib import Path
-
-from src.claude_cli import call_claude, parse_json_response
+from src.claude_cli import parse_json_response
 from src.characters import get_character
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
-
+from src.generation import GenerationBackend, get_generation_backend
+from src.paths import DATA_DIR
 
 def extract_character_profile(
     book_id: str,
@@ -15,6 +13,7 @@ def extract_character_profile(
     speaker_tag: str,
     novel_title: str,
     author: str,
+    generation_backend: GenerationBackend = None,
 ) -> dict:
     """범용 캐릭터 프로필 추출."""
     processed = DATA_DIR / "processed" / f"{book_id}.json"
@@ -85,7 +84,8 @@ Return ONLY valid JSON, no other text:
 Be specific and evidence-based. Use the actual text to support each trait."""
 
     print(f"[extracting] Analyzing {character_name} with Claude...")
-    response = call_claude(prompt, timeout=180)
+    backend = generation_backend or get_generation_backend()
+    response = backend.generate(prompt, timeout=180)
     return parse_json_response(response, expected_type=dict)
 
 
@@ -100,7 +100,10 @@ def save_profile(profile: dict, character_id: str) -> Path:
     return output_path
 
 
-def extract_and_save(character_id: str) -> dict:
+def extract_and_save(
+    character_id: str,
+    generation_backend: GenerationBackend = None,
+) -> dict:
     """캐릭터 프로필을 추출하고 저장."""
     spec = get_character(character_id)
     profile = extract_character_profile(
@@ -109,6 +112,7 @@ def extract_and_save(character_id: str) -> dict:
         speaker_tag=spec.speaker_tag,
         novel_title=spec.novel_title,
         author=spec.author,
+        generation_backend=generation_backend,
     )
     save_profile(profile, character_id)
     return profile

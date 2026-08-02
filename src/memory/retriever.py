@@ -1,19 +1,23 @@
-"""RAG 검색 시스템: 소설 텍스트를 임베딩하고 검색."""
+"""Local full-text retrieval with SQLite FTS5 and BM25 ranking."""
+
+from __future__ import annotations
 
 import hashlib
 import json
 import re
+import sqlite3
 from pathlib import Path
 from typing import Optional
 
-import chromadb
+from src.paths import DATA_DIR
 
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
+
 DB_DIR = DATA_DIR / "vectordb"
+DB_PATH = DB_DIR / "avatar-search.sqlite3"
 
 
 def chunk_text(text: str, chunk_size: int = 500, overlap: int = 100) -> list[dict]:
-    """텍스트를 겹치는 청크로 분할."""
+    """Split text into overlapping word chunks."""
     words = text.split()
     chunks = []
     start = 0
@@ -21,85 +25,125 @@ def chunk_text(text: str, chunk_size: int = 500, overlap: int = 100) -> list[dic
     while start < len(words):
         end = start + chunk_size
         chunk_words = words[start:end]
-        chunk_text = " ".join(chunk_words)
-
         chunks.append({
-            "text": chunk_text,
+            "text": " ".join(chunk_words),
             "start_word": start,
             "end_word": min(end, len(words)),
         })
-
         start += chunk_size - overlap
 
     return chunks
 
 
-def build_index(book_id: str = "sherlock_holmes", force: bool = False) -> chromadb.Collection:
-    """소설 텍스트를 청크로 분할하고 ChromaDB에 색인."""
+def _connect() -> sqlite3.Connection:
     DB_DIR.mkdir(parents=True, exist_ok=True)
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    connection.execute("PRAGMA journal_mode=WAL")
+    connection.execute("PRAGMA foreign_keys=ON")
+    _ensure_schema(connection)
+    return connection
 
-    client = chromadb.PersistentClient(path=str(DB_DIR))
-    processed = DATA_DIR / "processed" / f"{book_id}.json"
-    source_hash = hashlib.sha256(processed.read_bytes()).hexdigest()
 
-    # 원본이 동일한 인덱스만 재사용한다.
-    existing = client.list_collections()
-    if book_id in [c.name for c in existing]:
-        collection = client.get_collection(book_id)
-        indexed_hash = (collection.metadata or {}).get("source_sha256")
-        if not force and indexed_hash == source_hash:
-            print(f"[skip] Collection '{book_id}' is up to date")
-            return collection
-        reason = "forced" if force else "source changed"
-        print(f"[rebuild] Collection '{book_id}' ({reason})")
-        client.delete_collection(book_id)
+def _ensure_schema(connection: sqlite3.Connection) -> None:
+    try:
+        connection.execute(
+            """
+            CREATE VIRTUAL TABLE IF NOT EXISTS chunks USING fts5(
+                book_id UNINDEXED,
+                doc_id UNINDEXED,
+                story_number UNINDEXED,
+                story_title UNINDEXED,
+                text,
+                tokenize='unicode61'
+            )
+            """
+        )
+    except sqlite3.OperationalError as exc:
+        raise RuntimeError(
+            "This Python build does not include SQLite FTS5 support. "
+            "Install an official Python 3.11+ build with FTS5 enabled."
+        ) from exc
 
-    data = json.loads(processed.read_text(encoding="utf-8"))
-
-    all_docs = []
-    all_ids = []
-    all_meta = []
-
-    for story in data["stories"]:
-        story_num = story["number"]
-        story_title = story["title"]
-        text = story["text"]
-
-        # 줄바꿈 정리
-        text = re.sub(r'\s+', ' ', text)
-
-        chunks = chunk_text(text, chunk_size=400, overlap=80)
-
-        for i, chunk in enumerate(chunks):
-            doc_id = f"s{story_num:02d}_c{i:04d}"
-            all_docs.append(chunk["text"])
-            all_ids.append(doc_id)
-            all_meta.append({
-                "story_number": story_num,
-                "story_title": story_title,
-                "chunk_index": i,
-            })
-
-    print(f"[indexing] {len(all_docs)} chunks from {len(data['stories'])} stories...")
-
-    # ChromaDB 기본 임베딩 함수 사용 (onnxruntime all-MiniLM-L6-v2)
-    collection = client.create_collection(
-        name=book_id,
-        metadata={"hnsw:space": "cosine", "source_sha256": source_hash},
+    connection.execute(
+        """
+        CREATE TABLE IF NOT EXISTS index_metadata (
+            book_id TEXT PRIMARY KEY,
+            source_sha256 TEXT NOT NULL,
+            chunk_count INTEGER NOT NULL,
+            indexed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )
+        """
     )
 
-    # 배치로 추가 (ChromaDB 제한: 한번에 ~5000개)
-    batch_size = 500
-    for start in range(0, len(all_docs), batch_size):
-        end = min(start + batch_size, len(all_docs))
-        collection.add(
-            documents=all_docs[start:end],
-            ids=all_ids[start:end],
-            metadatas=all_meta[start:end],
+
+def build_index(book_id: str = "sherlock_holmes", force: bool = False) -> int:
+    """Build or refresh a book's local FTS5 index and return its chunk count."""
+    processed = DATA_DIR / "processed" / f"{book_id}.json"
+    if not processed.exists():
+        raise FileNotFoundError(
+            f"Missing processed source: {processed}. "
+            f"Run scripts/prepare_character.py first."
         )
 
-    print(f"[done] Indexed {collection.count()} chunks")
-    return collection
+    source_hash = hashlib.sha256(processed.read_bytes()).hexdigest()
+    data = json.loads(processed.read_text(encoding="utf-8"))
+
+    with _connect() as connection:
+        existing = connection.execute(
+            "SELECT source_sha256, chunk_count FROM index_metadata WHERE book_id = ?",
+            (book_id,),
+        ).fetchone()
+        if existing and not force and existing["source_sha256"] == source_hash:
+            print(f"[skip] Search index '{book_id}' is up to date")
+            return int(existing["chunk_count"])
+
+        rows = []
+        for story in data["stories"]:
+            text = re.sub(r"\s+", " ", story["text"])
+            for index, chunk in enumerate(
+                chunk_text(text, chunk_size=400, overlap=80)
+            ):
+                rows.append((
+                    book_id,
+                    f"s{story['number']:02d}_c{index:04d}",
+                    story["number"],
+                    story["title"],
+                    chunk["text"],
+                ))
+
+        print(f"[indexing] {len(rows)} chunks from {len(data['stories'])} stories...")
+        connection.execute("DELETE FROM chunks WHERE book_id = ?", (book_id,))
+        connection.executemany(
+            """
+            INSERT INTO chunks(book_id, doc_id, story_number, story_title, text)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            rows,
+        )
+        connection.execute(
+            """
+            INSERT INTO index_metadata(book_id, source_sha256, chunk_count)
+            VALUES (?, ?, ?)
+            ON CONFLICT(book_id) DO UPDATE SET
+                source_sha256 = excluded.source_sha256,
+                chunk_count = excluded.chunk_count,
+                indexed_at = CURRENT_TIMESTAMP
+            """,
+            (book_id, source_hash, len(rows)),
+        )
+
+    print(f"[done] Indexed {len(rows)} chunks with SQLite FTS5")
+    return len(rows)
+
+
+def _fts_query(query: str) -> str:
+    tokens = list(dict.fromkeys(
+        token.lower()
+        for token in re.findall(r"[^\W_]+", query, flags=re.UNICODE)
+        if len(token) > 1
+    ))
+    return " OR ".join(f'"{token.replace(chr(34), chr(34) * 2)}"' for token in tokens[:20])
 
 
 def search(
@@ -108,46 +152,72 @@ def search(
     n_results: int = 5,
     max_story_number: Optional[int] = None,
 ) -> list[dict]:
-    """쿼리와 관련된 소설 텍스트 청크를 검색."""
-    client = chromadb.PersistentClient(path=str(DB_DIR))
-    collection = client.get_collection(book_id)
+    """Search indexed chunks while enforcing an optional story boundary."""
+    if n_results <= 0:
+        return []
 
-    query_args = {
-        "query_texts": [query],
-        "n_results": n_results,
-    }
-    if max_story_number is not None:
-        query_args["where"] = {"story_number": {"$lte": max_story_number}}
+    match_query = _fts_query(query)
+    with _connect() as connection:
+        indexed = connection.execute(
+            "SELECT 1 FROM index_metadata WHERE book_id = ?",
+            (book_id,),
+        ).fetchone()
+        if not indexed:
+            raise RuntimeError(
+                f"No local search index for {book_id}. "
+                "Run scripts/prepare_character.py first."
+            )
 
-    results = collection.query(
-        **query_args,
-    )
+        timeline_sql = ""
+        timeline_params = []
+        if max_story_number is not None:
+            timeline_sql = " AND CAST(story_number AS INTEGER) <= ?"
+            timeline_params.append(max_story_number)
 
-    output = []
-    for i in range(len(results["ids"][0])):
-        output.append({
-            "id": results["ids"][0][i],
-            "text": results["documents"][0][i],
-            "metadata": results["metadatas"][0][i],
-            "distance": results["distances"][0][i] if results.get("distances") else None,
-        })
+        rows = []
+        if match_query:
+            rows = connection.execute(
+                f"""
+                SELECT doc_id, story_number, story_title, text, bm25(chunks) AS score
+                FROM chunks
+                WHERE chunks MATCH ? AND book_id = ?{timeline_sql}
+                ORDER BY score
+                LIMIT ?
+                """,
+                (match_query, book_id, *timeline_params, n_results),
+            ).fetchall()
 
-    return output
+        # A query in another language or with no lexical overlap should still
+        # receive bounded source context rather than silently broadening scope.
+        if not rows:
+            rows = connection.execute(
+                f"""
+                SELECT doc_id, story_number, story_title, text, NULL AS score
+                FROM chunks
+                WHERE book_id = ?{timeline_sql}
+                ORDER BY CAST(story_number AS INTEGER), doc_id
+                LIMIT ?
+                """,
+                (book_id, *timeline_params, n_results),
+            ).fetchall()
+
+    return [
+        {
+            "id": row["doc_id"],
+            "text": row["text"],
+            "metadata": {
+                "story_number": int(row["story_number"]),
+                "story_title": row["story_title"],
+            },
+            "distance": row["score"],
+        }
+        for row in rows
+    ]
 
 
 if __name__ == "__main__":
-    collection = build_index()
-    print()
-
-    # 테스트 검색
-    test_queries = [
-        "Holmes deduction method",
-        "Watson description of Holmes",
-        "violin and cocaine",
-    ]
-    for q in test_queries:
-        print(f"\n=== Query: {q} ===")
-        results = search(q, n_results=2)
-        for r in results:
-            print(f"  [{r['metadata']['story_title']}] (dist: {r['distance']:.3f})")
-            print(f"  {r['text'][:150]}...")
+    build_index()
+    for query in ("Holmes deduction", "Watson", "violin"):
+        print(f"\n=== Query: {query} ===")
+        for result in search(query, n_results=2):
+            print(f"  [{result['metadata']['story_title']}] {result['text'][:150]}...")

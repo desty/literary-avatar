@@ -1,72 +1,88 @@
 # Avatar
 
-Timeline-aware chat with literary characters.
+Timeline-aware, source-grounded chat with literary characters.
 
-Avatar turns public-domain novels into local character chatbots. The app keeps each character grounded in the source text, lets you choose how far into the story the character has lived, and saves optional local conversation memories.
+Avatar turns legally usable novels into local-first character chatbots. It
+retrieves source passages, lets the reader choose how far into the story a
+character has lived, and can save optional conversation memory between sessions.
 
-## What It Does
+> **Local-first, not fully local:** source files, indexes, and memories stay in
+> the configured data directory. The default Claude backend sends prompts and
+> selected source excerpts to an external model through the Claude Code CLI.
+> See [Privacy and data flow](docs/privacy.md) before using private material.
 
-- Chat with Sherlock Holmes or Elizabeth Bennet from a CLI or Streamlit web UI.
-- Set a story position so the character only knows events up to that point.
-- Retrieve relevant passages from the novel with ChromaDB-backed RAG.
-- Inject character profiles, speech patterns, relationships, narrative state, and behavioral guidance into each response.
-- Store optional local memories between sessions.
+## Features
 
-Example timeline behavior:
+- Chat with Sherlock Holmes or Elizabeth Bennet from a CLI or Streamlit UI.
+- Restrict retrieval and prompt context to a story or chapter boundary.
+- Ground answers in SQLite FTS5/BM25 passages from the source work.
+- Combine profiles, relationships, narrative state, and behavioral guidance.
+- Inspect and delete optional plaintext local conversation memory.
+- Run the plumbing without an account using a deterministic mock backend.
 
-```text
-/timeline 0
-You: What do you think of Irene Adler?
-Holmes: That name means nothing to me.
+Timeline control is a spoiler-reduction guardrail, not a formal guarantee. A
+model can still rely on prior knowledge or infer later events.
 
-/timeline 1
-You: What do you think of Irene Adler?
-Holmes: The woman outwitted me, and I do not use the phrase lightly.
+## Quick start
+
+### Requirements
+
+- Python 3.11–3.13
+- For real responses: Claude Code CLI installed and authenticated (`claude -p`)
+- Network access for first-time source downloads
+
+### Install with uv
+
+```bash
+uv sync --extra ui --extra dev
+uv run avatar-prepare --all
+uv run avatar
 ```
 
-## Quick Start
-
-### Prerequisites
-
-- Python 3.9+
-- Claude Code CLI installed and authenticated (`claude -p`)
-
-### Install
+### Install with pip
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -e ".[ui,dev]"
+avatar-prepare --all
+avatar
 ```
 
-### Prepare Built-In Characters
+`uv.lock` is the reproducible dependency resolution used for development and
+release checks. `requirements.txt` remains a compatibility entry point.
 
-The repository includes profile, timeline, and behavior assets for the two
-built-in characters. Build the local source text and vector indexes with:
+### Offline plumbing demo
+
+The mock backend makes no model request and labels its fixed response:
 
 ```bash
-python3 scripts/prepare_character.py --all
+avatar --backend mock
+# or: AVATAR_GENERATION_BACKEND=mock avatar
 ```
 
-This runs:
+It validates runtime wiring but intentionally cannot generate new profiles,
+timelines, or behavior assets.
 
-1. Download public-domain text from Project Gutenberg.
-2. Parse the novel into story or chapter units.
-3. Build a ChromaDB vector index.
-4. Generate the character profile, timeline snapshots, and behavioral guidance.
+## Prepare built-in characters
 
-Steps 3 and 4 can take time. The LLM-backed steps are skipped automatically when their files already exist unless you pass `--force-llm`.
-
-Vector indexes are rebuilt automatically when the processed source changes. Pass
-`--force-index` to rebuild an unchanged index explicitly.
-
-### Run The CLI
+The repository includes small prepared profile, timeline, and behavior files.
+Build the untracked local source text and search indexes with:
 
 ```bash
-python3 -m src.main
+avatar-prepare --all
 ```
 
-Useful commands:
+The command downloads the work, removes the Gutenberg wrapper, parses it,
+builds a local SQLite FTS5 index, and generates missing analysis assets. Existing
+assets are reused unless `--force-llm` is passed. Use `--skip-llm` to download,
+parse, and index without an external generation call.
+
+## Use the CLI
+
+```bash
+avatar
+```
 
 ```text
 /switch       Switch character
@@ -79,78 +95,90 @@ Useful commands:
 /quit         Save and exit
 ```
 
-### Run The Web UI
+## Use the Streamlit UI
 
 ```bash
 streamlit run app.py
 ```
 
-### Run A Local Smoke Check
+## Verify a checkout
 
 ```bash
-python3 scripts/smoke_check.py
+python -m unittest discover -s tests -v
+python scripts/smoke_check.py
+python scripts/check_provenance.py
+python -m build
 ```
 
-The smoke check verifies that character profiles, timeline snapshots, behavioral guidance, and vector indexes are present.
+On a checkout without downloaded source data, use
+`python scripts/smoke_check.py --assets-only` to verify only the bundled files.
 
-Run the core regression tests with:
+With Claude CLI authenticated, optional live checks are available:
 
 ```bash
-python3 -m unittest discover -s tests -v
+python scripts/quality_check.py
 ```
 
-With Claude CLI authenticated, run the optional live character checks with:
+## Built-in characters
 
-```bash
-python3 scripts/quality_check.py
-```
-
-## Built-In Characters
-
-| Character | Novel | Timeline Units | Prepared Assets |
+| Character | Work | Timeline units | Tracked prepared assets |
 | --- | --- | ---: | --- |
-| Sherlock Holmes | The Adventures of Sherlock Holmes | 12 stories | profile, arc, behavior rules, RAG index |
-| Elizabeth Bennet | Pride and Prejudice | 61 chapters | profile, arc, behavior rules, RAG index |
+| Sherlock Holmes | *The Adventures of Sherlock Holmes* | 12 stories | profile, arc, behavior rules |
+| Elizabeth Bennet | *Pride and Prejudice* | 61 chapters | profile, arc, behavior rules |
 
-## Product Shape
+Downloaded books and search indexes are never tracked. See
+[Data sources](DATA_SOURCES.md) and [Third-party notices](THIRD_PARTY_NOTICES.md)
+for provenance, jurisdiction, model-download, and license details.
 
-Avatar is organized as a usable local product:
+## Data locations and deletion
+
+By default a source checkout stores generated state below `./data`. An installed
+wheel copies built-in assets to the operating system's user data directory
+(`~/Library/Application Support/Avatar` on macOS or
+`$XDG_DATA_HOME/avatar`/`~/.local/share/avatar` on Linux). Set
+`AVATAR_DATA_DIR` to choose another visible, writable location.
 
 ```text
-avatar/
-├── app.py                         # Streamlit chat UI
-├── demo.py                        # CLI feature demo
-├── scripts/
-│   ├── prepare_character.py       # Rebuild character assets
-│   ├── quality_check.py           # Optional live character checks
-│   └── smoke_check.py             # Verify local assets
-├── tests/                          # Offline regression and UI tests
-├── docs/
-│   ├── architecture.md            # Runtime architecture
-│   ├── character-builder.md       # Character asset pipeline
-│   └── product-roadmap.md         # MVP-oriented roadmap
-├── src/
-│   ├── main.py                    # CLI chat app
-│   ├── characters.py              # Shared built-in character registry
-│   ├── claude_cli.py              # Isolated Claude CLI adapter
-│   ├── ingestion/                 # Downloading and parsing novels
-│   ├── character/                 # Character engine and prompt context
-│   └── memory/                    # Session, persistent, and RAG memory
-├── data/
-│   ├── profiles/                  # Character profiles
-│   ├── arcs/                      # Timeline snapshots
-│   ├── logic/                     # Behavioral guidance
-│   └── vectordb/                  # ChromaDB storage
-└── archive/research/              # Archived research artifacts
+data/raw/        downloaded source text
+data/processed/ parsed source text
+data/vectordb/  local SQLite full-text search index
+data/memory/    plaintext conversations, summaries, and inferred user facts
 ```
 
-## Notes
+All four directories are ignored by Git. `/forget` clears memory for the active
+character/user. Removing the configured data directory deletes all locally
+generated data. Review [Privacy and data flow](docs/privacy.md) for what the
+generation backend may receive.
 
-- Avatar uses local files for generated memories under `data/memory/`.
-- The app is best with public-domain novels because the pipeline stores parsed text locally.
-- Timeline control is a guardrail, not a formal guarantee. The character may still occasionally leak future knowledge, especially for very famous stories.
-- See [Character Builder](docs/character-builder.md) to add another character.
+## Architecture and extension
+
+```text
+source -> parser -> timeline-tagged units -> SQLite FTS5 index
+                  -> prepared profile / arc / behavior assets
+
+message -> bounded retrieval -> prompt -> GenerationBackend -> reply
+```
+
+`GenerationBackend` currently has Claude CLI and deterministic mock
+implementations. The registry in `src/characters.py` is the single source of
+truth for built-in works. See [Architecture](docs/architecture.md) and
+[Character builder](docs/character-builder.md).
+
+Historical research notes, evaluations, and a paper draft live in
+`archive/research/`. They are not current product claims.
+
+## Contributing and security
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the
+[Code of Conduct](CODE_OF_CONDUCT.md). Never report private text, credentials,
+conversation memory, or unpatched vulnerability details in a public issue.
+Maintainers should complete the [public release checklist](docs/release-checklist.md)
+before tagging a version.
 
 ## License
 
-[MIT](LICENSE)
+Code and documentation are MIT licensed. Prepared generated data is offered
+under CC0-1.0 to the extent contributors hold rights in it. Underlying works,
+quotations, third-party packages, models, services, and trademarks retain their
+own status and terms. The repository is REUSE 3.3 compliant; see `REUSE.toml`
+and `LICENSES/`.

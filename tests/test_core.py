@@ -1,6 +1,7 @@
 """Regression tests for Avatar's core runtime behavior."""
 
 import subprocess
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,6 +13,8 @@ from src.character.arc_tracker import (
 )
 from src.character.engine import CharacterEngine
 from src.memory.persistent import PersistentMemory
+from src.generation import MockBackend
+from src.memory import retriever
 
 
 class CharacterEngineTests(unittest.TestCase):
@@ -163,6 +166,19 @@ class CharacterEngineTests(unittest.TestCase):
         self.assertIn("timed out", response)
         self.assertEqual(engine.memory.messages, [])
 
+    def test_injected_mock_backend_runs_without_claude(self):
+        engine = CharacterEngine(
+            "elizabeth_bennet",
+            generation_backend=MockBackend(),
+            config={"use_rag": False, "use_tom": False, "use_logic": False},
+        )
+
+        with patch("src.claude_cli.subprocess.run") as run:
+            response = engine.respond("Hello")
+
+        self.assertIn("Offline mock response", response)
+        run.assert_not_called()
+
 
 class ArcBoundaryTests(unittest.TestCase):
     def test_known_people_are_not_reclassified_as_future_only(self):
@@ -192,6 +208,59 @@ class ArcBoundaryTests(unittest.TestCase):
             ),
             ["Future Person"],
         )
+
+
+class LocalRetrieverTests(unittest.TestCase):
+    def test_sqlite_search_enforces_timeline_boundary(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_dir = Path(temp_dir)
+            processed_dir = data_dir / "processed"
+            index_dir = data_dir / "vectordb"
+            processed_dir.mkdir()
+            source = {
+                "stories": [
+                    {
+                        "number": 1,
+                        "title": "Early",
+                        "text": "Watson observes an ordinary early clue.",
+                    },
+                    {
+                        "number": 2,
+                        "title": "Late",
+                        "text": "Adler reveals the final secret evidence.",
+                    },
+                ],
+            }
+            (processed_dir / "test_book.json").write_text(
+                json.dumps(source),
+                encoding="utf-8",
+            )
+
+            with (
+                patch.object(retriever, "DATA_DIR", data_dir),
+                patch.object(retriever, "DB_DIR", index_dir),
+                patch.object(retriever, "DB_PATH", index_dir / "search.sqlite3"),
+            ):
+                self.assertEqual(retriever.build_index("test_book"), 2)
+                full = retriever.search("final secret", "test_book", n_results=1)
+                bounded = retriever.search(
+                    "final secret",
+                    "test_book",
+                    n_results=2,
+                    max_story_number=1,
+                )
+
+            self.assertEqual(full[0]["metadata"]["story_number"], 2)
+            self.assertTrue(bounded)
+            self.assertTrue(
+                all(item["metadata"]["story_number"] <= 1 for item in bounded)
+            )
+            self.assertNotIn("final secret", bounded[0]["text"])
+
+    def test_fts_query_treats_user_input_as_terms_not_sql(self):
+        query = retriever._fts_query('\" OR 1=1 --')
+        self.assertNotIn("=", query)
+        self.assertEqual(query, '"or"')
 
 
 class PersistentMemoryTests(unittest.TestCase):

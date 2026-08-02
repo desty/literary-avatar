@@ -7,7 +7,8 @@
 - 홈즈가 사용자의 지식 수준을 파악하여 설명 깊이 조절
 """
 
-from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
+from src.claude_cli import parse_json_response
+from src.generation import GenerationBackend, get_generation_backend
 
 
 def infer_other_perspective(
@@ -16,6 +17,7 @@ def infer_other_perspective(
     topic: str,
     character_profile: dict,
     conversation_context: str,
+    generation_backend: GenerationBackend = None,
 ) -> dict:
     """캐릭터가 다른 캐릭터/사용자의 관점을 추론."""
 
@@ -38,8 +40,9 @@ Return JSON only:
 "internal_reasoning": "{character_name}'s private reasoning about {other_name}'s mental state"}}"""
 
     try:
-        text = call_claude(prompt, timeout=60)
-    except ClaudeCLIError:
+        backend = generation_backend or get_generation_backend()
+        text = backend.generate(prompt, timeout=60)
+    except RuntimeError:
         return {}
     try:
         return parse_json_response(text, expected_type=dict)

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use Avatar in research, please cite the software release."
+title: "Avatar: Timeline-aware literary character chat"
+type: software
+version: 0.1.0
+authors:
+  - name: "Avatar Contributors"
+license: MIT
+abstract: >-
+  A source-grounded character chat system with narrative-position-aware
+  retrieval and prompt boundaries.
+keywords:
+  - character agents
+  - retrieval-augmented generation
+  - narrative timeline
+  - literary characters

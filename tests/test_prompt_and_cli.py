@@ -8,6 +8,7 @@ from src.character.prompt_builder import (
     build_timeline_safe_profile,
 )
 from src.claude_cli import call_claude, parse_json_response
+from src.generation import ClaudeCLIBackend, MockBackend, get_generation_backend
 
 
 class PromptTests(unittest.TestCase):
@@ -81,6 +82,31 @@ class ClaudeCLITests(unittest.TestCase):
             parse_json_response("Result: [1, 2, 3]", expected_type=list),
             [1, 2, 3],
         )
+
+
+class GenerationBackendTests(unittest.TestCase):
+    def test_backend_selection_is_explicit_and_validated(self):
+        self.assertIsInstance(get_generation_backend("claude"), ClaudeCLIBackend)
+        self.assertIsInstance(get_generation_backend("mock"), MockBackend)
+
+        with self.assertRaisesRegex(ValueError, "Available backends"):
+            get_generation_backend("unknown")
+
+    def test_mock_backend_returns_a_network_free_runtime_response(self):
+        backend = MockBackend()
+
+        with patch("src.claude_cli.subprocess.run") as run:
+            response = backend.generate(
+                "User says: hello",
+                system_prompt="Respond as a literary character",
+            )
+
+        self.assertIn("Offline mock response", response)
+        run.assert_not_called()
+
+    def test_mock_backend_refuses_to_fabricate_analysis_assets(self):
+        with self.assertRaisesRegex(RuntimeError, "cannot generate"):
+            MockBackend().generate("Analyze this novel and Return JSON only")
 
 
 if __name__ == "__main__":
