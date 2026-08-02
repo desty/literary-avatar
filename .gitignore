@@ -4,6 +4,9 @@ __pycache__/
 .venv/
 .DS_Store
 
+# Private workspace (plans, research drafts, and collaboration notes)
+.private/
+
 # Data (regenerable via ingestion pipeline)
 data/raw/
 data/processed/
