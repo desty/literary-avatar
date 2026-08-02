@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-08-02",
+  "generation": {
+    "tool": "Claude Code CLI",
+    "tool_version": null,
+    "model": null,
+    "generated_at": null,
+    "note": "Exact initial generation metadata was not recorded; do not infer it."
+  },
+  "assets": {
+    "data/profiles/elizabeth_bennet.json": "2b2b21bbeba8d06416b4d348977b67860310cf699dca6b89cce7c5d58cdf162f",
+    "data/profiles/sherlock_holmes.json": "f0fd063afd8765298d724117e0ada14fdae42f5a5f75a9f71b6b032b2cd7fb02",
+    "data/arcs/elizabeth_bennet.json": "b0459bb8e1a6b65cc92dc49ccf2bd682aefd41cd8e9725f593260395437cadc4",
+    "data/arcs/sherlock_holmes.json": "42b64edf094fe769d0e8f0706a8193728d2280c1624288682af51cd32a1238e5",
+    "data/logic/elizabeth_bennet.json": "7fb082f433ccdab4a5d1ef42620776d482ac93a7881a001a961274475bc815d9",
+    "data/logic/sherlock_holmes.json": "f9a0b2e44500eca782428889f5b93d1d1099e4a0a4314b0461b27796b61c5c89"
+  }
+}

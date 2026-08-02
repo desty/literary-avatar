@@ -6,20 +6,23 @@
 import json
 import re
 from pathlib import Path
-
-from src.claude_cli import ClaudeCLIError, call_claude, parse_json_response
+from src.claude_cli import parse_json_response
 from src.characters import get_character
+from src.generation import GenerationBackend, get_generation_backend
+from src.paths import DATA_DIR
 
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
-
-
-def generate_arc_snapshots(book_id: str, character_name: str) -> list[dict]:
+def generate_arc_snapshots(
+    book_id: str,
+    character_name: str,
+    generation_backend: GenerationBackend = None,
+) -> list[dict]:
     """각 스토리/챕터 시점에서의 캐릭터 상태 스냅샷을 생성."""
     processed = DATA_DIR / "processed" / f"{book_id}.json"
     data = json.loads(processed.read_text(encoding="utf-8"))
 
     stories = data["stories"]
     snapshots = []
+    backend = generation_backend or get_generation_backend()
 
     # 누적 컨텍스트: 이전 스토리까지의 핵심 사건
     cumulative_events = []
@@ -68,8 +71,8 @@ Return JSON array only:
 ]"""
 
         try:
-            text = call_claude(prompt, timeout=180)
-        except ClaudeCLIError:
+            text = backend.generate(prompt, timeout=180)
+        except RuntimeError:
             continue
         try:
             batch_snapshots = parse_json_response(text, expected_type=list)

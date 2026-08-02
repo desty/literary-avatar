@@ -1,0 +1,41 @@
+name: Bug report
+description: Report reproducible incorrect behavior.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include private source text, conversation memory, credentials, or unpatched security details.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      placeholder: Include the character, timeline position, and backend, but redact private content.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Avatar and Python versions
+      placeholder: Avatar 0.1.0; Python 3.12
+    validations:
+      required: true
+  - type: dropdown
+    id: backend
+    attributes:
+      label: Generation backend
+      options: [Claude CLI, Mock, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs
+      render: shell

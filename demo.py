@@ -121,7 +121,7 @@ def main():
     features = [
         ("Novel Ingestion", "✅", "2 novels, 3,918 dialogues, 73 chapters"),
         ("Character Profiles", "✅", "Big Five, speech patterns, relationships"),
-        ("RAG Search", "✅", "747 chunks across 2 novels (ChromaDB)"),
+        ("RAG Search", "✅", "Local SQLite FTS5/BM25 index"),
         ("Timeline Control", "Ready", "Story-position-aware responses"),
         ("Behavioral Guidance", "Ready", "Auto-extracted rules from text"),
         ("Theory of Mind", "Ready", "User perspective inference"),

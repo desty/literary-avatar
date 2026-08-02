@@ -1,9 +1,9 @@
 # Architecture
 
-Avatar is a local character chat system built around four runtime contexts:
+Avatar is a local-first character chat system built around four runtime contexts:
 
 1. **Character profile**: identity, personality, speech patterns, values, relationships, habits, and reasoning style.
-2. **Novel retrieval**: relevant source passages retrieved from a ChromaDB index.
+2. **Novel retrieval**: relevant source passages ranked by SQLite FTS5/BM25.
 3. **Timeline state**: what the character knows and does not know at a selected chapter or story position.
 4. **Conversation memory**: recent session turns plus optional local summaries from prior sessions.
 
@@ -11,7 +11,7 @@ Avatar is a local character chat system built around four runtime contexts:
 Novel text
   -> parser
   -> processed stories/chapters
-  -> vector index
+  -> SQLite full-text index
 
 Processed story units
   -> profile extractor
@@ -21,7 +21,9 @@ Processed story units
 User message
   -> timeline-filtered retrieval
   -> prompt builder
-  -> isolated Claude CLI adapter
+  -> GenerationBackend
+       -> isolated Claude CLI adapter
+       -> deterministic offline mock
   -> character response
 ```
 
@@ -29,8 +31,10 @@ Built-in character metadata lives in `src/characters.py`. Runtime entry points
 and asset-generation modules use this shared registry instead of maintaining
 separate character-to-book mappings.
 
-All LLM calls go through `src/claude_cli.py`, which disables coding tools and
-session persistence and centralizes JSON response parsing.
+All model-facing features use the `GenerationBackend` interface in
+`src/generation.py`. The default Claude adapter delegates to `src/claude_cli.py`,
+which disables coding tools and session persistence. The mock backend supports
+offline tests but does not fabricate analysis assets.
 
 ## Timeline Control
 
@@ -38,7 +42,7 @@ Avatar computes one effective knowledge boundary from the character's narrative
 position and the reader's progress, using whichever is earlier. The same
 boundary now controls:
 
-- ChromaDB retrieval.
+- SQLite FTS5 retrieval.
 - Cumulative character state and the future-unknown list.
 - The system prompt's hard knowledge constraint.
 - A timeline-safe projection of the full-book character profile.
@@ -51,6 +55,16 @@ Full-book behavioral rules and persistent episode summaries are used only when
 no timeline boundary is active. This is the main product feature: a user can
 talk to a character as they were at a particular point in the story.
 
+## Retrieval
+
+The default index uses Python's bundled SQLite FTS5 engine and BM25 ranking. It
+stores no executable serialization and requires no database server or embedding
+model. Retrieval is lexical: a query in a different language may not match the
+English source. In that case Avatar supplies the earliest context inside the
+active timeline boundary rather than broadening the boundary. A future semantic
+retriever should implement the same search contract and pass the same boundary
+tests before becoming an optional backend.
+
 ## Memory
 
 Avatar has two memory layers:
@@ -61,6 +75,9 @@ Avatar has two memory layers:
 Active turns are journaled locally before session summarization so an interrupted CLI or
 web session can be recovered. Persistent memory is intentionally local and file-based so
 it is easy to inspect or delete.
+
+The default backend still sends prompt content to an external model. Local
+storage does not imply local inference; see `docs/privacy.md`.
 
 ## Product Boundary
 

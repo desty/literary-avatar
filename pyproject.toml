@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "literary-avatar"
+description = "Timeline-aware, source-grounded chat with literary characters"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+license-files = ["LICENSE", "LICENSES/*.txt"]
+authors = [{ name = "Avatar Contributors" }]
+keywords = ["character-agent", "literature", "rag", "timeline", "chatbot"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dynamic = ["version"]
+dependencies = [
+  "requests>=2.32,<3",
+  "rich>=15,<16",
+]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.50,<2"]
+dev = [
+  "build>=1.4,<2",
+  "pip-audit>=2.9,<3",
+  "reuse[charset-normalizer]>=6.2,<7",
+]
+
+[project.scripts]
+avatar = "src.main:main"
+avatar-prepare = "src.prepare:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = { attr = "src.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["src", "src.*"]
+
+[tool.setuptools.data-files]
+"share/avatar" = ["DATA_SOURCES.md", "THIRD_PARTY_NOTICES.md"]
+"share/avatar/data" = ["data/README.md", "data/provenance.json"]
+"share/avatar/data/profiles" = ["data/profiles/*.json"]
+"share/avatar/data/arcs" = ["data/arcs/*.json"]
+"share/avatar/data/logic" = ["data/logic/*.json"]
