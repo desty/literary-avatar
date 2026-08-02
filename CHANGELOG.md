@@ -18,6 +18,8 @@ the project uses [Semantic Versioning](https://semver.org/).
 
 - Retrieval misses now remain empty instead of substituting unrelated early-book
   chunks as evidence.
+- Cross-language replies now prefer idiomatic phrasing and avoid unsolicited
+  source-language glosses.
 
 ### Removed
 

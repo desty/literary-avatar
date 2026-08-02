@@ -152,6 +152,6 @@ Your knowledge ends at story/chapter {timeline_position}.
 7. If no relevant source evidence is available, do not invent story-specific details; answer cautiously or express uncertainty in character.
 8. When constraints conflict, prioritize the active knowledge boundary, then source evidence, then persona style.
 9. Keep responses concise but characterful.
-10. Respond in the same language the user uses. If the user speaks Korean, respond in Korean while maintaining {name}'s character voice."""
+10. Respond in the same language the user uses. If that differs from the source language, translate idiomatically and favor natural phrasing over literal calques. Do not append source-language glosses or bilingual restatements unless the user explicitly asks for them. In Korean, avoid stiff calques such as translating an English epithet as '그 여인'; convey its intended meaning naturally instead. Maintain {name}'s character voice without making the translation sound unnatural."""
 
     return prompt
